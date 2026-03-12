@@ -177,37 +177,43 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 .comp-pill{display:inline-block;border:var(--bt);padding:2px 10px;margin:3px;font-size:10px;font-weight:700;cursor:pointer}
 .comp-pill:hover{background:var(--k);color:var(--w)}
 
-/* ── ASSISTANT CHAT SECTION (compact) ── */
-#assistant{background:var(--w);border-bottom:1px solid #E8E8E8}
-#assistant .s-head{border-bottom:none}
-#assistant .s-head-in{padding-bottom:0}
-.chat-container{max-width:720px;margin:0 auto;padding:0 32px 32px}
-.chat-messages-area{background:var(--g1);border:1px solid #E8E8E8;border-radius:var(--radius);height:220px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+/* ── ASSISTANT — minimal dark bar ── */
+#assistant{background:var(--w);padding:40px 0 48px}
+.ask-container{max-width:640px;margin:0 auto;padding:0 32px}
+.ask-title{text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--g4);margin-bottom:18px}
+.ask-bar{display:flex;align-items:center;background:#1A1A1A;border-radius:28px;padding:5px 5px 5px 8px;gap:6px}
+.ask-toggle{width:36px;height:36px;border-radius:50%;background:transparent;border:none;color:#888;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:color .15s}
+.ask-toggle:hover{color:#fff}
+.ask-bar input{flex:1;border:none;padding:10px 4px;font-size:14px;font-family:inherit;outline:none;background:transparent;color:#fff}
+.ask-bar input::placeholder{color:#666}
+.ask-voice{background:#333;border:none;color:#ccc;padding:8px 18px;border-radius:22px;font-size:12px;font-weight:600;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:6px;transition:background .15s;font-family:inherit}
+.ask-voice:hover{background:#444;color:#fff}
+.chat-suggestions{display:none;flex-wrap:wrap;gap:6px;margin-top:14px;justify-content:center}
+.chat-suggestions.show{display:flex}
+.chat-chip{border:1px solid #E8E8E8;background:var(--w);padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--g4)}
+.chat-chip:hover{border-color:var(--k);color:var(--k);background:rgba(180,255,0,.08)}
+.chat-messages-area{display:none;flex-direction:column;gap:10px;margin-top:20px;background:var(--g1);border:1px solid #E8E8E8;border-radius:var(--radius);max-height:320px;overflow-y:auto;padding:16px}
+.chat-messages-area.active{display:flex}
 .chat-msg{max-width:80%;padding:10px 14px;font-size:13px;line-height:1.5;word-break:break-word}
 .chat-msg.user{align-self:flex-end;background:var(--k);color:var(--w);border-radius:10px 10px 4px 10px}
 .chat-msg.assistant{align-self:flex-start;background:var(--w);color:var(--k);border:1px solid #E8E8E8;border-radius:10px 10px 10px 4px}
 .chat-msg.assistant .chat-sources{margin-top:8px;padding-top:6px;border-top:1px solid #E8E8E8;font-size:11px;color:var(--g4)}
 .chat-msg.assistant .chat-sources span{display:inline-block;background:#E8E8E8;padding:2px 6px;border-radius:4px;margin:2px 3px 0 0;font-weight:600;color:var(--g6);font-size:10px}
-.chat-input-bar{display:flex;align-items:center;gap:8px;background:var(--w);border:1px solid #E8E8E8;border-radius:var(--radius);padding:3px 3px 3px 14px;box-shadow:var(--shadow-sm)}
-.chat-input-bar input{flex:1;border:none;padding:10px 0;font-size:13px;font-family:inherit;outline:none;background:transparent}
-.chat-input-bar input::placeholder{color:var(--g4)}
-.chat-input-bar button{background:var(--k);border:none;width:36px;height:36px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
-.chat-input-bar button:hover{background:var(--g6)}
-.chat-input-bar button svg{width:16px;height:16px;fill:var(--g)}
-.chat-input-bar button:disabled{background:var(--g2);cursor:not-allowed}
-.chat-input-bar button:disabled svg{fill:var(--g4)}
-.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;justify-content:center}
-.chat-chip{border:1px solid #E8E8E8;background:var(--w);padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--g4)}
-.chat-chip:hover{border-color:var(--k);color:var(--k);background:rgba(180,255,0,.08)}
 .chat-typing{display:flex;gap:4px;padding:10px 14px;align-self:flex-start}
 .chat-typing span{width:6px;height:6px;background:var(--g4);border-radius:50%;animation:chat-bounce .6s infinite alternate}
 .chat-typing span:nth-child(2){animation-delay:.2s}
 .chat-typing span:nth-child(3){animation-delay:.4s}
 @keyframes chat-bounce{to{opacity:.3;transform:translateY(-4px)}}
 
-/* ── VIZ MAP ── */
+/* ── VIZ MAP 3D ── */
 .viz-wrap{max-width:1320px;margin:0 auto;padding:32px;position:relative}
-.viz-svg{width:100%;height:560px;display:block;border:var(--bt);background:#FAFAFA}
+.viz-canvas{width:100%;height:560px;display:block;border:var(--bt);background:#FAFAFA;cursor:grab;touch-action:none}
+.viz-canvas.dragging{cursor:grabbing}
+.viz-dim-switcher{display:flex;gap:0;margin-top:16px;border:var(--bt);border-radius:var(--radius);overflow:hidden;width:fit-content}
+.viz-dim-btn{background:var(--w);border:none;padding:8px 20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:all .15s;font-family:inherit;color:var(--g6);border-right:var(--bt)}
+.viz-dim-btn:last-child{border-right:none}
+.viz-dim-btn.active{background:var(--k);color:var(--w)}
+.viz-dim-btn:hover:not(.active){background:var(--g1)}
 .viz-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px}
 .viz-legend-item{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
 .viz-legend-dot{width:10px;height:10px;border-radius:50%}
@@ -219,8 +225,8 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 .viz-tooltip .vt-cat{font-size:10px;color:#ccc;margin-bottom:4px}
 .viz-tooltip .vt-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
 .viz-tooltip .vt-tag{border:1px solid rgba(180,255,0,.4);padding:1px 5px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g);border-radius:2px}
-.viz-loading{display:flex;align-items:center;justify-content:center;height:100%;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--g4)}
-@media(max-width:900px){.viz-svg{height:400px}}
+.viz-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--g4);pointer-events:none}
+@media(max-width:900px){.viz-canvas{height:400px}}
 
 /* ── CONTACT ── */
 .contact-in{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr}
@@ -262,9 +268,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   .ct-l{border-right:0;border-bottom:var(--bt);padding-right:0}
   .ct-r{padding-left:0}
   nav ul{display:none}
-  .chat-container{padding:0 16px 24px}
-  .chat-messages-area{height:180px}
-  .chat-suggestions{gap:5px}
+  .ask-container{padding:0 16px}
   .chat-chip{font-size:10px;padding:5px 10px}
   footer{flex-direction:column;gap:8px;text-align:center}
 }
@@ -342,27 +346,20 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 
 <!-- ═══════════════════════════════════════════ ASSISTANT IA -->
 <section id="assistant">
-  <div class="s-head">
-    <div class="s-head-in">
-      <span class="s-num">01</span>
-      <h2 style="font-size:clamp(18px,2.5vw,28px)">Voir si on fit</h2>
-      <span class="s-meta">Posez vos questions à l'IA sur le profil, les compétences ou le catalogue</span>
+  <div class="ask-container">
+    <h3 class="ask-title">Poser une question</h3>
+    <div class="ask-bar">
+      <button class="ask-toggle" id="ask-toggle" aria-label="Suggestions">+</button>
+      <input id="chat-input" type="text" placeholder="Poser une question" maxlength="2000" autocomplete="off">
+      <button class="ask-voice" id="ask-voice">&#x1F399; Voix</button>
     </div>
-  </div>
-  <div class="chat-container">
-    <div class="chat-messages-area" id="chat-messages">
-      <div class="chat-msg assistant">Bonjour ! Posez-moi une question sur le profil, les compétences ou les réalisations de Paul.</div>
-    </div>
-    <div class="chat-input-bar">
-      <input id="chat-input" type="text" placeholder="Ex : quels projets RAG a-t-il réalisés ?" maxlength="2000" autocomplete="off">
-      <button id="chat-send" aria-label="Envoyer"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
-    </div>
-    <div class="chat-suggestions">
+    <div class="chat-suggestions" id="chat-suggestions">
       <div class="chat-chip" onclick="askChat('Quelles sont les compétences clés de Paul ?')">Compétences</div>
       <div class="chat-chip" onclick="askChat('Quels projets RAG a-t-il réalisés ?')">Projets RAG</div>
       <div class="chat-chip" onclick="askChat('Dans quels secteurs Paul a-t-il travaillé ?')">Secteurs</div>
       <div class="chat-chip" onclick="askChat('Quel est le tarif de prototypage ?')">Tarifs</div>
     </div>
+    <div class="chat-messages-area" id="chat-messages"></div>
   </div>
 </section>
 
@@ -370,7 +367,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="catalogue">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">02</span>
+      <span class="s-num">01</span>
       <h2>Catalogue de Réalisations</h2>
       <span class="s-meta">19 réalisations · Cliquer pour détail &amp; pricing</span>
     </div>
@@ -589,21 +586,27 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════ VIZ MAP -->
+<!-- ═══════════════════════════════════════════ VIZ MAP 3D -->
 <section id="vizmap">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">03</span>
+      <span class="s-num">02</span>
       <h2>Cartographie Sémantique</h2>
-      <span class="s-meta">Proximité thématique des réalisations — projection UMAP des embeddings</span>
+      <span class="s-meta">Proximité thématique des réalisations — projection UMAP 3D des embeddings</span>
     </div>
   </div>
-  <div class="viz-wrap">
-    <svg id="viz-svg" class="viz-svg" preserveAspectRatio="xMidYMid meet">
-      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#999" letter-spacing=".12em" class="viz-loading-text">CHARGEMENT DE LA CARTOGRAPHIE…</text>
-    </svg>
-    <div class="viz-legend" id="viz-legend"></div>
+  <div class="viz-wrap" id="viz-wrap">
+    <canvas id="viz-canvas" class="viz-canvas"></canvas>
+    <div class="viz-loading" id="viz-loading">CHARGEMENT DE LA CARTOGRAPHIE…</div>
     <div class="viz-tooltip" id="viz-tooltip"></div>
+  </div>
+  <div style="max-width:1320px;margin:0 auto;padding:0 32px">
+    <div class="viz-dim-switcher" id="viz-dim-switcher">
+      <button class="viz-dim-btn active" data-dim="cluster">Cluster</button>
+      <button class="viz-dim-btn" data-dim="sector">Secteur</button>
+      <button class="viz-dim-btn" data-dim="category">Catégorie</button>
+    </div>
+    <div class="viz-legend" id="viz-legend"></div>
   </div>
 </section>
 
@@ -611,7 +614,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="parcours">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">04</span>
+      <span class="s-num">03</span>
       <h2>Parcours</h2>
       <span class="s-meta">HEI · M2 Medical Engineering · 2006–2011 · Léognan, France</span>
     </div>
@@ -723,7 +726,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="competences">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">05</span>
+      <span class="s-num">04</span>
       <h2>Compétences</h2>
     </div>
   </div>
@@ -771,7 +774,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="upload">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">06</span>
+      <span class="s-num">05</span>
       <h2>Outils Recruteurs</h2>
       <span class="s-meta">Deux machines interactives — réservées aux décideurs RH &amp; managers</span>
     </div>
@@ -824,7 +827,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="contact">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">07</span>
+      <span class="s-num">06</span>
       <h2>Une Mission ?</h2>
     </div>
   </div>
@@ -1188,153 +1191,444 @@ function genRadar(){
   },2400);
 }
 
-// ══════════════════ VIZ MAP ══════════════════
-const VIZ_COLORS = ['#B4FF00','#000000','#666666','#999999','#CCCCCC'];
-const VIZ_COLORS_FILL = ['rgba(180,255,0,.18)','rgba(0,0,0,.10)','rgba(102,102,102,.10)','rgba(153,153,153,.10)','rgba(204,204,204,.10)'];
-
+// ══════════════════ VIZ MAP 3D ══════════════════
 function initVizMap() {
   const VIZ_API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
     ? 'http://localhost:3001/api/viz'
     : 'https://api-ashy-five-66.vercel.app/api/viz';
 
-  const svg = document.getElementById('viz-svg');
+  const canvas = document.getElementById('viz-canvas');
   const tooltip = document.getElementById('viz-tooltip');
   const legendEl = document.getElementById('viz-legend');
-  if (!svg) return;
+  const loadingEl = document.getElementById('viz-loading');
+  if (!canvas) return;
 
   fetch(VIZ_API)
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(data => renderViz(svg, tooltip, legendEl, data))
+    .then(data => {
+      if (loadingEl) loadingEl.style.display = 'none';
+      initViz3D(canvas, tooltip, legendEl, data);
+    })
     .catch(err => {
       console.error('[Viz] Load error:', err);
-      svg.innerHTML = '<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#999">Cartographie indisponible</text>';
+      if (loadingEl) loadingEl.textContent = 'Cartographie indisponible';
     });
 }
 
-function renderViz(svg, tooltip, legendEl, data) {
+function initViz3D(canvas, tooltip, legendEl, data) {
   const { points, clusters } = data;
-  if (!points || points.length === 0) {
-    svg.innerHTML = '<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="12" fill="#999">Aucune donnée</text>';
-    return;
+  if (!points || points.length === 0) return;
+
+  const ctx = canvas.getContext('2d');
+  const wrap = canvas.parentElement;
+
+  // ── Retina setup ──
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return rect;
+  }
+  let rect = resizeCanvas();
+  window.addEventListener('resize', () => { rect = resizeCanvas(); render(); });
+
+  // ── Camera (orbital) ──
+  let theta = 0.4;       // horizontal rotation
+  let phi = 0.3;         // vertical rotation
+  let distance = 3.5;    // zoom
+  const fov = 600;
+  let autoRotate = true;
+  let animId = null;
+
+  // ── Dimension coloring ──
+  const CLUSTER_COLORS = ['#B4FF00','#FF6B35','#1565C0','#6A1B9A','#2E7D32','#F57F17','#000000','#666666'];
+  const SECTOR_MAP = {
+    'sant':{ label:'Santé', color:'#FF6B35' },
+    'medtech':{ label:'Santé', color:'#FF6B35' },
+    'pharma':{ label:'Pharma', color:'#E91E63' },
+    'assur':{ label:'Assurance', color:'#1565C0' },
+    'mutuel':{ label:'Assurance', color:'#1565C0' },
+    'banqu':{ label:'Banque', color:'#2E7D32' },
+    'financ':{ label:'Banque', color:'#2E7D32' },
+    'public':{ label:'Secteur Public', color:'#6A1B9A' },
+    'conseil':{ label:'Conseil', color:'#F57F17' },
+    'retail':{ label:'Retail', color:'#00BCD4' },
+    'industr':{ label:'Industrie', color:'#795548' },
+  };
+  const CATEGORY_COLORS = {};
+  let catColorIdx = 0;
+  const CAT_PALETTE = ['#B4FF00','#FF6B35','#1565C0','#6A1B9A','#2E7D32','#F57F17','#E91E63','#00BCD4','#795548','#607D8B'];
+
+  let currentDim = 'cluster';
+
+  function getPointColor(pt) {
+    if (currentDim === 'cluster') {
+      return CLUSTER_COLORS[pt.cluster % CLUSTER_COLORS.length];
+    } else if (currentDim === 'sector') {
+      const refs = ((pt.refs || '') + ' ' + (pt.tags || []).join(' ')).toLowerCase();
+      for (const [kw, info] of Object.entries(SECTOR_MAP)) {
+        if (refs.includes(kw)) return info.color;
+      }
+      return '#999';
+    } else if (currentDim === 'category') {
+      const cat = pt.category || pt.role || 'Autre';
+      if (!CATEGORY_COLORS[cat]) {
+        CATEGORY_COLORS[cat] = CAT_PALETTE[catColorIdx % CAT_PALETTE.length];
+        catColorIdx++;
+      }
+      return CATEGORY_COLORS[cat];
+    }
+    return '#999';
   }
 
-  const rect = svg.getBoundingClientRect();
-  const W = rect.width || 900;
-  const H = rect.height || 560;
-  const pad = 60;
+  function buildLegend() {
+    let html = '';
+    if (currentDim === 'cluster') {
+      clusters.forEach((cl, ci) => {
+        const color = CLUSTER_COLORS[ci % CLUSTER_COLORS.length];
+        html += `<div class="viz-legend-item"><div class="viz-legend-dot" style="background:${color}"></div>${escViz(cl.label)} (${cl.count})</div>`;
+      });
+    } else if (currentDim === 'sector') {
+      const seen = {};
+      for (const [kw, info] of Object.entries(SECTOR_MAP)) {
+        if (!seen[info.label]) {
+          seen[info.label] = true;
+          html += `<div class="viz-legend-item"><div class="viz-legend-dot" style="background:${info.color}"></div>${info.label}</div>`;
+        }
+      }
+      html += `<div class="viz-legend-item"><div class="viz-legend-dot" style="background:#999"></div>Autre</div>`;
+    } else if (currentDim === 'category') {
+      for (const [cat, color] of Object.entries(CATEGORY_COLORS)) {
+        html += `<div class="viz-legend-item"><div class="viz-legend-dot" style="background:${color}"></div>${escViz(cat)}</div>`;
+      }
+    }
+    html += `<div class="viz-legend-item"><div class="viz-legend-dot" style="background:#666;border-radius:50%"></div>Projet</div>`;
+    html += `<div class="viz-legend-item"><div class="viz-legend-diamond" style="background:#666"></div>Expérience</div>`;
+    legendEl.innerHTML = html;
+  }
 
-  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  let html = '';
+  // ── 3D transforms ──
+  function rotatePoint(x, y, z) {
+    // Center data around origin: [0,1] → [-0.5, 0.5]
+    x -= 0.5; y -= 0.5; z -= 0.5;
+    // Y-axis rotation (theta)
+    const cosT = Math.cos(theta), sinT = Math.sin(theta);
+    const x1 = x * cosT - z * sinT;
+    const z1 = x * sinT + z * cosT;
+    // X-axis rotation (phi)
+    const cosP = Math.cos(phi), sinP = Math.sin(phi);
+    const y1 = y * cosP - z1 * sinP;
+    const z2 = y * sinP + z1 * cosP;
+    return { x: x1, y: y1, z: z2 };
+  }
 
-  // Cluster zones (soft ellipses behind points)
-  clusters.forEach((cl, ci) => {
-    const members = points.filter(p => p.cluster === cl.id);
-    if (members.length < 2) return;
-    const cx = pad + cl.cx * (W - 2 * pad);
-    const cy = pad + (1 - cl.cy) * (H - 2 * pad);
-    // compute radius from max distance to centroid
-    let maxDist = 0;
-    members.forEach(m => {
-      const mx = pad + m.x * (W - 2 * pad);
-      const my = pad + (1 - m.y) * (H - 2 * pad);
-      const d = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
-      if (d > maxDist) maxDist = d;
+  function project(x, y, z) {
+    const scale = fov / (distance + z + 1);
+    const W = rect.width;
+    const H = rect.height;
+    return {
+      sx: W / 2 + x * scale,
+      sy: H / 2 - y * scale,
+      scale: scale
+    };
+  }
+
+  // ── Projected points cache ──
+  let projected = [];
+
+  function render() {
+    const W = rect.width;
+    const H = rect.height;
+    ctx.clearRect(0, 0, W, H);
+
+    // Background
+    ctx.fillStyle = '#FAFAFA';
+    ctx.fillRect(0, 0, W, H);
+
+    // Draw subtle axes
+    const axes = [
+      { from: [0,0.5,0.5], to: [1,0.5,0.5], label: '' },
+      { from: [0.5,0,0.5], to: [0.5,1,0.5], label: '' },
+      { from: [0.5,0.5,0], to: [0.5,0.5,1], label: '' },
+    ];
+    ctx.strokeStyle = '#E8E8E8';
+    ctx.lineWidth = 1;
+    axes.forEach(ax => {
+      const r0 = rotatePoint(...ax.from);
+      const r1 = rotatePoint(...ax.to);
+      const p0 = project(r0.x, r0.y, r0.z);
+      const p1 = project(r1.x, r1.y, r1.z);
+      ctx.beginPath();
+      ctx.moveTo(p0.sx, p0.sy);
+      ctx.lineTo(p1.sx, p1.sy);
+      ctx.stroke();
     });
-    const r = Math.max(maxDist + 30, 50);
-    const color = VIZ_COLORS_FILL[ci % VIZ_COLORS_FILL.length];
-    html += `<ellipse cx="${cx}" cy="${cy}" rx="${r * 1.1}" ry="${r * 0.9}" fill="${color}" stroke="${VIZ_COLORS[ci % VIZ_COLORS.length]}" stroke-width="1" stroke-dasharray="4 3" opacity=".7"/>`;
+
+    // Project all points
+    projected = points.map((pt, i) => {
+      const r = rotatePoint(pt.x, pt.y, pt.z);
+      const p = project(r.x, r.y, r.z);
+      return { ...pt, idx: i, sx: p.sx, sy: p.sy, scale: p.scale, depth: r.z };
+    });
+
+    // Sort back-to-front
+    projected.sort((a, b) => a.depth - b.depth);
+
+    // Draw points
+    projected.forEach(pt => {
+      const color = getPointColor(pt);
+      const size = Math.max(3, Math.min(9, pt.scale * 0.016));
+      const alpha = Math.max(0.3, Math.min(1, 0.5 + pt.depth * 2));
+
+      ctx.globalAlpha = alpha;
+      if (pt.type === 'project') {
+        // Circle
+        ctx.beginPath();
+        ctx.arc(pt.sx, pt.sy, size, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+        // Code label
+        if (pt.code && size > 4) {
+          ctx.fillStyle = color;
+          ctx.font = `700 ${Math.max(7, size * 0.9)}px Helvetica Neue,Helvetica,Arial,sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.fillText(pt.code, pt.sx, pt.sy + size + 10);
+        }
+      } else {
+        // Diamond
+        ctx.save();
+        ctx.translate(pt.sx, pt.sy);
+        ctx.rotate(Math.PI / 4);
+        const ds = size * 0.85;
+        ctx.fillStyle = color;
+        ctx.fillRect(-ds, -ds, ds * 2, ds * 2);
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 1.2;
+        ctx.strokeRect(-ds, -ds, ds * 2, ds * 2);
+        ctx.restore();
+      }
+    });
+    ctx.globalAlpha = 1;
+
+    // Cluster labels (projected centroids)
+    if (currentDim === 'cluster') {
+      ctx.globalAlpha = 0.7;
+      clusters.forEach((cl, ci) => {
+        const r = rotatePoint(cl.cx, cl.cy, cl.cz);
+        const p = project(r.x, r.y, r.z);
+        ctx.fillStyle = CLUSTER_COLORS[ci % CLUSTER_COLORS.length];
+        ctx.font = '900 10px Helvetica Neue,Helvetica,Arial,sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(cl.label.toUpperCase(), p.sx, p.sy - 18);
+      });
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  // ── Animation loop ──
+  function animate() {
+    if (autoRotate) {
+      theta += 0.003;
+    }
+    render();
+    animId = requestAnimationFrame(animate);
+  }
+
+  // ── Mouse interactions ──
+  let isDragging = false;
+  let lastMouse = { x: 0, y: 0 };
+  let mouseDownPos = { x: 0, y: 0 };
+
+  canvas.addEventListener('mousedown', e => {
+    isDragging = true;
+    autoRotate = false;
+    lastMouse = { x: e.clientX, y: e.clientY };
+    mouseDownPos = { x: e.clientX, y: e.clientY };
+    canvas.classList.add('dragging');
   });
 
-  // Cluster labels
-  clusters.forEach((cl, ci) => {
-    const cx = pad + cl.cx * (W - 2 * pad);
-    const cy = pad + (1 - cl.cy) * (H - 2 * pad);
-    const color = VIZ_COLORS[ci % VIZ_COLORS.length];
-    html += `<text x="${cx}" y="${cy - 30}" text-anchor="middle" dominant-baseline="auto" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="11" font-weight="900" fill="${color}" text-transform="uppercase" letter-spacing=".08em" opacity=".8">${escViz(cl.label)}</text>`;
-  });
-
-  // Points
-  points.forEach((pt, i) => {
-    const px = pad + pt.x * (W - 2 * pad);
-    const py = pad + (1 - pt.y) * (H - 2 * pad);
-    const color = VIZ_COLORS[pt.cluster % VIZ_COLORS.length];
-    const isProject = pt.type === 'project';
-
-    if (isProject) {
-      // Circle for projects
-      html += `<circle cx="${px}" cy="${py}" r="7" fill="${color}" stroke="#fff" stroke-width="1.5" style="cursor:pointer" data-idx="${i}" class="viz-pt"/>`;
-      // Small code label
-      html += `<text x="${px}" y="${py + 18}" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="8" font-weight="700" fill="${color}" opacity=".7">${escViz(pt.code || '')}</text>`;
-    } else {
-      // Diamond for experience
-      html += `<rect x="${px - 5}" y="${py - 5}" width="10" height="10" fill="${color}" stroke="#fff" stroke-width="1.5" transform="rotate(45 ${px} ${py})" style="cursor:pointer" data-idx="${i}" class="viz-pt"/>`;
+  window.addEventListener('mousemove', e => {
+    if (isDragging) {
+      const dx = e.clientX - lastMouse.x;
+      const dy = e.clientY - lastMouse.y;
+      theta += dx * 0.005;
+      phi += dy * 0.005;
+      phi = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, phi));
+      lastMouse = { x: e.clientX, y: e.clientY };
     }
   });
 
-  svg.innerHTML = html;
-
-  // Legend
-  let legHtml = '';
-  clusters.forEach((cl, ci) => {
-    const color = VIZ_COLORS[ci % VIZ_COLORS.length];
-    legHtml += `<div class="viz-legend-item"><div class="viz-legend-dot" style="background:${color}"></div>${escViz(cl.label)} (${cl.count})</div>`;
+  window.addEventListener('mouseup', e => {
+    if (isDragging) {
+      isDragging = false;
+      canvas.classList.remove('dragging');
+      // Click detection: small movement = click
+      const moved = Math.abs(e.clientX - mouseDownPos.x) + Math.abs(e.clientY - mouseDownPos.y);
+      if (moved < 5) {
+        handleClick(e);
+      }
+    }
   });
-  legHtml += `<div class="viz-legend-item"><div class="viz-legend-dot" style="background:#666;width:10px;height:10px;border-radius:50%"></div>Projet</div>`;
-  legHtml += `<div class="viz-legend-item"><div class="viz-legend-diamond" style="background:#666;width:8px;height:8px"></div>Expérience</div>`;
-  legendEl.innerHTML = legHtml;
 
-  // Interactions
-  const vizPts = svg.querySelectorAll('.viz-pt');
-  vizPts.forEach(el => {
-    el.addEventListener('mouseenter', e => {
-      const idx = parseInt(el.dataset.idx);
-      const pt = points[idx];
-      if (!pt) return;
+  canvas.addEventListener('wheel', e => {
+    e.preventDefault();
+    autoRotate = false;
+    distance += e.deltaY * 0.003;
+    distance = Math.max(1.5, Math.min(8, distance));
+  }, { passive: false });
+
+  // ── Touch interactions ──
+  let lastTouches = null;
+
+  canvas.addEventListener('touchstart', e => {
+    e.preventDefault();
+    autoRotate = false;
+    if (e.touches.length === 1) {
+      lastTouches = [{ x: e.touches[0].clientX, y: e.touches[0].clientY }];
+      mouseDownPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    } else if (e.touches.length === 2) {
+      lastTouches = [
+        { x: e.touches[0].clientX, y: e.touches[0].clientY },
+        { x: e.touches[1].clientX, y: e.touches[1].clientY },
+      ];
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (e.touches.length === 1 && lastTouches && lastTouches.length === 1) {
+      const dx = e.touches[0].clientX - lastTouches[0].x;
+      const dy = e.touches[0].clientY - lastTouches[0].y;
+      theta += dx * 0.005;
+      phi += dy * 0.005;
+      phi = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, phi));
+      lastTouches = [{ x: e.touches[0].clientX, y: e.touches[0].clientY }];
+    } else if (e.touches.length === 2 && lastTouches && lastTouches.length === 2) {
+      const prevDist = Math.hypot(lastTouches[1].x - lastTouches[0].x, lastTouches[1].y - lastTouches[0].y);
+      const currDist = Math.hypot(e.touches[1].clientX - e.touches[0].clientX, e.touches[1].clientY - e.touches[0].clientY);
+      distance *= prevDist / currDist;
+      distance = Math.max(1.5, Math.min(8, distance));
+      lastTouches = [
+        { x: e.touches[0].clientX, y: e.touches[0].clientY },
+        { x: e.touches[1].clientX, y: e.touches[1].clientY },
+      ];
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', e => {
+    if (e.touches.length === 0 && lastTouches && lastTouches.length === 1) {
+      // Tap = click
+      const t = e.changedTouches[0];
+      const moved = Math.abs(t.clientX - mouseDownPos.x) + Math.abs(t.clientY - mouseDownPos.y);
+      if (moved < 10) {
+        handleClick({ clientX: t.clientX, clientY: t.clientY });
+      }
+    }
+    lastTouches = null;
+  });
+
+  // ── Hover tooltip ──
+  canvas.addEventListener('mousemove', e => {
+    if (isDragging) return;
+    const cr = canvas.getBoundingClientRect();
+    const mx = e.clientX - cr.left;
+    const my = e.clientY - cr.top;
+    let hit = null;
+    // Check front-to-back (reversed projected array)
+    for (let i = projected.length - 1; i >= 0; i--) {
+      const pt = projected[i];
+      const dx = mx - pt.sx;
+      const dy = my - pt.sy;
+      if (dx * dx + dy * dy < 144) { // ~12px radius
+        hit = pt;
+        break;
+      }
+    }
+    if (hit) {
       let tipHtml = '';
-      if (pt.type === 'project') {
-        tipHtml = `<div class="vt-code">${escViz(pt.code || '')}</div>`;
-        tipHtml += `<div class="vt-title">${escViz(pt.title || '')}</div>`;
-        tipHtml += `<div class="vt-cat">${escViz(pt.category || '')}</div>`;
-        if (pt.refs) tipHtml += `<div style="font-size:10px;color:#aaa;margin-top:2px">${escViz(pt.refs)}</div>`;
-        if (pt.tags && pt.tags.length) {
-          tipHtml += '<div class="vt-tags">' + pt.tags.map(t => `<span class="vt-tag">${escViz(t)}</span>`).join('') + '</div>';
+      if (hit.type === 'project') {
+        tipHtml = `<div class="vt-code">${escViz(hit.code || '')}</div>`;
+        tipHtml += `<div class="vt-title">${escViz(hit.title || '')}</div>`;
+        tipHtml += `<div class="vt-cat">${escViz(hit.category || '')}</div>`;
+        if (hit.refs) tipHtml += `<div style="font-size:10px;color:#aaa;margin-top:2px">${escViz(hit.refs)}</div>`;
+        if (hit.tags && hit.tags.length) {
+          tipHtml += '<div class="vt-tags">' + hit.tags.map(t => `<span class="vt-tag">${escViz(t)}</span>`).join('') + '</div>';
         }
       } else {
-        tipHtml = `<div class="vt-title">${escViz(pt.company || '')} — ${escViz(pt.role || '')}</div>`;
-        tipHtml += `<div class="vt-cat">${escViz(pt.period || '')}</div>`;
-        if (pt.tags && pt.tags.length) {
-          tipHtml += '<div class="vt-tags">' + pt.tags.map(t => `<span class="vt-tag">${escViz(t)}</span>`).join('') + '</div>';
+        tipHtml = `<div class="vt-title">${escViz(hit.company || '')} — ${escViz(hit.role || '')}</div>`;
+        tipHtml += `<div class="vt-cat">${escViz(hit.period || '')}</div>`;
+        if (hit.tags && hit.tags.length) {
+          tipHtml += '<div class="vt-tags">' + hit.tags.map(t => `<span class="vt-tag">${escViz(t)}</span>`).join('') + '</div>';
         }
       }
       tooltip.innerHTML = tipHtml;
       tooltip.classList.add('show');
-      positionTooltip(e, tooltip);
-    });
-    el.addEventListener('mousemove', e => positionTooltip(e, tooltip));
-    el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
-    el.addEventListener('click', () => {
-      const idx = parseInt(el.dataset.idx);
-      const pt = points[idx];
-      if (pt && pt.type === 'project' && pt.code) {
-        const code = pt.code.toLowerCase();
-        if (typeof om === 'function' && D[code]) om(code);
+      // Position tooltip
+      const wr = wrap.getBoundingClientRect();
+      let tx = e.clientX - wr.left + 14;
+      let ty = e.clientY - wr.top - 10;
+      const tw = tooltip.offsetWidth;
+      const th = tooltip.offsetHeight;
+      if (tx + tw > wr.width - 10) tx = e.clientX - wr.left - tw - 14;
+      if (ty + th > wr.height - 10) ty = ty - th;
+      tooltip.style.left = tx + 'px';
+      tooltip.style.top = ty + 'px';
+      canvas.style.cursor = 'pointer';
+    } else {
+      tooltip.classList.remove('show');
+      canvas.style.cursor = isDragging ? 'grabbing' : 'grab';
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    tooltip.classList.remove('show');
+  });
+
+  function handleClick(e) {
+    const cr = canvas.getBoundingClientRect();
+    const mx = e.clientX - cr.left;
+    const my = e.clientY - cr.top;
+    for (let i = projected.length - 1; i >= 0; i--) {
+      const pt = projected[i];
+      const dx = mx - pt.sx;
+      const dy = my - pt.sy;
+      if (dx * dx + dy * dy < 144) {
+        if (pt.type === 'project' && pt.code) {
+          const code = pt.code.toLowerCase();
+          if (typeof om === 'function' && D[code]) om(code);
+        }
+        break;
       }
+    }
+  }
+
+  // ── Dimension switcher ──
+  const switcherBtns = document.querySelectorAll('.viz-dim-btn');
+  switcherBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      switcherBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDim = btn.dataset.dim;
+      catColorIdx = 0;
+      for (const key in CATEGORY_COLORS) delete CATEGORY_COLORS[key];
+      // Pre-compute category colors
+      if (currentDim === 'category') {
+        points.forEach(pt => getPointColor(pt));
+      }
+      buildLegend();
     });
   });
-}
 
-function positionTooltip(e, tooltip) {
-  const wrap = tooltip.parentElement;
-  const wr = wrap.getBoundingClientRect();
-  let x = e.clientX - wr.left + 14;
-  let y = e.clientY - wr.top - 10;
-  // Keep tooltip within wrap bounds
-  const tw = tooltip.offsetWidth;
-  const th = tooltip.offsetHeight;
-  if (x + tw > wr.width - 10) x = e.clientX - wr.left - tw - 14;
-  if (y + th > wr.height - 10) y = y - th;
-  tooltip.style.left = x + 'px';
-  tooltip.style.top = y + 'px';
+  // Initial legend
+  buildLegend();
+
+  // Start animation
+  animate();
 }
 
 function escViz(s) {
@@ -1372,16 +1666,40 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   const messagesEl = document.getElementById('chat-messages');
   const inputEl = document.getElementById('chat-input');
-  const sendBtn = document.getElementById('chat-send');
+  const suggestionsEl = document.getElementById('chat-suggestions');
+  const toggleBtn = document.getElementById('ask-toggle');
 
   let conversationId = null;
   let sending = false;
+  let chatStarted = false;
 
-  // Event listeners
+  // Toggle suggestions
+  toggleBtn.addEventListener('click', () => {
+    suggestionsEl.classList.toggle('show');
+    toggleBtn.textContent = suggestionsEl.classList.contains('show') ? '×' : '+';
+  });
+
+  // Enter to send
   inputEl.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
   });
-  sendBtn.addEventListener('click', sendChat);
+
+  // Voice button placeholder
+  document.getElementById('ask-voice').addEventListener('click', () => {
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SR();
+      recognition.lang = 'fr-FR';
+      recognition.interimResults = false;
+      recognition.onresult = e => {
+        inputEl.value = e.results[0][0].transcript;
+        sendChat();
+      };
+      recognition.start();
+    } else {
+      inputEl.placeholder = 'Reconnaissance vocale non supportée';
+    }
+  });
 
   // Expose askChat globally for suggestion chips
   window.askChat = function(text) {
@@ -1389,7 +1707,17 @@ window.addEventListener('DOMContentLoaded',()=>{
     sendChat();
   };
 
+  function startChat() {
+    if (!chatStarted) {
+      chatStarted = true;
+      messagesEl.classList.add('active');
+      suggestionsEl.classList.remove('show');
+      toggleBtn.textContent = '+';
+    }
+  }
+
   function addChatMsg(role, html) {
+    startChat();
     const div = document.createElement('div');
     div.className = 'chat-msg ' + role;
     div.innerHTML = html;
@@ -1420,7 +1748,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     const msg = inputEl.value.trim();
     if (!msg || sending) return;
     sending = true;
-    sendBtn.disabled = true;
     inputEl.value = '';
 
     addChatMsg('user', escHtml(msg));
@@ -1437,7 +1764,6 @@ window.addEventListener('DOMContentLoaded',()=>{
         hideTyping();
         addChatMsg('assistant', 'Erreur — réessayez dans un instant.');
         sending = false;
-        sendBtn.disabled = false;
         return;
       }
 
@@ -1487,7 +1813,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     }
 
     sending = false;
-    sendBtn.disabled = false;
     inputEl.focus();
   }
 })();

@@ -69,27 +69,31 @@ router.get('/', async (req, res) => {
       return res.json({ points: [], clusters: [] });
     }
 
-    // 2. UMAP: 512 dims → 2D
+    // 2. UMAP: 512 dims → 3D
     const umap = new UMAP({
-      nComponents: 2,
+      nComponents: 3,
       nNeighbors: Math.min(5, allEmbeddings.length - 1),
       minDist: 0.3,
       spread: 1.5,
       random: seededRandom(42),
     });
-    const coords2D = umap.fit(allEmbeddings);
+    const coords3D = umap.fit(allEmbeddings);
 
-    // Normalize to [0, 1]
-    const xs = coords2D.map(c => c[0]);
-    const ys = coords2D.map(c => c[1]);
+    // Normalize each axis to [0, 1]
+    const xs = coords3D.map(c => c[0]);
+    const ys = coords3D.map(c => c[1]);
+    const zs = coords3D.map(c => c[2]);
     const minX = Math.min(...xs), maxX = Math.max(...xs);
     const minY = Math.min(...ys), maxY = Math.max(...ys);
+    const minZ = Math.min(...zs), maxZ = Math.max(...zs);
     const rangeX = maxX - minX || 1;
     const rangeY = maxY - minY || 1;
+    const rangeZ = maxZ - minZ || 1;
 
-    const normalized = coords2D.map(c => [
+    const normalized = coords3D.map(c => [
       (c[0] - minX) / rangeX,
       (c[1] - minY) / rangeY,
+      (c[2] - minZ) / rangeZ,
     ]);
 
     // 3. K-means clustering
@@ -104,12 +108,13 @@ router.get('/', async (req, res) => {
       clusterGroups[c].push({ ...allItems[i], idx: i });
     }
 
-    // Compute centroids
+    // Compute centroids (3D)
     const clusterCentroids = {};
     for (const [cId, members] of Object.entries(clusterGroups)) {
       const cx = members.reduce((s, m) => s + normalized[m.idx][0], 0) / members.length;
       const cy = members.reduce((s, m) => s + normalized[m.idx][1], 0) / members.length;
-      clusterCentroids[cId] = { cx, cy };
+      const cz = members.reduce((s, m) => s + normalized[m.idx][2], 0) / members.length;
+      clusterCentroids[cId] = { cx, cy, cz };
     }
 
     // 5. LLM cluster labeling
@@ -149,11 +154,12 @@ router.get('/', async (req, res) => {
       }
     }
 
-    // 6. Assemble response
+    // 6. Assemble response (3D)
     const points = allItems.map((item, i) => ({
       ...item,
       x: normalized[i][0],
       y: normalized[i][1],
+      z: normalized[i][2],
       cluster: clusterAssignments[i],
     }));
 
@@ -162,6 +168,7 @@ router.get('/', async (req, res) => {
       label: clusterLabels[cId] || `Cluster ${parseInt(cId) + 1}`,
       cx: clusterCentroids[cId].cx,
       cy: clusterCentroids[cId].cy,
+      cz: clusterCentroids[cId].cz,
       count: members.length,
     }));
 
@@ -228,12 +235,13 @@ function kmeans(points, k, maxIter = 50) {
     if (newAssign.every((a, i) => a === assignments[i])) break;
     assignments = newAssign;
 
-    // Update centroids
+    // Update centroids (N-dimensional)
     for (let c = 0; c < k; c++) {
       const members = points.filter((_, i) => assignments[i] === c);
       if (members.length === 0) continue;
-      centroids[c][0] = members.reduce((s, m) => s + m[0], 0) / members.length;
-      centroids[c][1] = members.reduce((s, m) => s + m[1], 0) / members.length;
+      for (let d = 0; d < centroids[c].length; d++) {
+        centroids[c][d] = members.reduce((s, m) => s + m[d], 0) / members.length;
+      }
     }
   }
 
@@ -241,7 +249,9 @@ function kmeans(points, k, maxIter = 50) {
 }
 
 function dist2(a, b) {
-  return (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2;
+  let s = 0;
+  for (let i = 0; i < a.length; i++) s += (a[i] - b[i]) ** 2;
+  return s;
 }
 
 module.exports = router;
