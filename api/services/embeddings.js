@@ -1,25 +1,59 @@
-const OpenAI = require('openai');
 require('dotenv').config();
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const VOYAGE_API_URL = 'https://api.voyageai.com/v1/embeddings';
+const VOYAGE_MODEL = 'voyage-3-lite'; // 512 dims, fast & cheap
 
 /**
- * Generate embedding vector for a text string
- * Uses text-embedding-3-small (1536 dims, ~$0.02/M tokens)
+ * Generate embedding vector for a single text string
  */
 async function embed(text) {
-  const res = await openai.embeddings.create({
-    model: 'text-embedding-3-small',
-    input: text,
+  const res = await fetch(VOYAGE_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.VOYAGE_API_KEY}`,
+    },
+    body: JSON.stringify({ model: VOYAGE_MODEL, input: [text] }),
   });
-  return res.data[0].embedding;
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Voyage API error ${res.status}: ${err}`);
+  }
+
+  const data = await res.json();
+  return data.data[0].embedding;
 }
 
 /**
- * Generate embedding for a project entry (concatenates all fields)
+ * Generate embeddings for multiple texts in a single API call
+ * Returns array of embedding vectors in the same order as input
  */
-async function embedProject(project) {
-  const text = [
+async function embedBatch(texts) {
+  const res = await fetch(VOYAGE_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.VOYAGE_API_KEY}`,
+    },
+    body: JSON.stringify({ model: VOYAGE_MODEL, input: texts }),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Voyage API error ${res.status}: ${err}`);
+  }
+
+  const data = await res.json();
+  // Sort by index to ensure correct ordering
+  return data.data.sort((a, b) => a.index - b.index).map(d => d.embedding);
+}
+
+/**
+ * Build text representation for a project entry
+ */
+function projectToText(project) {
+  return [
     project.title,
     project.category,
     project.problem,
@@ -27,15 +61,13 @@ async function embedProject(project) {
     (project.tags || []).join(', '),
     project.sector_refs,
   ].filter(Boolean).join(' — ');
-  return embed(text);
 }
 
 /**
- * Generate embedding for an experience entry
+ * Build text representation for an experience entry
  */
-async function embedExperience(exp) {
-  const text = `${exp.company} ${exp.role} ${exp.period} ${exp.description} ${(exp.tags || []).join(' ')}`;
-  return embed(text);
+function experienceToText(exp) {
+  return `${exp.company} ${exp.role} ${exp.period} ${exp.description} ${(exp.tags || []).join(' ')}`;
 }
 
-module.exports = { embed, embedProject, embedExperience };
+module.exports = { embed, embedBatch, projectToText, experienceToText };

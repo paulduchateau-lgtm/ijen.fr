@@ -5,7 +5,7 @@
  */
 require('dotenv').config();
 const { pool } = require('./lib/db');
-const { embedProject, embedExperience } = require('./services/embeddings');
+const { embedBatch, projectToText, experienceToText } = require('./services/embeddings');
 const { upsertProject, insertExperience } = require('./services/vectordb');
 
 // ══════════════════════════════════════════════
@@ -214,39 +214,38 @@ async function seed() {
   console.log('[Seed] Starting...');
   console.log(`[Seed] ${projects.length} projects, ${experience.length} experience entries`);
 
-  // Seed projects
-  for (const p of projects) {
+  // Batch embed all projects in a single API call
+  console.log('[Seed] Embedding all projects (1 API call)...');
+  const projectTexts = projects.map(projectToText);
+  const projectEmbeddings = await embedBatch(projectTexts);
+  console.log(`[Seed] ✓ ${projectEmbeddings.length} project embeddings received`);
+
+  for (let i = 0; i < projects.length; i++) {
     try {
-      console.log(`[Seed] Embedding project ${p.code}...`);
-      const embedding = await embedProject(p);
-      await upsertProject(p, embedding);
-      console.log(`[Seed] ✓ ${p.code} — ${p.title}`);
+      await upsertProject(projects[i], projectEmbeddings[i]);
+      console.log(`[Seed] ✓ ${projects[i].code} — ${projects[i].title}`);
     } catch (err) {
-      console.error(`[Seed] ✗ ${p.code}:`, err.message);
+      console.error(`[Seed] ✗ ${projects[i].code}:`, err.message);
     }
-    // Small delay to avoid rate limits
-    await sleep(200);
   }
 
-  // Seed experience
-  for (const e of experience) {
+  // Batch embed all experience in a single API call
+  console.log('[Seed] Embedding all experience (1 API call)...');
+  const expTexts = experience.map(experienceToText);
+  const expEmbeddings = await embedBatch(expTexts);
+  console.log(`[Seed] ✓ ${expEmbeddings.length} experience embeddings received`);
+
+  for (let i = 0; i < experience.length; i++) {
     try {
-      console.log(`[Seed] Embedding experience ${e.company}...`);
-      const embedding = await embedExperience(e);
-      await insertExperience(e, embedding);
-      console.log(`[Seed] ✓ ${e.company}`);
+      await insertExperience(experience[i], expEmbeddings[i]);
+      console.log(`[Seed] ✓ ${experience[i].company}`);
     } catch (err) {
-      console.error(`[Seed] ✗ ${e.company}:`, err.message);
+      console.error(`[Seed] ✗ ${experience[i].company}:`, err.message);
     }
-    await sleep(200);
   }
 
   console.log('[Seed] Done.');
   await pool.end();
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 seed().catch(err => {

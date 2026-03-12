@@ -1,14 +1,11 @@
 const { pool } = require('../lib/db');
-const pgvector = require('pgvector');
-
-// Register pgvector type
-pgvector.registerType(pool);
+const { toSql } = require('pgvector/pg');
 
 /**
  * Find top-k projects by cosine similarity
  */
 async function findSimilarProjects(embedding, topK = 4, threshold = 0.3) {
-  const vectorStr = pgvector.toSql(embedding);
+  const vectorStr = toSql(embedding);
   const res = await pool.query(`
     SELECT
       id, code, title, category, problem, solution, tags, sector_refs,
@@ -27,7 +24,7 @@ async function findSimilarProjects(embedding, topK = 4, threshold = 0.3) {
  * Find top-k experience entries by cosine similarity
  */
 async function findSimilarExperience(embedding, topK = 3, threshold = 0.3) {
-  const vectorStr = pgvector.toSql(embedding);
+  const vectorStr = toSql(embedding);
   const res = await pool.query(`
     SELECT
       id, company, role, period, description, tags,
@@ -45,7 +42,7 @@ async function findSimilarExperience(embedding, topK = 3, threshold = 0.3) {
  * Insert or update a project with embedding
  */
 async function upsertProject(project, embedding) {
-  const vectorStr = pgvector.toSql(embedding);
+  const vectorStr = toSql(embedding);
   await pool.query(`
     INSERT INTO projects (code, title, category, problem, solution, tags, sector_refs, proto_price, prod_price, embedding)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10::vector)
@@ -72,7 +69,7 @@ async function upsertProject(project, embedding) {
  * Insert an experience entry with embedding
  */
 async function insertExperience(exp, embedding) {
-  const vectorStr = pgvector.toSql(embedding);
+  const vectorStr = toSql(embedding);
   await pool.query(`
     INSERT INTO experience (company, role, period, description, tags, embedding)
     VALUES ($1, $2, $3, $4, $5, $6::vector)
