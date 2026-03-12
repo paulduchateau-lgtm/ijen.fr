@@ -177,28 +177,30 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 .comp-pill{display:inline-block;border:var(--bt);padding:2px 10px;margin:3px;font-size:10px;font-weight:700;cursor:pointer}
 .comp-pill:hover{background:var(--k);color:var(--w)}
 
-/* ── ASSISTANT CHAT SECTION ── */
-#assistant{background:var(--g1)}
-.chat-container{max-width:1320px;margin:0 auto;padding:32px}
-.chat-messages-area{background:var(--w);border:1px solid #E8E8E8;border-radius:var(--radius);height:420px;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-sm);margin-bottom:16px}
-.chat-msg{max-width:75%;padding:12px 16px;font-size:14px;line-height:1.6;word-break:break-word}
-.chat-msg.user{align-self:flex-end;background:var(--k);color:var(--w);border-radius:12px 12px 4px 12px}
-.chat-msg.assistant{align-self:flex-start;background:var(--g1);color:var(--k);border:1px solid #E8E8E8;border-radius:12px 12px 12px 4px}
-.chat-msg.assistant .chat-sources{margin-top:10px;padding-top:8px;border-top:1px solid #E0E0E0;font-size:12px;color:var(--g4)}
-.chat-msg.assistant .chat-sources span{display:inline-block;background:#E8E8E8;padding:3px 8px;border-radius:4px;margin:2px 3px 0 0;font-weight:600;color:var(--g6);font-size:11px}
-.chat-input-bar{display:flex;align-items:center;gap:8px;background:var(--w);border:1px solid #E8E8E8;border-radius:var(--radius);padding:4px 4px 4px 16px;box-shadow:var(--shadow-sm)}
-.chat-input-bar input{flex:1;border:none;padding:12px 0;font-size:14px;font-family:inherit;outline:none;background:transparent}
+/* ── ASSISTANT CHAT SECTION (compact) ── */
+#assistant{background:var(--w);border-bottom:1px solid #E8E8E8}
+#assistant .s-head{border-bottom:none}
+#assistant .s-head-in{padding-bottom:0}
+.chat-container{max-width:720px;margin:0 auto;padding:0 32px 32px}
+.chat-messages-area{background:var(--g1);border:1px solid #E8E8E8;border-radius:var(--radius);height:220px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.chat-msg{max-width:80%;padding:10px 14px;font-size:13px;line-height:1.5;word-break:break-word}
+.chat-msg.user{align-self:flex-end;background:var(--k);color:var(--w);border-radius:10px 10px 4px 10px}
+.chat-msg.assistant{align-self:flex-start;background:var(--w);color:var(--k);border:1px solid #E8E8E8;border-radius:10px 10px 10px 4px}
+.chat-msg.assistant .chat-sources{margin-top:8px;padding-top:6px;border-top:1px solid #E8E8E8;font-size:11px;color:var(--g4)}
+.chat-msg.assistant .chat-sources span{display:inline-block;background:#E8E8E8;padding:2px 6px;border-radius:4px;margin:2px 3px 0 0;font-weight:600;color:var(--g6);font-size:10px}
+.chat-input-bar{display:flex;align-items:center;gap:8px;background:var(--w);border:1px solid #E8E8E8;border-radius:var(--radius);padding:3px 3px 3px 14px;box-shadow:var(--shadow-sm)}
+.chat-input-bar input{flex:1;border:none;padding:10px 0;font-size:13px;font-family:inherit;outline:none;background:transparent}
 .chat-input-bar input::placeholder{color:var(--g4)}
-.chat-input-bar button{background:var(--k);border:none;width:40px;height:40px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.chat-input-bar button{background:var(--k);border:none;width:36px;height:36px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
 .chat-input-bar button:hover{background:var(--g6)}
-.chat-input-bar button svg{width:18px;height:18px;fill:var(--g)}
+.chat-input-bar button svg{width:16px;height:16px;fill:var(--g)}
 .chat-input-bar button:disabled{background:var(--g2);cursor:not-allowed}
 .chat-input-bar button:disabled svg{fill:var(--g4)}
-.chat-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.chat-chip{border:1px solid #E8E8E8;background:var(--w);padding:8px 16px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--g6)}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;justify-content:center}
+.chat-chip{border:1px solid #E8E8E8;background:var(--w);padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--g4)}
 .chat-chip:hover{border-color:var(--k);color:var(--k);background:rgba(180,255,0,.08)}
-.chat-typing{display:flex;gap:5px;padding:12px 16px;align-self:flex-start}
-.chat-typing span{width:7px;height:7px;background:var(--g4);border-radius:50%;animation:chat-bounce .6s infinite alternate}
+.chat-typing{display:flex;gap:4px;padding:10px 14px;align-self:flex-start}
+.chat-typing span{width:6px;height:6px;background:var(--g4);border-radius:50%;animation:chat-bounce .6s infinite alternate}
 .chat-typing span:nth-child(2){animation-delay:.2s}
 .chat-typing span:nth-child(3){animation-delay:.4s}
 @keyframes chat-bounce{to{opacity:.3;transform:translateY(-4px)}}
@@ -260,9 +262,10 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   .ct-l{border-right:0;border-bottom:var(--bt);padding-right:0}
   .ct-r{padding-left:0}
   nav ul{display:none}
-  .chat-messages-area{height:300px}
-  .chat-suggestions{gap:6px}
-  .chat-chip{font-size:11px;padding:6px 12px}
+  .chat-container{padding:0 16px 24px}
+  .chat-messages-area{height:180px}
+  .chat-suggestions{gap:5px}
+  .chat-chip{font-size:10px;padding:5px 10px}
   footer{flex-direction:column;gap:8px;text-align:center}
 }
 </style>
@@ -274,15 +277,14 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   <div class="nav-in">
     <a href="#" class="nav-logo">ijen</a>
     <ul>
-      <li><a href="#assistant">Assistant IA</a></li>
-      <li><a href="#upload">Outils RH</a></li>
+      <li><a href="#catalogue">Réalisations</a></li>
+      <li><a href="#vizmap">Cartographie</a></li>
       <li><a href="#parcours">Parcours</a></li>
       <li><a href="#competences">Compétences</a></li>
-      <li><a href="#catalogue">Catalogue</a></li>
-      <li><a href="#vizmap">Cartographie</a></li>
+      <li><a href="#upload">Outils RH</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#upload" class="nav-cta">Uploader ma fiche de poste →</a>
+    <a href="#assistant" class="nav-cta">Voir si on fit →</a>
   </div>
 </nav>
 
@@ -294,8 +296,8 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
       <h2 style="font-size:clamp(22px,3.2vw,42px);font-weight:900;margin-bottom:10px;line-height:1.05"><span style="font-weight:400">Paul</span> Duchâteau</h2>
       <p class="cap" style="margin-bottom:32px">Digital Product Strategy · IA Appliquée · Bordeaux</p>
       <div class="hero-btns">
-        <a href="#upload" class="hbtn hbtn-pri">Uploader ma fiche de poste →</a>
-        <a href="#catalogue" class="hbtn hbtn-sec">Réalisations</a>
+        <a href="#catalogue" class="hbtn hbtn-pri">Réalisations →</a>
+        <a href="#assistant" class="hbtn hbtn-sec">Voir si on fit</a>
       </div>
     </div>
     <div class="hero-r">
@@ -343,236 +345,23 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   <div class="s-head">
     <div class="s-head-in">
       <span class="s-num">01</span>
-      <h2>Assistant IA</h2>
-      <span class="s-meta">Posez vos questions sur le profil, le catalogue ou les compétences</span>
+      <h2 style="font-size:clamp(18px,2.5vw,28px)">Voir si on fit</h2>
+      <span class="s-meta">Posez vos questions à l'IA sur le profil, les compétences ou le catalogue</span>
     </div>
   </div>
   <div class="chat-container">
     <div class="chat-messages-area" id="chat-messages">
-      <div class="chat-msg assistant">Bonjour, je suis l'assistant IA d'ijen.fr. Posez-moi une question sur le profil, les compétences ou le catalogue de Paul.</div>
+      <div class="chat-msg assistant">Bonjour ! Posez-moi une question sur le profil, les compétences ou les réalisations de Paul.</div>
     </div>
     <div class="chat-input-bar">
-      <input id="chat-input" type="text" placeholder="Posez votre question..." maxlength="2000" autocomplete="off">
+      <input id="chat-input" type="text" placeholder="Ex : quels projets RAG a-t-il réalisés ?" maxlength="2000" autocomplete="off">
       <button id="chat-send" aria-label="Envoyer"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
     </div>
     <div class="chat-suggestions">
-      <div class="chat-chip" onclick="askChat('Quelles sont les compétences clés de Paul ?')">Compétences clés</div>
+      <div class="chat-chip" onclick="askChat('Quelles sont les compétences clés de Paul ?')">Compétences</div>
       <div class="chat-chip" onclick="askChat('Quels projets RAG a-t-il réalisés ?')">Projets RAG</div>
-      <div class="chat-chip" onclick="askChat('Dans quels secteurs Paul a-t-il travaillé ?')">Secteurs d'expertise</div>
+      <div class="chat-chip" onclick="askChat('Dans quels secteurs Paul a-t-il travaillé ?')">Secteurs</div>
       <div class="chat-chip" onclick="askChat('Quel est le tarif de prototypage ?')">Tarifs</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════ UPLOAD / OUTILS RH -->
-<section id="upload">
-  <div class="s-head">
-    <div class="s-head-in">
-      <span class="s-num">02</span>
-      <h2>Outils Recruteurs</h2>
-      <span class="s-meta">Deux machines interactives — réservées aux décideurs RH &amp; managers</span>
-    </div>
-  </div>
-  <div class="mach-grid">
-
-    <!-- MACHINE A -->
-    <div class="mach">
-      <div class="mach-n">A</div>
-      <div class="mach-t">Votre poste.<br>Mon CV.</div>
-      <div class="mach-d">Uploadez votre fiche de mission ou offre d'emploi. Le système analyse les compétences requises et génère un CV tailored — les réalisations et références qui correspondent exactement à votre besoin, dans l'ordre de pertinence.</div>
-      <div class="drop" id="dA" ondrop="dA(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
-        <input type="file" id="fA" accept=".pdf,.doc,.docx,.txt" onchange="onFA(this)">
-        <div class="drop-l">↓ Déposer la fiche de poste</div>
-        <div class="drop-s">PDF · DOCX · TXT · ou coller ci-dessous</div>
-      </div>
-      <textarea class="mach-ta" id="tA" placeholder="Ou collez la description de poste ici..."></textarea>
-      <button class="mbtn" id="btnA" onclick="genCV()">Générer le CV adapté →</button>
-      <div class="prog" id="pA"><div class="prog-f" id="pfA"></div></div>
-      <div class="out" id="outA">
-        <div class="out-h">✓ CV généré · Correspondance par compétences</div>
-        <div class="out-b" id="outAb"></div>
-      </div>
-    </div>
-
-    <!-- MACHINE B -->
-    <div class="mach">
-      <div class="mach-n">B</div>
-      <div class="mach-t">Le marché.<br>Ma place.</div>
-      <div class="mach-d">Uploadez les CVs de candidats concurrents. Le système trace un diagramme radar comparatif multi-dimensions : expertise sectorielle, profondeur technique, track record, polyvalence IA, delivery. Analysez l'écart de compétences en un coup d'œil.</div>
-      <div class="drop" id="dB" ondrop="dB(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
-        <input type="file" id="fB" accept=".pdf,.doc,.docx,.txt" multiple onchange="onFB(this)">
-        <div class="drop-l">↓ Déposer les CVs concurrents</div>
-        <div class="drop-s">Plusieurs fichiers · PDF · DOCX · TXT</div>
-      </div>
-      <div class="comp-list" id="clist">Aucun fichier chargé — ou cliquer "Démonstration"</div>
-      <button class="mbtn" id="btnB" onclick="genRadar()">Générer le radar comparatif →</button>
-      <button class="mbtn" style="background:var(--w);color:var(--k);margin-top:-2px;font-size:9px" onmouseover="this.style.background='var(--g)'" onmouseout="this.style.background='var(--w)'" onclick="demoB()">Mode démonstration (sans upload)</button>
-      <div class="prog" id="pB"><div class="prog-f" id="pfB"></div></div>
-      <div class="out" id="outB">
-        <div class="out-h">✓ Analyse comparative · Radar multi-dimensions</div>
-        <div class="out-b" id="outBb"></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════ PARCOURS -->
-<section id="parcours">
-  <div class="s-head">
-    <div class="s-head-in">
-      <span class="s-num">03</span>
-      <h2>Parcours</h2>
-      <span class="s-meta">HEI · M2 Medical Engineering · 2006–2011 · Léognan, France</span>
-    </div>
-  </div>
-  <div class="parc-in">
-
-    <!-- IJEN -->
-    <div class="tl-row">
-      <div class="tl-date">
-        <div class="dr">Janv. 2026 → Présent</div>
-        <div class="co">Ijen.fr<br>Fondateur</div>
-      </div>
-      <div class="tl-body">
-        <h3>Fondateur · Conseil IA Appliquée</h3>
-        <p>Création d'Ijen, micro-entreprise de conseil spécialisée en IA appliquée. Capitalisation sur ~100 références data IA accumulées chez BeTomorrow pour adresser les directions produit, innovation et data des grands groupes et ETI. Conception, prototypage et déploiement de systèmes IA à fort impact utilisateur.</p>
-        <div class="tags"><span class="tag hi">Conseil IA</span><span class="tag hi">Product Strategy</span><span class="tag">RAG / LLM</span><span class="tag">~100 refs</span><span class="tag">Bordeaux</span></div>
-      </div>
-    </div>
-
-    <!-- BETOMORROW -->
-    <div class="tl-row">
-      <div class="tl-date">
-        <div class="dr">Oct. 2022 → Janv. 2026</div>
-        <div class="co">BeTomorrow<br>3 ans 4 mois</div>
-      </div>
-      <div class="tl-body">
-        <h3>Principal Product Strategist → Product Manager</h3>
-        <p>Conseil en stratégie de produit numérique innovant auprès de directions d'innovation de grands groupes et fondateurs de startups. Montée en Principal Product Strategist en avril 2024. Accumulation de ~100 références data &amp; IA dans 6 verticales sectorielles (santé/pharma, assurance, banque, public, industrie, sport). Développement d'une BU SaMD (Software as a Medical Device), accompagnement aux certifications ISO 13485 et IEC 62304.</p>
-        <p style="margin-top:10px;font-size:11px;color:var(--g4);font-weight:700;text-transform:uppercase;letter-spacing:.1em">Principaux projets</p>
-        <p style="font-size:12px;color:var(--g6);margin-top:4px">AXA France (stratégie IA &amp; showroom phygital) · Caisse d'Épargne (NLP, clustering, chatbot) · AGPM/Klésia (Millicare, data lifecycle) · Servier (prédiction ventes ML) · Stanford / CHU Bordeaux / CHU Poitiers (données synthétiques médicales, Data Lake) · Acteur assurances NDA (analyse sinistres, vision IA) · Vinci Energies · Predict4Health · Okeiro…</p>
-        <div class="tags" style="margin-top:12px"><span class="tag hi">Product Strategy</span><span class="tag">IA Générative</span><span class="tag">RAG</span><span class="tag">NLP</span><span class="tag">Data Science</span><span class="tag">SaMD</span><span class="tag">Go-to-Market</span></div>
-      </div>
-    </div>
-
-    <!-- PAPER PLANE / ACTIVITÉS PARALLÈLES -->
-    <div class="tl-row alt">
-      <div class="tl-date">
-        <div class="dr">Mars 2021 → Présent</div>
-        <div class="co">Paper Plane<br>+ Time for the Planet<br>+ GutyCare</div>
-      </div>
-      <div class="tl-body">
-        <h3>Président · Associé · Advisor — Activités parallèles</h3>
-        <p><strong>Paper Plane</strong> (Président, mars 2021→) — structure opérationnelle parallèle.<br>
-        <strong>Time for the Planet</strong> (Associé, janv. 2021→) — investissement à impact.<br>
-        <strong>GutyCare</strong> (Advisor, juil. 2022→) — solutions de suivi patients &amp; thérapies digitales en gastroentérologie et immunologie.<br>
-        <strong>Merañ</strong> (Associé, mars 2021 – mai 2022) — gestion de cabinets d'imagerie médicale en télémédecine.</p>
-        <div class="tags"><span class="tag">Santé digitale</span><span class="tag">DTx</span><span class="tag">Impact</span><span class="tag">Télémédecine</span></div>
-      </div>
-    </div>
-
-    <!-- LUCINE -->
-    <div class="tl-row">
-      <div class="tl-date">
-        <div class="dr">Nov. 2018 → Mars 2021</div>
-        <div class="co">Lucine<br>2 ans 5 mois</div>
-      </div>
-      <div class="tl-body">
-        <h3>Directeur Produit / CPO → Product Owner</h3>
-        <p>Thérapies numériques pour la douleur chronique basées sur l'IA. Scaling de l'équipe de 12 à 45 collaborateurs (artistes, développeurs, UX/UI, scientifiques). Levée de fonds <strong>5,5 M€</strong>. Vision &amp; roadmap produit, market access, études users, développement d'un framework AGILE propriétaire.</p>
-        <div class="tags"><span class="tag hi">CPO</span><span class="tag">Levée 5,5M€</span><span class="tag">Scaling ×4</span><span class="tag">DTx / IA</span><span class="tag">Roadmap</span><span class="tag">AGILE</span></div>
-      </div>
-    </div>
-
-    <!-- MAINCARE -->
-    <div class="tl-row">
-      <div class="tl-date">
-        <div class="dr">Juil. 2016 → Nov. 2018</div>
-        <div class="co">Maincare Solutions<br>2 ans 5 mois</div>
-      </div>
-      <div class="tl-body">
-        <h3>Product Owner · Bloc Opératoire &amp; Anesthésie-Réanimation</h3>
-        <p>Gestion de produit AGILE sur logiciels médicaux (bloc opératoire, anesthésie-réanimation). Roadmap, partenariats, réponses à CCTP, démos clients, intégration multi-technologies (web, client lourd, infrastructures).</p>
-        <div class="tags"><span class="tag">Product Owner</span><span class="tag">SaaS Médical</span><span class="tag">AGILE</span><span class="tag">Bloc opératoire</span></div>
-      </div>
-    </div>
-
-    <!-- INOVELAN -->
-    <div class="tl-row">
-      <div class="tl-date">
-        <div class="dr">Déc. 2012 → Juil. 2016</div>
-        <div class="co">Inovelan S.A.<br>Lille</div>
-      </div>
-      <div class="tl-body">
-        <h3>Project Manager</h3>
-        <p>Gestion de projets logiciels (analyse prospects, réponses AO, spécifications fonctionnelles &amp; techniques MOA, plannings, ressources, gestion financière, recette). Collaboration MOA-AMOA-MOE. Suivi client post-projet.</p>
-        <div class="tags"><span class="tag">Project Management</span><span class="tag">MOA</span><span class="tag">Appels d'offres</span><span class="tag">Lille</span></div>
-      </div>
-    </div>
-
-    <!-- FORMATION -->
-    <div class="tl-row alt">
-      <div class="tl-date">
-        <div class="dr">Formation</div>
-        <div class="co">HEI · MITx · Stages</div>
-      </div>
-      <div class="tl-body">
-        <h3>HEI — Hautes Études d'Ingénieur · M2 Medical Engineering (2006–2011)</h3>
-        <p><strong>MITx on edX</strong> — Business and Impact Planning for Social Enterprises (2020).<br>
-        <strong>Hospices Civils de Lyon</strong> — Stage recherche, respirateurs artificiels (2011) · Congrès SRLF Paris Défense.<br>
-        <strong>Schneider Electric Shanghai</strong> — Intern Customer Logistics (juin–sept. 2010).</p>
-        <div class="tags"><span class="tag">HEI Lille</span><span class="tag">Medical Engineering</span><span class="tag">MITx</span><span class="tag">FR · EN · DE · ZH</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════ COMPÉTENCES -->
-<section id="competences">
-  <div class="s-head">
-    <div class="s-head-in">
-      <span class="s-num">04</span>
-      <h2>Compétences</h2>
-    </div>
-  </div>
-  <div class="comp-grid">
-    <div class="radar-col">
-      <p class="cap" style="margin-bottom:20px">Cartographie fonctionnelle</p>
-      <svg id="rsvg" viewBox="0 0 320 320" width="100%" style="max-width:320px;display:block"></svg>
-    </div>
-    <div class="skills-col">
-      <div class="sk-cat">
-        <h4>Product &amp; Strategy</h4>
-        <div class="sk-row"><span class="sk-name">Product Strategy</span><div class="sk-track"><div class="sk-fill" data-w="95"></div></div></div>
-        <div class="sk-row"><span class="sk-name">Roadmap IA / Data</span><div class="sk-track"><div class="sk-fill" data-w="93"></div></div></div>
-        <div class="sk-row"><span class="sk-name">Pilotage de projet</span><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
-        <div class="sk-row"><span class="sk-name">Architecture business</span><div class="sk-track"><div class="sk-fill" data-w="86"></div></div></div>
-      </div>
-      <div class="sk-cat">
-        <h4>IA &amp; Data</h4>
-        <div class="sk-row"><span class="sk-name">IA Générative / LLM</span><div class="sk-track"><div class="sk-fill" data-w="94"></div></div></div>
-        <div class="sk-row"><span class="sk-name">RAG &amp; Agents IA</span><div class="sk-track"><div class="sk-fill" data-w="91"></div></div></div>
-        <div class="sk-row"><span class="sk-name">Data Engineering</span><div class="sk-track"><div class="sk-fill" data-w="78"></div></div></div>
-        <div class="sk-row"><span class="sk-name">Data Science / ML</span><div class="sk-track"><div class="sk-fill" data-w="75"></div></div></div>
-        <div class="sk-row"><span class="sk-name">Analytics &amp; BI</span><div class="sk-track"><div class="sk-fill" data-w="83"></div></div></div>
-      </div>
-      <div class="sk-cat">
-        <h4>UX &amp; Delivery</h4>
-        <div class="sk-row"><span class="sk-name">UX / Customer</span><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
-        <div class="sk-row"><span class="sk-name">Change Management</span><div class="sk-track"><div class="sk-fill" data-w="84"></div></div></div>
-        <div class="sk-row"><span class="sk-name">Coordination tech/métier</span><div class="sk-track"><div class="sk-fill" data-w="96"></div></div></div>
-      </div>
-      <p class="cap" style="margin-top:16px;margin-bottom:6px">Secteurs</p>
-      <div class="sect-chips">
-        <div class="chip on" onclick="sect(this,'all')">Tous</div>
-        <div class="chip" onclick="sect(this,'sante')">Santé / Pharma</div>
-        <div class="chip" onclick="sect(this,'assu')">Assurance</div>
-        <div class="chip" onclick="sect(this,'banque')">Banque</div>
-        <div class="chip" onclick="sect(this,'pub')">Secteur Public</div>
-      </div>
-      <div class="sect-box" id="sbox">Tous secteurs : AXA, AGPM, Klésia · Caisse d'Épargne · Servier, IPSEN, Sanofi · Stanford, CHU Bordeaux, CHU Poitiers · Ministère de la Santé, Métropoles · Predict4Health, Okeiro · Infinitif, BeTomorrow</div>
     </div>
   </div>
 </section>
@@ -581,7 +370,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="catalogue">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">05</span>
+      <span class="s-num">02</span>
       <h2>Catalogue de Réalisations</h2>
       <span class="s-meta">19 réalisations · Cliquer pour détail &amp; pricing</span>
     </div>
@@ -804,7 +593,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="vizmap">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">06</span>
+      <span class="s-num">03</span>
       <h2>Cartographie Sémantique</h2>
       <span class="s-meta">Proximité thématique des réalisations — projection UMAP des embeddings</span>
     </div>
@@ -815,6 +604,219 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
     </svg>
     <div class="viz-legend" id="viz-legend"></div>
     <div class="viz-tooltip" id="viz-tooltip"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ PARCOURS -->
+<section id="parcours">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">04</span>
+      <h2>Parcours</h2>
+      <span class="s-meta">HEI · M2 Medical Engineering · 2006–2011 · Léognan, France</span>
+    </div>
+  </div>
+  <div class="parc-in">
+
+    <!-- IJEN -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Janv. 2026 → Présent</div>
+        <div class="co">Ijen.fr<br>Fondateur</div>
+      </div>
+      <div class="tl-body">
+        <h3>Fondateur · Conseil IA Appliquée</h3>
+        <p>Création d'Ijen, micro-entreprise de conseil spécialisée en IA appliquée. Capitalisation sur ~100 références data IA accumulées chez BeTomorrow pour adresser les directions produit, innovation et data des grands groupes et ETI. Conception, prototypage et déploiement de systèmes IA à fort impact utilisateur.</p>
+        <div class="tags"><span class="tag hi">Conseil IA</span><span class="tag hi">Product Strategy</span><span class="tag">RAG / LLM</span><span class="tag">~100 refs</span><span class="tag">Bordeaux</span></div>
+      </div>
+    </div>
+
+    <!-- BETOMORROW -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Oct. 2022 → Janv. 2026</div>
+        <div class="co">BeTomorrow<br>3 ans 4 mois</div>
+      </div>
+      <div class="tl-body">
+        <h3>Principal Product Strategist → Product Manager</h3>
+        <p>Conseil en stratégie de produit numérique innovant auprès de directions d'innovation de grands groupes et fondateurs de startups. Montée en Principal Product Strategist en avril 2024. Accumulation de ~100 références data &amp; IA dans 6 verticales sectorielles (santé/pharma, assurance, banque, public, industrie, sport). Développement d'une BU SaMD (Software as a Medical Device), accompagnement aux certifications ISO 13485 et IEC 62304.</p>
+        <p style="margin-top:10px;font-size:11px;color:var(--g4);font-weight:700;text-transform:uppercase;letter-spacing:.1em">Principaux projets</p>
+        <p style="font-size:12px;color:var(--g6);margin-top:4px">AXA France (stratégie IA &amp; showroom phygital) · Caisse d'Épargne (NLP, clustering, chatbot) · AGPM/Klésia (Millicare, data lifecycle) · Servier (prédiction ventes ML) · Stanford / CHU Bordeaux / CHU Poitiers (données synthétiques médicales, Data Lake) · Acteur assurances NDA (analyse sinistres, vision IA) · Vinci Energies · Predict4Health · Okeiro…</p>
+        <div class="tags" style="margin-top:12px"><span class="tag hi">Product Strategy</span><span class="tag">IA Générative</span><span class="tag">RAG</span><span class="tag">NLP</span><span class="tag">Data Science</span><span class="tag">SaMD</span><span class="tag">Go-to-Market</span></div>
+      </div>
+    </div>
+
+    <!-- PAPER PLANE / ACTIVITÉS PARALLÈLES -->
+    <div class="tl-row alt">
+      <div class="tl-date">
+        <div class="dr">Mars 2021 → Présent</div>
+        <div class="co">Paper Plane<br>+ Time for the Planet<br>+ GutyCare</div>
+      </div>
+      <div class="tl-body">
+        <h3>Président · Associé · Advisor — Activités parallèles</h3>
+        <p><strong>Paper Plane</strong> (Président, mars 2021→) — structure opérationnelle parallèle.<br>
+        <strong>Time for the Planet</strong> (Associé, janv. 2021→) — investissement à impact.<br>
+        <strong>GutyCare</strong> (Advisor, juil. 2022→) — solutions de suivi patients &amp; thérapies digitales en gastroentérologie et immunologie.<br>
+        <strong>Merañ</strong> (Associé, mars 2021 – mai 2022) — gestion de cabinets d'imagerie médicale en télémédecine.</p>
+        <div class="tags"><span class="tag">Santé digitale</span><span class="tag">DTx</span><span class="tag">Impact</span><span class="tag">Télémédecine</span></div>
+      </div>
+    </div>
+
+    <!-- LUCINE -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Nov. 2018 → Mars 2021</div>
+        <div class="co">Lucine<br>2 ans 5 mois</div>
+      </div>
+      <div class="tl-body">
+        <h3>Directeur Produit / CPO → Product Owner</h3>
+        <p>Thérapies numériques pour la douleur chronique basées sur l'IA. Scaling de l'équipe de 12 à 45 collaborateurs (artistes, développeurs, UX/UI, scientifiques). Levée de fonds <strong>5,5 M€</strong>. Vision &amp; roadmap produit, market access, études users, développement d'un framework AGILE propriétaire.</p>
+        <div class="tags"><span class="tag hi">CPO</span><span class="tag">Levée 5,5M€</span><span class="tag">Scaling ×4</span><span class="tag">DTx / IA</span><span class="tag">Roadmap</span><span class="tag">AGILE</span></div>
+      </div>
+    </div>
+
+    <!-- MAINCARE -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Juil. 2016 → Nov. 2018</div>
+        <div class="co">Maincare Solutions<br>2 ans 5 mois</div>
+      </div>
+      <div class="tl-body">
+        <h3>Product Owner · Bloc Opératoire &amp; Anesthésie-Réanimation</h3>
+        <p>Gestion de produit AGILE sur logiciels médicaux (bloc opératoire, anesthésie-réanimation). Roadmap, partenariats, réponses à CCTP, démos clients, intégration multi-technologies (web, client lourd, infrastructures).</p>
+        <div class="tags"><span class="tag">Product Owner</span><span class="tag">SaaS Médical</span><span class="tag">AGILE</span><span class="tag">Bloc opératoire</span></div>
+      </div>
+    </div>
+
+    <!-- INOVELAN -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Déc. 2012 → Juil. 2016</div>
+        <div class="co">Inovelan S.A.<br>Lille</div>
+      </div>
+      <div class="tl-body">
+        <h3>Project Manager</h3>
+        <p>Gestion de projets logiciels (analyse prospects, réponses AO, spécifications fonctionnelles &amp; techniques MOA, plannings, ressources, gestion financière, recette). Collaboration MOA-AMOA-MOE. Suivi client post-projet.</p>
+        <div class="tags"><span class="tag">Project Management</span><span class="tag">MOA</span><span class="tag">Appels d'offres</span><span class="tag">Lille</span></div>
+      </div>
+    </div>
+
+    <!-- FORMATION -->
+    <div class="tl-row alt">
+      <div class="tl-date">
+        <div class="dr">Formation</div>
+        <div class="co">HEI · MITx · Stages</div>
+      </div>
+      <div class="tl-body">
+        <h3>HEI — Hautes Études d'Ingénieur · M2 Medical Engineering (2006–2011)</h3>
+        <p><strong>MITx on edX</strong> — Business and Impact Planning for Social Enterprises (2020).<br>
+        <strong>Hospices Civils de Lyon</strong> — Stage recherche, respirateurs artificiels (2011) · Congrès SRLF Paris Défense.<br>
+        <strong>Schneider Electric Shanghai</strong> — Intern Customer Logistics (juin–sept. 2010).</p>
+        <div class="tags"><span class="tag">HEI Lille</span><span class="tag">Medical Engineering</span><span class="tag">MITx</span><span class="tag">FR · EN · DE · ZH</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ COMPÉTENCES -->
+<section id="competences">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">05</span>
+      <h2>Compétences</h2>
+    </div>
+  </div>
+  <div class="comp-grid">
+    <div class="radar-col">
+      <p class="cap" style="margin-bottom:20px">Cartographie fonctionnelle</p>
+      <svg id="rsvg" viewBox="0 0 320 320" width="100%" style="max-width:320px;display:block"></svg>
+    </div>
+    <div class="skills-col">
+      <div class="sk-cat">
+        <h4>Product &amp; Strategy</h4>
+        <div class="sk-row"><span class="sk-name">Product Strategy</span><div class="sk-track"><div class="sk-fill" data-w="95"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Roadmap IA / Data</span><div class="sk-track"><div class="sk-fill" data-w="93"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Pilotage de projet</span><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Architecture business</span><div class="sk-track"><div class="sk-fill" data-w="86"></div></div></div>
+      </div>
+      <div class="sk-cat">
+        <h4>IA &amp; Data</h4>
+        <div class="sk-row"><span class="sk-name">IA Générative / LLM</span><div class="sk-track"><div class="sk-fill" data-w="94"></div></div></div>
+        <div class="sk-row"><span class="sk-name">RAG &amp; Agents IA</span><div class="sk-track"><div class="sk-fill" data-w="91"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Data Engineering</span><div class="sk-track"><div class="sk-fill" data-w="78"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Data Science / ML</span><div class="sk-track"><div class="sk-fill" data-w="75"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Analytics &amp; BI</span><div class="sk-track"><div class="sk-fill" data-w="83"></div></div></div>
+      </div>
+      <div class="sk-cat">
+        <h4>UX &amp; Delivery</h4>
+        <div class="sk-row"><span class="sk-name">UX / Customer</span><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Change Management</span><div class="sk-track"><div class="sk-fill" data-w="84"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Coordination tech/métier</span><div class="sk-track"><div class="sk-fill" data-w="96"></div></div></div>
+      </div>
+      <p class="cap" style="margin-top:16px;margin-bottom:6px">Secteurs</p>
+      <div class="sect-chips">
+        <div class="chip on" onclick="sect(this,'all')">Tous</div>
+        <div class="chip" onclick="sect(this,'sante')">Santé / Pharma</div>
+        <div class="chip" onclick="sect(this,'assu')">Assurance</div>
+        <div class="chip" onclick="sect(this,'banque')">Banque</div>
+        <div class="chip" onclick="sect(this,'pub')">Secteur Public</div>
+      </div>
+      <div class="sect-box" id="sbox">Tous secteurs : AXA, AGPM, Klésia · Caisse d'Épargne · Servier, IPSEN, Sanofi · Stanford, CHU Bordeaux, CHU Poitiers · Ministère de la Santé, Métropoles · Predict4Health, Okeiro · Infinitif, BeTomorrow</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ UPLOAD / OUTILS RH -->
+<section id="upload">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">06</span>
+      <h2>Outils Recruteurs</h2>
+      <span class="s-meta">Deux machines interactives — réservées aux décideurs RH &amp; managers</span>
+    </div>
+  </div>
+  <div class="mach-grid">
+
+    <!-- MACHINE A -->
+    <div class="mach">
+      <div class="mach-n">A</div>
+      <div class="mach-t">Votre poste.<br>Mon CV.</div>
+      <div class="mach-d">Uploadez votre fiche de mission ou offre d'emploi. Le système analyse les compétences requises et génère un CV tailored — les réalisations et références qui correspondent exactement à votre besoin, dans l'ordre de pertinence.</div>
+      <div class="drop" id="dA" ondrop="dA(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
+        <input type="file" id="fA" accept=".pdf,.doc,.docx,.txt" onchange="onFA(this)">
+        <div class="drop-l">↓ Déposer la fiche de poste</div>
+        <div class="drop-s">PDF · DOCX · TXT · ou coller ci-dessous</div>
+      </div>
+      <textarea class="mach-ta" id="tA" placeholder="Ou collez la description de poste ici..."></textarea>
+      <button class="mbtn" id="btnA" onclick="genCV()">Générer le CV adapté →</button>
+      <div class="prog" id="pA"><div class="prog-f" id="pfA"></div></div>
+      <div class="out" id="outA">
+        <div class="out-h">✓ CV généré · Correspondance par compétences</div>
+        <div class="out-b" id="outAb"></div>
+      </div>
+    </div>
+
+    <!-- MACHINE B -->
+    <div class="mach">
+      <div class="mach-n">B</div>
+      <div class="mach-t">Le marché.<br>Ma place.</div>
+      <div class="mach-d">Uploadez les CVs de candidats concurrents. Le système trace un diagramme radar comparatif multi-dimensions : expertise sectorielle, profondeur technique, track record, polyvalence IA, delivery. Analysez l'écart de compétences en un coup d'œil.</div>
+      <div class="drop" id="dB" ondrop="dB(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
+        <input type="file" id="fB" accept=".pdf,.doc,.docx,.txt" multiple onchange="onFB(this)">
+        <div class="drop-l">↓ Déposer les CVs concurrents</div>
+        <div class="drop-s">Plusieurs fichiers · PDF · DOCX · TXT</div>
+      </div>
+      <div class="comp-list" id="clist">Aucun fichier chargé — ou cliquer "Démonstration"</div>
+      <button class="mbtn" id="btnB" onclick="genRadar()">Générer le radar comparatif →</button>
+      <button class="mbtn" style="background:var(--w);color:var(--k);margin-top:-2px;font-size:9px" onmouseover="this.style.background='var(--g)'" onmouseout="this.style.background='var(--w)'" onclick="demoB()">Mode démonstration (sans upload)</button>
+      <div class="prog" id="pB"><div class="prog-f" id="pfB"></div></div>
+      <div class="out" id="outB">
+        <div class="out-h">✓ Analyse comparative · Radar multi-dimensions</div>
+        <div class="out-b" id="outBb"></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
