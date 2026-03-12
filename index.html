@@ -8,8 +8,10 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --k:#000000;--w:#FFFFFF;--g:#B4FF00;
-  --g1:#F5F5F5;--g2:#E8E8E8;--g4:#999999;--g6:#555555;
-  --b:2px solid #000;--bt:1px solid #000;
+  --g1:#F5F5F5;--g2:#E8E8E8;--g3:#D4D4D4;--g4:#999999;--g6:#555555;
+  --b:1px solid #E2E2E2;--bt:1px solid #E8E8E8;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow-md:0 4px 12px rgba(0,0,0,.08);
+  --radius:8px;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--w);color:var(--k);font-size:14px;line-height:1.4;overflow-x:hidden}
@@ -21,54 +23,53 @@ h3{font-size:18px;font-weight:900}
 .cap{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--g4)}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--w);border-bottom:var(--b);height:48px;display:flex;align-items:center}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #E8E8E8;height:52px;display:flex;align-items:center}
 .nav-in{display:flex;align-items:center;width:100%;max-width:1320px;margin:0 auto;padding:0 32px}
 .nav-logo{font-size:22px;font-weight:900;font-style:italic;text-decoration:none;color:var(--k);margin-right:48px;flex-shrink:0}
-nav ul{list-style:none;display:flex;flex:1}
-nav ul li a{display:block;padding:0 18px;height:48px;line-height:48px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;color:var(--k);border-right:var(--bt)}
-nav ul li:first-child a{border-left:var(--bt)}
-nav ul li a:hover{background:var(--g)}
-.nav-cta{margin-left:auto;height:48px;padding:0 24px;background:var(--k);color:var(--w);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;border:none;cursor:pointer;text-decoration:none;display:flex;align-items:center;white-space:nowrap}
+nav ul{list-style:none;display:flex;flex:1;gap:2px}
+nav ul li a{display:block;padding:0 16px;height:36px;line-height:36px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;color:var(--g6);border-radius:6px;transition:all .15s}
+nav ul li a:hover{background:rgba(180,255,0,.15);color:var(--k)}
+.nav-cta{margin-left:auto;height:36px;padding:0 20px;background:var(--k);color:var(--w);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;border:none;cursor:pointer;text-decoration:none;display:flex;align-items:center;white-space:nowrap;border-radius:6px;transition:all .15s}
 .nav-cta:hover{background:var(--g);color:var(--k)}
 
 /* ── HERO ── */
-#hero{margin-top:48px;border-bottom:var(--b);position:relative;overflow:hidden}
-.hero-main{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--b)}
-.hero-l{padding:56px 48px 48px 0}
-.hero-r{padding:56px 0 48px 48px;display:flex;flex-direction:column;justify-content:flex-end}
+#hero{margin-top:52px;position:relative;overflow:hidden}
+.hero-main{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr}
+.hero-l{padding:80px 48px 80px 0}
+.hero-r{padding:80px 0 80px 48px;border-left:1px solid #E8E8E8;display:flex;flex-direction:column;justify-content:flex-end}
 .hero-r .ij-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:18px}
 .hero-r .hero-tagline{font-size:clamp(20px,2.8vw,36px);font-weight:900;line-height:1.05}
-.hero-r .hero-sub{font-size:13px;color:var(--g6);margin-top:18px;line-height:1.7;max-width:380px}
+.hero-r .hero-sub{font-size:14px;color:var(--g6);margin-top:18px;line-height:1.7;max-width:400px}
 .hero-r .hero-btns{display:flex;gap:0;margin-top:32px}
-.hbtn{display:inline-flex;align-items:center;padding:12px 22px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;cursor:pointer;border:var(--b);font-family:inherit;transition:background .12s,color .12s}
-.hbtn-pri{background:var(--k);color:var(--w);margin-right:-2px}
-.hbtn-pri:hover{background:var(--g);color:var(--k)}
+.hbtn{display:inline-flex;align-items:center;padding:12px 24px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;cursor:pointer;border:1px solid var(--k);font-family:inherit;transition:all .15s;border-radius:var(--radius)}
+.hbtn-pri{background:var(--k);color:var(--w);margin-right:8px}
+.hbtn-pri:hover{background:var(--g);color:var(--k);border-color:var(--g)}
 .hbtn-sec{background:var(--w);color:var(--k)}
-.hbtn-sec:hover{background:var(--g)}
+.hbtn-sec:hover{background:rgba(180,255,0,.15);border-color:var(--g)}
 
 /* Hero ijen brand */
 .hero-ijen{font-size:clamp(72px,11vw,130px);font-weight:900;font-style:italic;line-height:.82;letter-spacing:-.04em;margin-bottom:20px}
 
-/* Green slash */
-.gslash{position:absolute;width:36px;background:var(--g);top:0;bottom:0;right:260px;transform:skewX(-7deg);pointer-events:none;z-index:1}
+/* Green slash — hidden in modern design */
+.gslash{display:none}
 
 /* Stats bar */
-.stats-bar{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);border-bottom:var(--b)}
-.stat{padding:28px 24px 28px 0}
+.stats-bar{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #E8E8E8;border-bottom:1px solid #E8E8E8}
+.stat{padding:32px 24px 32px 0}
 .stat:last-child{padding-right:0}
 .stat-n{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1}
 .stat-l{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--g6);margin-top:6px}
 
 /* Ticker */
-.ticker-wrap{background:var(--k);overflow:hidden;white-space:nowrap;border-top:0}
-.ticker{display:inline-block;animation:tick 24s linear infinite;padding:10px 0}
-.ticker span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--w);margin:0 32px}
+.ticker-wrap{background:var(--g1);overflow:hidden;white-space:nowrap}
+.ticker{display:inline-block;animation:tick 24s linear infinite;padding:12px 0}
+.ticker span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g6);margin:0 32px}
 .ticker span.dot{color:var(--g);margin:0 4px}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ── SECTION HEADER ── */
-.s-head{border-bottom:var(--b)}
-.s-head-in{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;align-items:flex-end;gap:20px;padding-top:28px;padding-bottom:28px}
+.s-head{border-bottom:1px solid #E8E8E8}
+.s-head-in{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;align-items:flex-end;gap:20px;padding-top:36px;padding-bottom:36px}
 .s-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:6px}
 .s-meta{font-size:12px;color:var(--g4);margin-left:auto;margin-bottom:8px}
 
@@ -83,8 +84,8 @@ nav ul li a:hover{background:var(--g)}
 .tl-body h3{margin-bottom:10px}
 .tl-body p{font-size:12px;color:var(--g6);line-height:1.65;max-width:680px}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
-.tag{border:var(--bt);padding:3px 9px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
-.tag.hi{background:var(--g);border-color:var(--k)}
+.tag{border:var(--bt);padding:3px 9px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;border-radius:4px}
+.tag.hi{background:var(--g);border-color:var(--g);border-radius:4px}
 .tl-row.alt{background:transparent}
 
 /* ── COMPÉTENCES ── */
@@ -104,8 +105,8 @@ nav ul li a:hover{background:var(--g)}
 
 /* ── CATALOGUE ── */
 .cat-grid{max-width:1320px;margin:0 auto;padding:24px 32px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.uc{border:var(--bt);cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.uc:hover{transform:translateY(-3px);box-shadow:0 5px 0 #000;border-color:var(--k)}
+.uc{border:1px solid #E8E8E8;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.uc:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--g3)}
 .uc-bar{display:none}
 /* Grain image */
 .uc-img{height:108px;position:relative;overflow:hidden;flex-shrink:0}
@@ -118,11 +119,11 @@ nav ul li a:hover{background:var(--g)}
 .uc-price em{font-style:normal;background:var(--g);padding:0 4px}
 
 /* MODAL */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;display:none;align-items:center;justify-content:center;padding:24px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:500;display:none;align-items:center;justify-content:center;padding:24px}
 .ov.open{display:flex}
-.modal{background:var(--w);border:var(--b);width:100%;max-width:700px;max-height:88vh;overflow-y:auto}
-.m-head{border-bottom:var(--b);padding:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
-.m-close{background:var(--k);color:var(--w);border:none;width:36px;height:36px;font-size:20px;cursor:pointer;font-family:inherit;flex-shrink:0}
+.modal{background:var(--w);border:1px solid #E8E8E8;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.2);width:100%;max-width:700px;max-height:88vh;overflow-y:auto}
+.m-head{border-bottom:1px solid #E8E8E8;padding:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.m-close{background:var(--k);color:var(--w);border:none;width:36px;height:36px;font-size:20px;cursor:pointer;font-family:inherit;flex-shrink:0;border-radius:8px;transition:all .15s}
 .m-close:hover{background:var(--g);color:var(--k)}
 .m-body{padding:28px 24px}
 .dg{display:grid;grid-template-columns:repeat(3,1fr);border:var(--bt);margin-bottom:22px}
@@ -145,16 +146,16 @@ nav ul li a:hover{background:var(--g)}
 .mach-n{font-size:96px;font-weight:900;color:var(--g2);line-height:1;margin-bottom:4px}
 .mach-t{font-size:clamp(20px,2.5vw,28px);font-weight:900;line-height:1.1;margin-bottom:12px}
 .mach-d{font-size:12px;color:var(--g6);line-height:1.7;margin-bottom:28px;max-width:400px}
-.drop{border:2px dashed var(--k);padding:36px 20px;text-align:center;cursor:pointer;background:var(--g1);position:relative;transition:background .1s,border-style .1s}
-.drop:hover,.drop.over{background:var(--g);border-style:solid}
+.drop{border:2px dashed var(--g3);padding:36px 20px;text-align:center;cursor:pointer;background:var(--g1);position:relative;transition:all .15s;border-radius:var(--radius)}
+.drop:hover,.drop.over{background:rgba(180,255,0,.1);border-color:var(--g);border-style:solid}
 .drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
 .drop-l{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
 .drop-s{font-size:10px;color:var(--g4);margin-top:6px}
 textarea.mach-ta{width:100%;margin-top:10px;padding:14px;border:var(--bt);font-family:inherit;font-size:12px;height:90px;resize:vertical;background:var(--g1);outline:none;color:var(--k)}
 textarea.mach-ta:focus{border-color:var(--k);outline:none}
-.mbtn{display:block;width:100%;margin-top:12px;padding:15px;background:var(--k);color:var(--w);border:var(--b);font-family:inherit;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;transition:background .1s,color .1s}
-.mbtn:hover{background:var(--g);color:var(--k)}
-.mbtn:disabled{background:var(--g2);color:var(--g4);cursor:not-allowed}
+.mbtn{display:block;width:100%;margin-top:12px;padding:15px;background:var(--k);color:var(--w);border:1px solid var(--k);border-radius:var(--radius);font-family:inherit;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;transition:all .15s}
+.mbtn:hover{background:var(--g);color:var(--k);border-color:var(--g)}
+.mbtn:disabled{background:var(--g2);color:var(--g4);cursor:not-allowed;border-color:var(--g2)}
 .prog{height:3px;background:var(--g2);margin:12px 0;display:none;position:relative;overflow:hidden}
 .prog-f{position:absolute;top:0;left:0;height:100%;background:var(--k);width:0;transition:width .25s ease}
 .out{border:var(--bt);display:none;margin-top:18px}
@@ -175,6 +176,32 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 .comp-list{margin-top:10px;border:var(--bt);padding:8px;font-size:11px;min-height:36px;color:var(--g4)}
 .comp-pill{display:inline-block;border:var(--bt);padding:2px 10px;margin:3px;font-size:10px;font-weight:700;cursor:pointer}
 .comp-pill:hover{background:var(--k);color:var(--w)}
+
+/* ── ASSISTANT CHAT SECTION ── */
+#assistant{background:var(--g1)}
+.chat-container{max-width:1320px;margin:0 auto;padding:32px}
+.chat-messages-area{background:var(--w);border:1px solid #E8E8E8;border-radius:var(--radius);height:420px;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-sm);margin-bottom:16px}
+.chat-msg{max-width:75%;padding:12px 16px;font-size:14px;line-height:1.6;word-break:break-word}
+.chat-msg.user{align-self:flex-end;background:var(--k);color:var(--w);border-radius:12px 12px 4px 12px}
+.chat-msg.assistant{align-self:flex-start;background:var(--g1);color:var(--k);border:1px solid #E8E8E8;border-radius:12px 12px 12px 4px}
+.chat-msg.assistant .chat-sources{margin-top:10px;padding-top:8px;border-top:1px solid #E0E0E0;font-size:12px;color:var(--g4)}
+.chat-msg.assistant .chat-sources span{display:inline-block;background:#E8E8E8;padding:3px 8px;border-radius:4px;margin:2px 3px 0 0;font-weight:600;color:var(--g6);font-size:11px}
+.chat-input-bar{display:flex;align-items:center;gap:8px;background:var(--w);border:1px solid #E8E8E8;border-radius:var(--radius);padding:4px 4px 4px 16px;box-shadow:var(--shadow-sm)}
+.chat-input-bar input{flex:1;border:none;padding:12px 0;font-size:14px;font-family:inherit;outline:none;background:transparent}
+.chat-input-bar input::placeholder{color:var(--g4)}
+.chat-input-bar button{background:var(--k);border:none;width:40px;height:40px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.chat-input-bar button:hover{background:var(--g6)}
+.chat-input-bar button svg{width:18px;height:18px;fill:var(--g)}
+.chat-input-bar button:disabled{background:var(--g2);cursor:not-allowed}
+.chat-input-bar button:disabled svg{fill:var(--g4)}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chat-chip{border:1px solid #E8E8E8;background:var(--w);padding:8px 16px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--g6)}
+.chat-chip:hover{border-color:var(--k);color:var(--k);background:rgba(180,255,0,.08)}
+.chat-typing{display:flex;gap:5px;padding:12px 16px;align-self:flex-start}
+.chat-typing span{width:7px;height:7px;background:var(--g4);border-radius:50%;animation:chat-bounce .6s infinite alternate}
+.chat-typing span:nth-child(2){animation-delay:.2s}
+.chat-typing span:nth-child(3){animation-delay:.4s}
+@keyframes chat-bounce{to{opacity:.3;transform:translateY(-4px)}}
 
 /* ── VIZ MAP ── */
 .viz-wrap{max-width:1320px;margin:0 auto;padding:32px;position:relative}
@@ -205,8 +232,8 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 .ct-detail:last-of-type{border-bottom:var(--bt)}
 .ct-detail .dl{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:3px}
 .ct-detail .dv{font-size:14px;font-weight:700}
-.ct-email{display:block;margin-top:28px;border:var(--b);padding:18px 24px;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;background:var(--k);color:var(--w);transition:background .1s,color .1s}
-.ct-email:hover{background:var(--g);color:var(--k)}
+.ct-email{display:block;margin-top:28px;border:1px solid var(--k);border-radius:var(--radius);padding:18px 24px;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;background:var(--k);color:var(--w);transition:all .15s}
+.ct-email:hover{background:var(--g);color:var(--k);border-color:var(--g)}
 footer{border-top:var(--b);display:flex;align-items:center;justify-content:space-between;max-width:1320px;margin:0 auto;padding:18px 32px}
 .ft-logo{font-size:18px;font-weight:900;font-style:italic}
 .ft-note{font-size:10px;color:var(--g4)}
@@ -219,20 +246,23 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .hero-main{grid-template-columns:1fr}
-  .hero-r{border-left:0;border-top:var(--b);padding-left:0}
+  .hero-l{padding:48px 0}
+  .hero-r{border-left:0;border-top:1px solid #E8E8E8;padding:32px 0 48px 0}
   .stats-bar{grid-template-columns:1fr 1fr}
   .comp-grid{grid-template-columns:1fr}
   .radar-col{border-right:0;padding-right:0;border-bottom:var(--bt)}
   .skills-col{padding-left:0}
   .cat-grid{grid-template-columns:1fr 1fr;padding:16px;gap:12px}
   .mach-grid{grid-template-columns:1fr}
-  .mach:first-child{border-right:0;border-bottom:var(--b);padding-right:0}
+  .mach:first-child{border-right:0;border-bottom:1px solid #E8E8E8;padding-right:0}
   .mach:last-child{padding-left:0}
   .contact-in{grid-template-columns:1fr}
   .ct-l{border-right:0;border-bottom:var(--bt);padding-right:0}
   .ct-r{padding-left:0}
   nav ul{display:none}
-  .gslash{display:none}
+  .chat-messages-area{height:300px}
+  .chat-suggestions{gap:6px}
+  .chat-chip{font-size:11px;padding:6px 12px}
   footer{flex-direction:column;gap:8px;text-align:center}
 }
 </style>
@@ -244,14 +274,15 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   <div class="nav-in">
     <a href="#" class="nav-logo">ijen</a>
     <ul>
+      <li><a href="#assistant">Assistant IA</a></li>
+      <li><a href="#upload">Outils RH</a></li>
       <li><a href="#parcours">Parcours</a></li>
       <li><a href="#competences">Compétences</a></li>
       <li><a href="#catalogue">Catalogue</a></li>
-      <li><a href="#machines">Outils RH</a></li>
-      <li><a href="#vizmap">Cartographie IA</a></li>
+      <li><a href="#vizmap">Cartographie</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#machines" class="nav-cta">Uploader ma fiche de poste →</a>
+    <a href="#upload" class="nav-cta">Uploader ma fiche de poste →</a>
   </div>
 </nav>
 
@@ -263,8 +294,8 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
       <h2 style="font-size:clamp(22px,3.2vw,42px);font-weight:900;margin-bottom:10px;line-height:1.05"><span style="font-weight:400">Paul</span> Duchâteau</h2>
       <p class="cap" style="margin-bottom:32px">Digital Product Strategy · IA Appliquée · Bordeaux</p>
       <div class="hero-btns">
-        <a href="#catalogue" class="hbtn hbtn-pri">Réalisations →</a>
-        <a href="#machines" class="hbtn hbtn-sec">Uploader une offre</a>
+        <a href="#upload" class="hbtn hbtn-pri">Uploader ma fiche de poste →</a>
+        <a href="#catalogue" class="hbtn hbtn-sec">Réalisations</a>
       </div>
     </div>
     <div class="hero-r">
@@ -277,7 +308,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
     <div class="stat"><div class="stat-n">14</div><div class="stat-l">Ans d'expérience</div></div>
     <div class="stat"><div class="stat-n">~100</div><div class="stat-l">Références data IA</div></div>
     <div class="stat"><div class="stat-n">19</div><div class="stat-l">Réalisations cataloguées</div></div>
-    <div class="stat" style="border-right:var(--bt)"><div class="stat-n">6+</div><div class="stat-l">Secteurs d'expertise</div></div>
+    <div class="stat"><div class="stat-n">6+</div><div class="stat-l">Secteurs d'expertise</div></div>
   </div>
   <div class="ticker-wrap">
     <div class="ticker" id="tick">
@@ -307,11 +338,90 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════ ASSISTANT IA -->
+<section id="assistant">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">01</span>
+      <h2>Assistant IA</h2>
+      <span class="s-meta">Posez vos questions sur le profil, le catalogue ou les compétences</span>
+    </div>
+  </div>
+  <div class="chat-container">
+    <div class="chat-messages-area" id="chat-messages">
+      <div class="chat-msg assistant">Bonjour, je suis l'assistant IA d'ijen.fr. Posez-moi une question sur le profil, les compétences ou le catalogue de Paul.</div>
+    </div>
+    <div class="chat-input-bar">
+      <input id="chat-input" type="text" placeholder="Posez votre question..." maxlength="2000" autocomplete="off">
+      <button id="chat-send" aria-label="Envoyer"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+    </div>
+    <div class="chat-suggestions">
+      <div class="chat-chip" onclick="askChat('Quelles sont les compétences clés de Paul ?')">Compétences clés</div>
+      <div class="chat-chip" onclick="askChat('Quels projets RAG a-t-il réalisés ?')">Projets RAG</div>
+      <div class="chat-chip" onclick="askChat('Dans quels secteurs Paul a-t-il travaillé ?')">Secteurs d'expertise</div>
+      <div class="chat-chip" onclick="askChat('Quel est le tarif de prototypage ?')">Tarifs</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ UPLOAD / OUTILS RH -->
+<section id="upload">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">02</span>
+      <h2>Outils Recruteurs</h2>
+      <span class="s-meta">Deux machines interactives — réservées aux décideurs RH &amp; managers</span>
+    </div>
+  </div>
+  <div class="mach-grid">
+
+    <!-- MACHINE A -->
+    <div class="mach">
+      <div class="mach-n">A</div>
+      <div class="mach-t">Votre poste.<br>Mon CV.</div>
+      <div class="mach-d">Uploadez votre fiche de mission ou offre d'emploi. Le système analyse les compétences requises et génère un CV tailored — les réalisations et références qui correspondent exactement à votre besoin, dans l'ordre de pertinence.</div>
+      <div class="drop" id="dA" ondrop="dA(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
+        <input type="file" id="fA" accept=".pdf,.doc,.docx,.txt" onchange="onFA(this)">
+        <div class="drop-l">↓ Déposer la fiche de poste</div>
+        <div class="drop-s">PDF · DOCX · TXT · ou coller ci-dessous</div>
+      </div>
+      <textarea class="mach-ta" id="tA" placeholder="Ou collez la description de poste ici..."></textarea>
+      <button class="mbtn" id="btnA" onclick="genCV()">Générer le CV adapté →</button>
+      <div class="prog" id="pA"><div class="prog-f" id="pfA"></div></div>
+      <div class="out" id="outA">
+        <div class="out-h">✓ CV généré · Correspondance par compétences</div>
+        <div class="out-b" id="outAb"></div>
+      </div>
+    </div>
+
+    <!-- MACHINE B -->
+    <div class="mach">
+      <div class="mach-n">B</div>
+      <div class="mach-t">Le marché.<br>Ma place.</div>
+      <div class="mach-d">Uploadez les CVs de candidats concurrents. Le système trace un diagramme radar comparatif multi-dimensions : expertise sectorielle, profondeur technique, track record, polyvalence IA, delivery. Analysez l'écart de compétences en un coup d'œil.</div>
+      <div class="drop" id="dB" ondrop="dB(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
+        <input type="file" id="fB" accept=".pdf,.doc,.docx,.txt" multiple onchange="onFB(this)">
+        <div class="drop-l">↓ Déposer les CVs concurrents</div>
+        <div class="drop-s">Plusieurs fichiers · PDF · DOCX · TXT</div>
+      </div>
+      <div class="comp-list" id="clist">Aucun fichier chargé — ou cliquer "Démonstration"</div>
+      <button class="mbtn" id="btnB" onclick="genRadar()">Générer le radar comparatif →</button>
+      <button class="mbtn" style="background:var(--w);color:var(--k);margin-top:-2px;font-size:9px" onmouseover="this.style.background='var(--g)'" onmouseout="this.style.background='var(--w)'" onclick="demoB()">Mode démonstration (sans upload)</button>
+      <div class="prog" id="pB"><div class="prog-f" id="pfB"></div></div>
+      <div class="out" id="outB">
+        <div class="out-h">✓ Analyse comparative · Radar multi-dimensions</div>
+        <div class="out-b" id="outBb"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ═══════════════════════════════════════════ PARCOURS -->
 <section id="parcours">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">01</span>
+      <span class="s-num">03</span>
       <h2>Parcours</h2>
       <span class="s-meta">HEI · M2 Medical Engineering · 2006–2011 · Léognan, France</span>
     </div>
@@ -423,7 +533,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="competences">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">02</span>
+      <span class="s-num">04</span>
       <h2>Compétences</h2>
     </div>
   </div>
@@ -471,7 +581,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="catalogue">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">03</span>
+      <span class="s-num">05</span>
       <h2>Catalogue de Réalisations</h2>
       <span class="s-meta">19 réalisations · Cliquer pour détail &amp; pricing</span>
     </div>
@@ -690,64 +800,11 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════ MACHINES -->
-<section id="machines">
-  <div class="s-head">
-    <div class="s-head-in">
-      <span class="s-num">04</span>
-      <h2>Outils Recruteurs</h2>
-      <span class="s-meta">Deux machines interactives — réservées aux décideurs RH &amp; managers</span>
-    </div>
-  </div>
-  <div class="mach-grid">
-
-    <!-- MACHINE A -->
-    <div class="mach">
-      <div class="mach-n">A</div>
-      <div class="mach-t">Votre poste.<br>Mon CV.</div>
-      <div class="mach-d">Uploadez votre fiche de mission ou offre d'emploi. Le système analyse les compétences requises et génère un CV tailored — les réalisations et références qui correspondent exactement à votre besoin, dans l'ordre de pertinence.</div>
-      <div class="drop" id="dA" ondrop="dA(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
-        <input type="file" id="fA" accept=".pdf,.doc,.docx,.txt" onchange="onFA(this)">
-        <div class="drop-l">↓ Déposer la fiche de poste</div>
-        <div class="drop-s">PDF · DOCX · TXT · ou coller ci-dessous</div>
-      </div>
-      <textarea class="mach-ta" id="tA" placeholder="Ou collez la description de poste ici..."></textarea>
-      <button class="mbtn" id="btnA" onclick="genCV()">Générer le CV adapté →</button>
-      <div class="prog" id="pA"><div class="prog-f" id="pfA"></div></div>
-      <div class="out" id="outA">
-        <div class="out-h">✓ CV généré · Correspondance par compétences</div>
-        <div class="out-b" id="outAb"></div>
-      </div>
-    </div>
-
-    <!-- MACHINE B -->
-    <div class="mach">
-      <div class="mach-n">B</div>
-      <div class="mach-t">Le marché.<br>Ma place.</div>
-      <div class="mach-d">Uploadez les CVs de candidats concurrents. Le système trace un diagramme radar comparatif multi-dimensions : expertise sectorielle, profondeur technique, track record, polyvalence IA, delivery. Analysez l'écart de compétences en un coup d'œil.</div>
-      <div class="drop" id="dB" ondrop="dB(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
-        <input type="file" id="fB" accept=".pdf,.doc,.docx,.txt" multiple onchange="onFB(this)">
-        <div class="drop-l">↓ Déposer les CVs concurrents</div>
-        <div class="drop-s">Plusieurs fichiers · PDF · DOCX · TXT</div>
-      </div>
-      <div class="comp-list" id="clist">Aucun fichier chargé — ou cliquer "Démonstration"</div>
-      <button class="mbtn" id="btnB" onclick="genRadar()">Générer le radar comparatif →</button>
-      <button class="mbtn" style="background:var(--w);color:var(--k);margin-top:-2px;font-size:9px" onmouseover="this.style.background='var(--g)'" onmouseout="this.style.background='var(--w)'" onclick="demoB()">Mode démonstration (sans upload)</button>
-      <div class="prog" id="pB"><div class="prog-f" id="pfB"></div></div>
-      <div class="out" id="outB">
-        <div class="out-h">✓ Analyse comparative · Radar multi-dimensions</div>
-        <div class="out-b" id="outBb"></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
 <!-- ═══════════════════════════════════════════ VIZ MAP -->
 <section id="vizmap">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">05</span>
+      <span class="s-num">06</span>
       <h2>Cartographie Sémantique</h2>
       <span class="s-meta">Proximité thématique des réalisations — projection UMAP des embeddings</span>
     </div>
@@ -765,7 +822,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="contact">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">06</span>
+      <span class="s-num">07</span>
       <h2>Une Mission ?</h2>
     </div>
   </div>
@@ -1304,81 +1361,35 @@ window.addEventListener('DOMContentLoaded',()=>{
 });
 </script>
 
-<!-- ══════════════════ CHAT WIDGET ══════════════════ -->
-<style>
-#ij-chat-bubble{position:fixed;bottom:28px;right:28px;z-index:9999;width:56px;height:56px;border-radius:50%;background:#000;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .2s}
-#ij-chat-bubble:hover{transform:scale(1.08)}
-#ij-chat-bubble svg{width:26px;height:26px;fill:#B4FF00}
-#ij-chat-panel{position:fixed;bottom:96px;right:28px;z-index:9998;width:380px;max-height:520px;background:#fff;border:2px solid #000;border-radius:16px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.15)}
-#ij-chat-panel.open{display:flex}
-#ij-chat-header{background:#000;color:#B4FF00;padding:14px 18px;font-size:14px;font-weight:700;display:flex;justify-content:space-between;align-items:center;letter-spacing:.02em}
-#ij-chat-header button{background:none;border:none;color:#B4FF00;font-size:20px;cursor:pointer;line-height:1}
-#ij-chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;min-height:280px;max-height:360px}
-.ij-msg{max-width:85%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5;word-break:break-word}
-.ij-msg.user{align-self:flex-end;background:#000;color:#fff;border-bottom-right-radius:4px}
-.ij-msg.assistant{align-self:flex-start;background:#F5F5F5;color:#000;border-bottom-left-radius:4px}
-.ij-msg.assistant .ij-sources{margin-top:8px;padding-top:6px;border-top:1px solid #E0E0E0;font-size:11px;color:#666}
-.ij-msg.assistant .ij-sources span{display:inline-block;background:#E8E8E8;padding:2px 6px;border-radius:4px;margin:2px 2px 0 0;font-weight:600;color:#333}
-#ij-chat-input-wrap{display:flex;border-top:2px solid #000;padding:0}
-#ij-chat-input{flex:1;border:none;padding:12px 14px;font-size:13px;font-family:inherit;outline:none;background:#fff}
-#ij-chat-input::placeholder{color:#999}
-#ij-chat-send{background:#000;border:none;padding:0 16px;cursor:pointer;display:flex;align-items:center}
-#ij-chat-send svg{width:18px;height:18px;fill:#B4FF00}
-#ij-chat-send:disabled svg{fill:#666}
-.ij-typing{display:flex;gap:4px;padding:10px 14px;align-self:flex-start}
-.ij-typing span{width:6px;height:6px;background:#999;border-radius:50%;animation:ij-bounce .6s infinite alternate}
-.ij-typing span:nth-child(2){animation-delay:.2s}
-.ij-typing span:nth-child(3){animation-delay:.4s}
-@keyframes ij-bounce{to{opacity:.3;transform:translateY(-4px)}}
-@media(max-width:480px){#ij-chat-panel{right:12px;left:12px;width:auto;bottom:88px;max-height:70vh}}
-</style>
-
-<button id="ij-chat-bubble" aria-label="Ouvrir le chat">
-  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/></svg>
-</button>
-
-<div id="ij-chat-panel">
-  <div id="ij-chat-header">
-    <span>ijen — assistant IA</span>
-    <button id="ij-chat-close" aria-label="Fermer">&times;</button>
-  </div>
-  <div id="ij-chat-messages">
-    <div class="ij-msg assistant">Bonjour, je suis l'assistant IA d'ijen.fr. Posez-moi une question sur le profil ou le catalogue de Paul.</div>
-  </div>
-  <div id="ij-chat-input-wrap">
-    <input id="ij-chat-input" type="text" placeholder="Votre question..." maxlength="2000" autocomplete="off">
-    <button id="ij-chat-send" aria-label="Envoyer"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
-  </div>
-</div>
-
+<!-- ══════════════════ INLINE CHAT JS ══════════════════ -->
 <script>
 (function(){
-  const API_URL = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+  const CHAT_API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
     ? 'http://localhost:3001/api/chat'
     : 'https://api-ashy-five-66.vercel.app/api/chat';
 
-  const bubble = document.getElementById('ij-chat-bubble');
-  const panel = document.getElementById('ij-chat-panel');
-  const closeBtn = document.getElementById('ij-chat-close');
-  const messagesEl = document.getElementById('ij-chat-messages');
-  const input = document.getElementById('ij-chat-input');
-  const sendBtn = document.getElementById('ij-chat-send');
+  const messagesEl = document.getElementById('chat-messages');
+  const inputEl = document.getElementById('chat-input');
+  const sendBtn = document.getElementById('chat-send');
 
   let conversationId = null;
   let sending = false;
 
-  bubble.addEventListener('click', () => {
-    panel.classList.toggle('open');
-    if (panel.classList.contains('open')) input.focus();
+  // Event listeners
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
   });
-  closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+  sendBtn.addEventListener('click', sendChat);
 
-  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
-  sendBtn.addEventListener('click', send);
+  // Expose askChat globally for suggestion chips
+  window.askChat = function(text) {
+    inputEl.value = text;
+    sendChat();
+  };
 
-  function addMsg(role, html) {
+  function addChatMsg(role, html) {
     const div = document.createElement('div');
-    div.className = 'ij-msg ' + role;
+    div.className = 'chat-msg ' + role;
     div.innerHTML = html;
     messagesEl.appendChild(div);
     messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -1387,30 +1398,34 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function showTyping() {
     const div = document.createElement('div');
-    div.className = 'ij-typing';
-    div.id = 'ij-typing';
+    div.className = 'chat-typing';
+    div.id = 'chat-typing-ind';
     div.innerHTML = '<span></span><span></span><span></span>';
     messagesEl.appendChild(div);
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
   function hideTyping() {
-    const el = document.getElementById('ij-typing');
+    const el = document.getElementById('chat-typing-ind');
     if (el) el.remove();
   }
 
-  async function send() {
-    const msg = input.value.trim();
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  async function sendChat() {
+    const msg = inputEl.value.trim();
     if (!msg || sending) return;
     sending = true;
     sendBtn.disabled = true;
-    input.value = '';
+    inputEl.value = '';
 
-    addMsg('user', escHtml(msg));
+    addChatMsg('user', escHtml(msg));
     showTyping();
 
     try {
-      const res = await fetch(API_URL, {
+      const res = await fetch(CHAT_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: msg, conversationId }),
@@ -1418,14 +1433,14 @@ window.addEventListener('DOMContentLoaded',()=>{
 
       if (!res.ok) {
         hideTyping();
-        addMsg('assistant', 'Erreur — réessayez dans un instant.');
+        addChatMsg('assistant', 'Erreur — réessayez dans un instant.');
         sending = false;
         sendBtn.disabled = false;
         return;
       }
 
       hideTyping();
-      const assistantDiv = addMsg('assistant', '');
+      const assistantDiv = addChatMsg('assistant', '');
       let fullText = '';
 
       const reader = res.body.getReader();
@@ -1452,7 +1467,7 @@ window.addEventListener('DOMContentLoaded',()=>{
             if (data.done) {
               conversationId = data.conversationId || conversationId;
               if (data.sources && data.sources.length > 0) {
-                const srcHtml = '<div class="ij-sources">' +
+                const srcHtml = '<div class="chat-sources">' +
                   data.sources.map(s => '<span>' + escHtml(s.code) + '</span>').join('') +
                   '</div>';
                 assistantDiv.innerHTML = escHtml(fullText) + srcHtml;
@@ -1466,16 +1481,12 @@ window.addEventListener('DOMContentLoaded',()=>{
       }
     } catch (err) {
       hideTyping();
-      addMsg('assistant', 'Connexion impossible. Vérifiez votre réseau.');
+      addChatMsg('assistant', 'Connexion impossible. Vérifiez votre réseau.');
     }
 
     sending = false;
     sendBtn.disabled = false;
-    input.focus();
-  }
-
-  function escHtml(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    inputEl.focus();
   }
 })();
 </script>
