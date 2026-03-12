@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ijen — Paul Duchâteau · Digital Product Strategy & IA Appliquée</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --k:#000000;--w:#FFFFFF;--g:#B4FF00;
+  --g1:#F5F5F5;--g2:#E8E8E8;--g4:#999999;--g6:#555555;
+  --b:2px solid #000;--bt:1px solid #000;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--w);color:var(--k);font-size:14px;line-height:1.4;overflow-x:hidden}
+
+/* ── TYPE ── */
+h1{font-size:clamp(52px,9vw,128px);font-weight:900;line-height:.88;letter-spacing:-.03em}
+h2{font-size:clamp(30px,5vw,72px);font-weight:900;line-height:1}
+h3{font-size:18px;font-weight:900}
+.cap{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--g4)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--w);border-bottom:var(--b);height:48px;display:flex;align-items:center}
+.nav-in{display:flex;align-items:center;width:100%;max-width:1320px;margin:0 auto;padding:0 32px}
+.nav-logo{font-size:22px;font-weight:900;font-style:italic;text-decoration:none;color:var(--k);margin-right:48px;flex-shrink:0}
+nav ul{list-style:none;display:flex;flex:1}
+nav ul li a{display:block;padding:0 18px;height:48px;line-height:48px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;color:var(--k);border-right:var(--bt)}
+nav ul li:first-child a{border-left:var(--bt)}
+nav ul li a:hover{background:var(--g)}
+.nav-cta{margin-left:auto;height:48px;padding:0 24px;background:var(--k);color:var(--w);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;border:none;cursor:pointer;text-decoration:none;display:flex;align-items:center;white-space:nowrap}
+.nav-cta:hover{background:var(--g);color:var(--k)}
+
+/* ── HERO ── */
+#hero{margin-top:48px;border-bottom:var(--b);position:relative;overflow:hidden}
+.hero-main{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--b)}
+.hero-l{padding:56px 48px 48px 0}
+.hero-r{padding:56px 0 48px 48px;display:flex;flex-direction:column;justify-content:flex-end}
+.hero-r .ij-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:18px}
+.hero-r .hero-tagline{font-size:clamp(20px,2.8vw,36px);font-weight:900;line-height:1.05}
+.hero-r .hero-sub{font-size:13px;color:var(--g6);margin-top:18px;line-height:1.7;max-width:380px}
+.hero-r .hero-btns{display:flex;gap:0;margin-top:32px}
+.hbtn{display:inline-flex;align-items:center;padding:12px 22px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;cursor:pointer;border:var(--b);font-family:inherit;transition:background .12s,color .12s}
+.hbtn-pri{background:var(--k);color:var(--w);margin-right:-2px}
+.hbtn-pri:hover{background:var(--g);color:var(--k)}
+.hbtn-sec{background:var(--w);color:var(--k)}
+.hbtn-sec:hover{background:var(--g)}
+
+/* Hero ijen brand */
+.hero-ijen{font-size:clamp(72px,11vw,130px);font-weight:900;font-style:italic;line-height:.82;letter-spacing:-.04em;margin-bottom:20px}
+
+/* Green slash */
+.gslash{position:absolute;width:36px;background:var(--g);top:0;bottom:0;right:260px;transform:skewX(-7deg);pointer-events:none;z-index:1}
+
+/* Stats bar */
+.stats-bar{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);border-bottom:var(--b)}
+.stat{padding:28px 24px 28px 0}
+.stat:last-child{padding-right:0}
+.stat-n{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1}
+.stat-l{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--g6);margin-top:6px}
+
+/* Ticker */
+.ticker-wrap{background:var(--k);overflow:hidden;white-space:nowrap;border-top:0}
+.ticker{display:inline-block;animation:tick 24s linear infinite;padding:10px 0}
+.ticker span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--w);margin:0 32px}
+.ticker span.dot{color:var(--g);margin:0 4px}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SECTION HEADER ── */
+.s-head{border-bottom:var(--b)}
+.s-head-in{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;align-items:flex-end;gap:20px;padding-top:28px;padding-bottom:28px}
+.s-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:6px}
+.s-meta{font-size:12px;color:var(--g4);margin-left:auto;margin-bottom:8px}
+
+/* ── PARCOURS ── */
+.parc-in{max-width:1320px;margin:0 auto;padding:0 32px}
+.tl-row{display:grid;grid-template-columns:220px 1fr;border-top:1px solid var(--g2)}
+.tl-row:first-child{border-top:none}
+.tl-date{padding:28px 24px 28px 0}
+.tl-date .dr{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.tl-date .co{font-size:12px;color:var(--g6);margin-top:4px;line-height:1.4}
+.tl-body{padding:28px 0 28px 32px}
+.tl-body h3{margin-bottom:10px}
+.tl-body p{font-size:12px;color:var(--g6);line-height:1.65;max-width:680px}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.tag{border:var(--bt);padding:3px 9px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.tag.hi{background:var(--g);border-color:var(--k)}
+.tl-row.alt{background:transparent}
+
+/* ── COMPÉTENCES ── */
+.comp-grid{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr}
+.radar-col{padding:48px 48px 48px 0;border-right:var(--bt)}
+.skills-col{padding:48px 0 48px 32px}
+.sk-cat{margin-bottom:28px}
+.sk-cat h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:12px;padding-bottom:8px;border-bottom:var(--bt)}
+.sk-row{display:flex;align-items:center;gap:14px;margin-bottom:7px}
+.sk-name{font-size:12px;font-weight:700;width:200px;flex-shrink:0}
+.sk-track{flex:1;height:6px;background:var(--g2);position:relative}
+.sk-fill{position:absolute;top:0;left:0;height:100%;background:var(--k);width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.sect-chips{display:flex;flex-wrap:wrap;gap:0;margin-top:20px;border-top:var(--bt)}
+.chip{border:var(--bt);border-top:0;border-left:0;padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:background .1s}
+.chip:hover,.chip.on{background:var(--k);color:var(--w)}
+.sect-box{margin-top:12px;border:var(--bt);padding:14px;font-size:12px;color:var(--g6);line-height:1.8;min-height:72px}
+
+/* ── CATALOGUE ── */
+.cat-grid{max-width:1320px;margin:0 auto;padding:24px 32px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.uc{border:var(--bt);cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.uc:hover{transform:translateY(-3px);box-shadow:0 5px 0 #000;border-color:var(--k)}
+.uc-bar{display:none}
+/* Grain image */
+.uc-img{height:108px;position:relative;overflow:hidden;flex-shrink:0}
+.uc-img::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:multiply;opacity:0.28}
+.uc-body{padding:16px 16px 14px;flex:1;display:flex;flex-direction:column}
+.uc-code{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--g4);margin-bottom:7px}
+.uc-title{font-size:12px;font-weight:700;line-height:1.35;margin-bottom:8px}
+.uc-brief{font-size:11px;color:var(--g6);line-height:1.55;margin-bottom:12px;flex:1}
+.uc-price{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.uc-price em{font-style:normal;background:var(--g);padding:0 4px}
+
+/* MODAL */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;display:none;align-items:center;justify-content:center;padding:24px}
+.ov.open{display:flex}
+.modal{background:var(--w);border:var(--b);width:100%;max-width:700px;max-height:88vh;overflow-y:auto}
+.m-head{border-bottom:var(--b);padding:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.m-close{background:var(--k);color:var(--w);border:none;width:36px;height:36px;font-size:20px;cursor:pointer;font-family:inherit;flex-shrink:0}
+.m-close:hover{background:var(--g);color:var(--k)}
+.m-body{padding:28px 24px}
+.dg{display:grid;grid-template-columns:repeat(3,1fr);border:var(--bt);margin-bottom:22px}
+.dc{padding:14px;border-right:var(--bt)}
+.dc:last-child{border-right:0}
+.dc .dl{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--g4);margin-bottom:4px}
+.dc .dv{font-size:16px;font-weight:900}
+.dc .dv.hi{background:var(--g);padding:0 6px;display:inline-block}
+.m-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--g4);margin:0 0 7px}
+.m-txt{font-size:13px;color:var(--g6);line-height:1.65;margin-bottom:20px}
+.m-ref{margin-top:20px;padding:14px;background:var(--g1);border:var(--bt)}
+.m-ref p:first-child{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.m-ref p:last-child{font-size:12px;color:var(--g6)}
+
+/* ── MACHINES ── */
+.mach-grid{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr}
+.mach{padding:48px 0}
+.mach:first-child{padding-right:48px;border-right:var(--b)}
+.mach:last-child{padding-left:48px}
+.mach-n{font-size:96px;font-weight:900;color:var(--g2);line-height:1;margin-bottom:4px}
+.mach-t{font-size:clamp(20px,2.5vw,28px);font-weight:900;line-height:1.1;margin-bottom:12px}
+.mach-d{font-size:12px;color:var(--g6);line-height:1.7;margin-bottom:28px;max-width:400px}
+.drop{border:2px dashed var(--k);padding:36px 20px;text-align:center;cursor:pointer;background:var(--g1);position:relative;transition:background .1s,border-style .1s}
+.drop:hover,.drop.over{background:var(--g);border-style:solid}
+.drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop-l{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+.drop-s{font-size:10px;color:var(--g4);margin-top:6px}
+textarea.mach-ta{width:100%;margin-top:10px;padding:14px;border:var(--bt);font-family:inherit;font-size:12px;height:90px;resize:vertical;background:var(--g1);outline:none;color:var(--k)}
+textarea.mach-ta:focus{border-color:var(--k);outline:none}
+.mbtn{display:block;width:100%;margin-top:12px;padding:15px;background:var(--k);color:var(--w);border:var(--b);font-family:inherit;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;transition:background .1s,color .1s}
+.mbtn:hover{background:var(--g);color:var(--k)}
+.mbtn:disabled{background:var(--g2);color:var(--g4);cursor:not-allowed}
+.prog{height:3px;background:var(--g2);margin:12px 0;display:none;position:relative;overflow:hidden}
+.prog-f{position:absolute;top:0;left:0;height:100%;background:var(--k);width:0;transition:width .25s ease}
+.out{border:var(--bt);display:none;margin-top:18px}
+.out.on{display:block}
+.out-h{background:var(--k);color:var(--w);padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+.out-b{padding:14px}
+.cv-item{padding:12px 0;border-bottom:var(--bt);display:flex;align-items:flex-start;gap:14px}
+.cv-item:last-child{border-bottom:0}
+.cv-sc{font-size:22px;font-weight:900;flex-shrink:0;width:50px;text-align:right}
+.cv-sc.hi{color:var(--k)}
+.cv-sc.md{color:var(--g4)}
+.cv-info h4{font-size:12px;font-weight:700;margin-bottom:3px}
+.cv-info p{font-size:11px;color:var(--g6);line-height:1.5}
+.cv-tags{margin-top:5px}
+.cv-tag{display:inline-block;background:var(--g);border:var(--bt);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 6px;margin:2px 2px 0 0}
+@keyframes fiu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fiu{animation:fiu .35s ease forwards}
+.comp-list{margin-top:10px;border:var(--bt);padding:8px;font-size:11px;min-height:36px;color:var(--g4)}
+.comp-pill{display:inline-block;border:var(--bt);padding:2px 10px;margin:3px;font-size:10px;font-weight:700;cursor:pointer}
+.comp-pill:hover{background:var(--k);color:var(--w)}
+
+/* ── CONTACT ── */
+.contact-in{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr}
+.ct-l{padding:64px 48px 64px 0;border-right:var(--bt)}
+.ct-r{padding:64px 0 64px 48px}
+.ct-l h2{margin-bottom:20px}
+.ct-l p{font-size:13px;color:var(--g6);line-height:1.7;max-width:380px;margin-bottom:12px}
+.ct-link{display:inline-flex;align-items:center;font-size:12px;font-weight:700;text-decoration:none;color:var(--k);border-bottom:2px solid var(--k);padding-bottom:3px;margin-top:16px}
+.ct-link:hover{color:var(--g6);border-color:var(--g6)}
+.ct-detail{padding:14px 0;border-top:var(--bt)}
+.ct-detail:last-of-type{border-bottom:var(--bt)}
+.ct-detail .dl{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:3px}
+.ct-detail .dv{font-size:14px;font-weight:700}
+.ct-email{display:block;margin-top:28px;border:var(--b);padding:18px 24px;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;background:var(--k);color:var(--w);transition:background .1s,color .1s}
+.ct-email:hover{background:var(--g);color:var(--k)}
+footer{border-top:var(--b);display:flex;align-items:center;justify-content:space-between;max-width:1320px;margin:0 auto;padding:18px 32px}
+.ft-logo{font-size:18px;font-weight:900;font-style:italic}
+.ft-note{font-size:10px;color:var(--g4)}
+
+/* ── SPINNER ── */
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--g);border-radius:50%;animation:spin .5s linear infinite;margin-right:8px;vertical-align:middle}
+.spin.dark{border-color:rgba(0,0,0,.2);border-top-color:var(--k)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-main{grid-template-columns:1fr}
+  .hero-r{border-left:0;border-top:var(--b);padding-left:0}
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .comp-grid{grid-template-columns:1fr}
+  .radar-col{border-right:0;padding-right:0;border-bottom:var(--bt)}
+  .skills-col{padding-left:0}
+  .cat-grid{grid-template-columns:1fr 1fr;padding:16px;gap:12px}
+  .mach-grid{grid-template-columns:1fr}
+  .mach:first-child{border-right:0;border-bottom:var(--b);padding-right:0}
+  .mach:last-child{padding-left:0}
+  .contact-in{grid-template-columns:1fr}
+  .ct-l{border-right:0;border-bottom:var(--bt);padding-right:0}
+  .ct-r{padding-left:0}
+  nav ul{display:none}
+  .gslash{display:none}
+  footer{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ NAV -->
+<nav>
+  <div class="nav-in">
+    <a href="#" class="nav-logo">ijen</a>
+    <ul>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#catalogue">Catalogue</a></li>
+      <li><a href="#machines">Outils RH</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#machines" class="nav-cta">Uploader ma fiche de poste →</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ HERO -->
+<section id="hero">
+  <div class="hero-main">
+    <div class="hero-l">
+      <div class="hero-ijen">ijen</div>
+      <h2 style="font-size:clamp(22px,3.2vw,42px);font-weight:900;margin-bottom:10px;line-height:1.05"><span style="font-weight:400">Paul</span> Duchâteau</h2>
+      <p class="cap" style="margin-bottom:32px">Digital Product Strategy · IA Appliquée · Bordeaux</p>
+      <div class="hero-btns">
+        <a href="#catalogue" class="hbtn hbtn-pri">Réalisations →</a>
+        <a href="#machines" class="hbtn hbtn-sec">Uploader une offre</a>
+      </div>
+    </div>
+    <div class="hero-r">
+      <p class="ij-lbl">ijen · conseil en intelligence artificielle</p>
+      <p class="hero-sub">Des systèmes IA qui fonctionnent. Conçus, déployés, utilisés. Sans méthodologie à vendre, sans junior à former sur votre budget.</p>
+    </div>
+    <div class="gslash"></div>
+  </div>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-n">14</div><div class="stat-l">Ans d'expérience</div></div>
+    <div class="stat"><div class="stat-n">~100</div><div class="stat-l">Références data IA</div></div>
+    <div class="stat"><div class="stat-n">19</div><div class="stat-l">Réalisations cataloguées</div></div>
+    <div class="stat" style="border-right:var(--bt)"><div class="stat-n">6+</div><div class="stat-l">Secteurs d'expertise</div></div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker" id="tick">
+      <span>Santé &amp; Medtech</span><span class="dot">·</span>
+      <span>Assurance &amp; Mutuelle</span><span class="dot">·</span>
+      <span>Banque &amp; Finance</span><span class="dot">·</span>
+      <span>Secteur Public</span><span class="dot">·</span>
+      <span>Pharma</span><span class="dot">·</span>
+      <span>Product Strategy</span><span class="dot">·</span>
+      <span>RAG &amp; LLM</span><span class="dot">·</span>
+      <span>Data Engineering</span><span class="dot">·</span>
+      <span>IA Générative</span><span class="dot">·</span>
+      <span>UX &amp; Analytics</span><span class="dot">·</span>
+      <span>Change Management</span><span class="dot">·</span>
+      <span>Computer Vision</span><span class="dot">·</span>
+      <span>Santé &amp; Medtech</span><span class="dot">·</span>
+      <span>Assurance &amp; Mutuelle</span><span class="dot">·</span>
+      <span>Banque &amp; Finance</span><span class="dot">·</span>
+      <span>Secteur Public</span><span class="dot">·</span>
+      <span>Pharma</span><span class="dot">·</span>
+      <span>Product Strategy</span><span class="dot">·</span>
+      <span>RAG &amp; LLM</span><span class="dot">·</span>
+      <span>Data Engineering</span><span class="dot">·</span>
+      <span>IA Générative</span><span class="dot">·</span>
+      <span>UX &amp; Analytics</span><span class="dot">·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ PARCOURS -->
+<section id="parcours">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">01</span>
+      <h2>Parcours</h2>
+      <span class="s-meta">HEI · M2 Medical Engineering · 2006–2011 · Léognan, France</span>
+    </div>
+  </div>
+  <div class="parc-in">
+
+    <!-- IJEN -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Janv. 2026 → Présent</div>
+        <div class="co">Ijen.fr<br>Fondateur</div>
+      </div>
+      <div class="tl-body">
+        <h3>Fondateur · Conseil IA Appliquée</h3>
+        <p>Création d'Ijen, micro-entreprise de conseil spécialisée en IA appliquée. Capitalisation sur ~100 références data IA accumulées chez BeTomorrow pour adresser les directions produit, innovation et data des grands groupes et ETI. Conception, prototypage et déploiement de systèmes IA à fort impact utilisateur.</p>
+        <div class="tags"><span class="tag hi">Conseil IA</span><span class="tag hi">Product Strategy</span><span class="tag">RAG / LLM</span><span class="tag">~100 refs</span><span class="tag">Bordeaux</span></div>
+      </div>
+    </div>
+
+    <!-- BETOMORROW -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Oct. 2022 → Janv. 2026</div>
+        <div class="co">BeTomorrow<br>3 ans 4 mois</div>
+      </div>
+      <div class="tl-body">
+        <h3>Principal Product Strategist → Product Manager</h3>
+        <p>Conseil en stratégie de produit numérique innovant auprès de directions d'innovation de grands groupes et fondateurs de startups. Montée en Principal Product Strategist en avril 2024. Accumulation de ~100 références data &amp; IA dans 6 verticales sectorielles (santé/pharma, assurance, banque, public, industrie, sport). Développement d'une BU SaMD (Software as a Medical Device), accompagnement aux certifications ISO 13485 et IEC 62304.</p>
+        <p style="margin-top:10px;font-size:11px;color:var(--g4);font-weight:700;text-transform:uppercase;letter-spacing:.1em">Principaux projets</p>
+        <p style="font-size:12px;color:var(--g6);margin-top:4px">AXA France (stratégie IA &amp; showroom phygital) · Caisse d'Épargne (NLP, clustering, chatbot) · AGPM/Klésia (Millicare, data lifecycle) · Servier (prédiction ventes ML) · Stanford / CHU Bordeaux / CHU Poitiers (données synthétiques médicales, Data Lake) · Acteur assurances NDA (analyse sinistres, vision IA) · Vinci Energies · Predict4Health · Okeiro…</p>
+        <div class="tags" style="margin-top:12px"><span class="tag hi">Product Strategy</span><span class="tag">IA Générative</span><span class="tag">RAG</span><span class="tag">NLP</span><span class="tag">Data Science</span><span class="tag">SaMD</span><span class="tag">Go-to-Market</span></div>
+      </div>
+    </div>
+
+    <!-- PAPER PLANE / ACTIVITÉS PARALLÈLES -->
+    <div class="tl-row alt">
+      <div class="tl-date">
+        <div class="dr">Mars 2021 → Présent</div>
+        <div class="co">Paper Plane<br>+ Time for the Planet<br>+ GutyCare</div>
+      </div>
+      <div class="tl-body">
+        <h3>Président · Associé · Advisor — Activités parallèles</h3>
+        <p><strong>Paper Plane</strong> (Président, mars 2021→) — structure opérationnelle parallèle.<br>
+        <strong>Time for the Planet</strong> (Associé, janv. 2021→) — investissement à impact.<br>
+        <strong>GutyCare</strong> (Advisor, juil. 2022→) — solutions de suivi patients &amp; thérapies digitales en gastroentérologie et immunologie.<br>
+        <strong>Merañ</strong> (Associé, mars 2021 – mai 2022) — gestion de cabinets d'imagerie médicale en télémédecine.</p>
+        <div class="tags"><span class="tag">Santé digitale</span><span class="tag">DTx</span><span class="tag">Impact</span><span class="tag">Télémédecine</span></div>
+      </div>
+    </div>
+
+    <!-- LUCINE -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Nov. 2018 → Mars 2021</div>
+        <div class="co">Lucine<br>2 ans 5 mois</div>
+      </div>
+      <div class="tl-body">
+        <h3>Directeur Produit / CPO → Product Owner</h3>
+        <p>Thérapies numériques pour la douleur chronique basées sur l'IA. Scaling de l'équipe de 12 à 45 collaborateurs (artistes, développeurs, UX/UI, scientifiques). Levée de fonds <strong>5,5 M€</strong>. Vision &amp; roadmap produit, market access, études users, développement d'un framework AGILE propriétaire.</p>
+        <div class="tags"><span class="tag hi">CPO</span><span class="tag">Levée 5,5M€</span><span class="tag">Scaling ×4</span><span class="tag">DTx / IA</span><span class="tag">Roadmap</span><span class="tag">AGILE</span></div>
+      </div>
+    </div>
+
+    <!-- MAINCARE -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Juil. 2016 → Nov. 2018</div>
+        <div class="co">Maincare Solutions<br>2 ans 5 mois</div>
+      </div>
+      <div class="tl-body">
+        <h3>Product Owner · Bloc Opératoire &amp; Anesthésie-Réanimation</h3>
+        <p>Gestion de produit AGILE sur logiciels médicaux (bloc opératoire, anesthésie-réanimation). Roadmap, partenariats, réponses à CCTP, démos clients, intégration multi-technologies (web, client lourd, infrastructures).</p>
+        <div class="tags"><span class="tag">Product Owner</span><span class="tag">SaaS Médical</span><span class="tag">AGILE</span><span class="tag">Bloc opératoire</span></div>
+      </div>
+    </div>
+
+    <!-- INOVELAN -->
+    <div class="tl-row">
+      <div class="tl-date">
+        <div class="dr">Déc. 2012 → Juil. 2016</div>
+        <div class="co">Inovelan S.A.<br>Lille</div>
+      </div>
+      <div class="tl-body">
+        <h3>Project Manager</h3>
+        <p>Gestion de projets logiciels (analyse prospects, réponses AO, spécifications fonctionnelles &amp; techniques MOA, plannings, ressources, gestion financière, recette). Collaboration MOA-AMOA-MOE. Suivi client post-projet.</p>
+        <div class="tags"><span class="tag">Project Management</span><span class="tag">MOA</span><span class="tag">Appels d'offres</span><span class="tag">Lille</span></div>
+      </div>
+    </div>
+
+    <!-- FORMATION -->
+    <div class="tl-row alt">
+      <div class="tl-date">
+        <div class="dr">Formation</div>
+        <div class="co">HEI · MITx · Stages</div>
+      </div>
+      <div class="tl-body">
+        <h3>HEI — Hautes Études d'Ingénieur · M2 Medical Engineering (2006–2011)</h3>
+        <p><strong>MITx on edX</strong> — Business and Impact Planning for Social Enterprises (2020).<br>
+        <strong>Hospices Civils de Lyon</strong> — Stage recherche, respirateurs artificiels (2011) · Congrès SRLF Paris Défense.<br>
+        <strong>Schneider Electric Shanghai</strong> — Intern Customer Logistics (juin–sept. 2010).</p>
+        <div class="tags"><span class="tag">HEI Lille</span><span class="tag">Medical Engineering</span><span class="tag">MITx</span><span class="tag">FR · EN · DE · ZH</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ COMPÉTENCES -->
+<section id="competences">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">02</span>
+      <h2>Compétences</h2>
+    </div>
+  </div>
+  <div class="comp-grid">
+    <div class="radar-col">
+      <p class="cap" style="margin-bottom:20px">Cartographie fonctionnelle</p>
+      <svg id="rsvg" viewBox="0 0 320 320" width="100%" style="max-width:320px;display:block"></svg>
+    </div>
+    <div class="skills-col">
+      <div class="sk-cat">
+        <h4>Product &amp; Strategy</h4>
+        <div class="sk-row"><span class="sk-name">Product Strategy</span><div class="sk-track"><div class="sk-fill" data-w="95"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Roadmap IA / Data</span><div class="sk-track"><div class="sk-fill" data-w="93"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Pilotage de projet</span><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Architecture business</span><div class="sk-track"><div class="sk-fill" data-w="86"></div></div></div>
+      </div>
+      <div class="sk-cat">
+        <h4>IA &amp; Data</h4>
+        <div class="sk-row"><span class="sk-name">IA Générative / LLM</span><div class="sk-track"><div class="sk-fill" data-w="94"></div></div></div>
+        <div class="sk-row"><span class="sk-name">RAG &amp; Agents IA</span><div class="sk-track"><div class="sk-fill" data-w="91"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Data Engineering</span><div class="sk-track"><div class="sk-fill" data-w="78"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Data Science / ML</span><div class="sk-track"><div class="sk-fill" data-w="75"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Analytics &amp; BI</span><div class="sk-track"><div class="sk-fill" data-w="83"></div></div></div>
+      </div>
+      <div class="sk-cat">
+        <h4>UX &amp; Delivery</h4>
+        <div class="sk-row"><span class="sk-name">UX / Customer</span><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Change Management</span><div class="sk-track"><div class="sk-fill" data-w="84"></div></div></div>
+        <div class="sk-row"><span class="sk-name">Coordination tech/métier</span><div class="sk-track"><div class="sk-fill" data-w="96"></div></div></div>
+      </div>
+      <p class="cap" style="margin-top:16px;margin-bottom:6px">Secteurs</p>
+      <div class="sect-chips">
+        <div class="chip on" onclick="sect(this,'all')">Tous</div>
+        <div class="chip" onclick="sect(this,'sante')">Santé / Pharma</div>
+        <div class="chip" onclick="sect(this,'assu')">Assurance</div>
+        <div class="chip" onclick="sect(this,'banque')">Banque</div>
+        <div class="chip" onclick="sect(this,'pub')">Secteur Public</div>
+      </div>
+      <div class="sect-box" id="sbox">Tous secteurs : AXA, AGPM, Klésia · Caisse d'Épargne · Servier, IPSEN, Sanofi · Stanford, CHU Bordeaux, CHU Poitiers · Ministère de la Santé, Métropoles · Predict4Health, Okeiro · Infinitif, BeTomorrow</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ CATALOGUE -->
+<section id="catalogue">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">03</span>
+      <h2>Catalogue de Réalisations</h2>
+      <span class="s-meta">19 réalisations · Cliquer pour détail &amp; pricing</span>
+    </div>
+  </div>
+  <div class="cat-grid">
+
+    <div class="uc" onclick="om('rag')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#FF6B35,#FF9A3C)"></div>
+      <div class="uc-body">
+        <div class="uc-code">RAG</div>
+        <div class="uc-title">Chatbot RAG sur-mesure</div>
+        <div class="uc-brief">LLM entraîné sur données métier avec mise à jour temps-réel. Agents pour requêtes complexes.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">Embedding</span></div>
+        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~40k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('nlp')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#0F4C75,#1B6CA8)"></div>
+      <div class="uc-body">
+        <div class="uc-code">NLP</div>
+        <div class="uc-title">Analyse retours clients automatisée</div>
+        <div class="uc-brief">Sujets récurrents, KPIs, chatbot sur base, rapports mensuels automatiques.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Data Science</span><span class="tag">BI</span></div>
+        <div class="uc-price">Proto <em>15k€</em> · Prod ~50k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('sql')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#2C3E50,#3498DB)"></div>
+      <div class="uc-body">
+        <div class="uc-code">SQL</div>
+        <div class="uc-title">Self-Service BI (NL2SQL)</div>
+        <div class="uc-brief">Requêtage BDD en langage naturel. Gouvernance stricte par profil.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">NL2SQL</span><span class="tag">Data Gov.</span></div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod ~25k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('doc')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#6C3483,#A569BD)"></div>
+      <div class="uc-body">
+        <div class="uc-code">DOC</div>
+        <div class="uc-title">Validation &amp; extraction de dossiers</div>
+        <div class="uc-brief">Analyse pièces jointes (PDF, manuscrits). Validation identité, alertes dossiers incomplets.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Doc Understanding</span><span class="tag">OCR</span></div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~95k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('rpt')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#1A3A3A,#2ECC71)"></div>
+      <div class="uc-body">
+        <div class="uc-code">RPT</div>
+        <div class="uc-title">Aide à la rédaction de rapports</div>
+        <div class="uc-brief">LLM sur base de connaissances métier. Rapports conformes aux normes, extraction multi-docs.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">GraphRAG</span><span class="tag">Automatisation</span></div>
+        <div class="uc-price">Proto <em>20k€</em> · Prod &gt;100k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('ocr')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#D35400,#F39C12)"></div>
+      <div class="uc-body">
+        <div class="uc-code">OCR</div>
+        <div class="uc-title">Enrichissement OCR &amp; vision</div>
+        <div class="uc-brief">Extraction depuis tout support (PDF, scan, manuscrit). Modèle entraîné sur cas spécifique.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">OCR</span><span class="tag">Computer Vision</span><span class="tag">LLM</span></div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod 10–50k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('img')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#922B21,#C0392B)"></div>
+      <div class="uc-body">
+        <div class="uc-code">IMG</div>
+        <div class="uc-title">Détection fraude sinistres (images)</div>
+        <div class="uc-brief">Reconnaissance photos sinistres. Évaluation quantitative des dégâts. API backoffice.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">IA Custom</span><span class="tag">Multimodal</span><span class="tag">API</span></div>
+        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~40k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('src')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#154360,#1A5276)"></div>
+      <div class="uc-body">
+        <div class="uc-code">SRC</div>
+        <div class="uc-title">Moteur de recherche multimédia</div>
+        <div class="uc-brief">Recherche sémantique sur textes, images, vidéos. Transcription automatique.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Embedding</span><span class="tag">Multimodal</span><span class="tag">Recherche</span></div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~75k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('bot')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#1D4350,#A43931)"></div>
+      <div class="uc-body">
+        <div class="uc-code">BOT</div>
+        <div class="uc-title">Chatbot structuré (collecte données)</div>
+        <div class="uc-brief">Conversation libre + collecte silencieuse de données structurées. Parsing CV/contrats.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Agent IA</span><span class="tag">RH</span></div>
+        <div class="uc-price">Proto <em>20k€</em> · Prod ~40k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('kpi')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#5D4037,#8D6E63)"></div>
+      <div class="uc-body">
+        <div class="uc-code">KPI</div>
+        <div class="uc-title">Compréhension utilisateur avancée</div>
+        <div class="uc-brief">Classification supervisée/non-supervisée, KPIs catégoriels, enrichissement texte.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Data Science</span><span class="tag">LLM</span><span class="tag">Clustering</span></div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod ~15k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('crm')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#1565C0,#42A5F5)"></div>
+      <div class="uc-body">
+        <div class="uc-code">CRM</div>
+        <div class="uc-title">CRM sur-mesure pour cabinet conseil</div>
+        <div class="uc-brief">Gestion unifiée pipeline, consultants et missions. Matching profils/opportunités, alertes proactives.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">CRM</span><span class="tag">IA Custom</span><span class="tag">Matching</span></div>
+        <div class="uc-price">Proto <em>8k€</em> · Prod ~35k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('ins')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#004D40,#26A69A)"></div>
+      <div class="uc-body">
+        <div class="uc-code">INS</div>
+        <div class="uc-title">Comparateur de documents d'assurance</div>
+        <div class="uc-brief">Upload des contrats en cours → extraction des garanties clés, comparaison avec le nouveau produit, résumé décisionnel.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Doc Understanding</span><span class="tag">LLM</span><span class="tag">OCR</span></div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~50k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('crd')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#BF360C,#FF7043)"></div>
+      <div class="uc-body">
+        <div class="uc-code">CRD</div>
+        <div class="uc-title">Simulation crédit self-service</div>
+        <div class="uc-brief">Agent conversationnel de pré-souscription. Collecte intelligente, scoring préliminaire, offre indicative personnalisée.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Agent IA</span><span class="tag">Banque</span><span class="tag">Self-Service</span></div>
+        <div class="uc-price">Proto <em>15k€</em> · Prod ~80k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('plg')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#1B5E20,#66BB6A)"></div>
+      <div class="uc-body">
+        <div class="uc-code">PLG</div>
+        <div class="uc-title">Stratégie Product Led Growth — banque marque blanche</div>
+        <div class="uc-brief">Instrumentation produit, activation, scoring comportemental IA, boucles de rétention et A/B testing.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Product Strategy</span><span class="tag">Growth</span><span class="tag">Analytics</span></div>
+        <div class="uc-price">Proto <em>20k€</em> · Prod ~120k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('gov')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#1A237E,#3949AB)"></div>
+      <div class="uc-body">
+        <div class="uc-code">GOV</div>
+        <div class="uc-title">Gouvernance data &amp; IA pour TPA</div>
+        <div class="uc-brief">Diagnostic data, architecture cible, politique de gouvernance RGPD, catalogue de données, roadmap IA 12–24 mois.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Data Strategy</span><span class="tag">RGPD</span><span class="tag">Architecture</span></div>
+        <div class="uc-price">Proto <em>12k€</em> · Prod ~60k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('opt')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#263238,#546E7A)"></div>
+      <div class="uc-body">
+        <div class="uc-code">OPT</div>
+        <div class="uc-title">Automatisation process équipes gestion</div>
+        <div class="uc-brief">Cartographie des process, gains rapides RPA + IA, déploiement workflows automatisés. Gain de productivité mesuré.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">RPA</span><span class="tag">Automatisation</span><span class="tag">Workflow</span></div>
+        <div class="uc-price">Proto <em>8k€</em> · Prod ~45k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('cra')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#4A148C,#7B1FA2)"></div>
+      <div class="uc-body">
+        <div class="uc-code">CRA</div>
+        <div class="uc-title">Génération de CRA en langage naturel</div>
+        <div class="uc-brief">Le consultant décrit sa semaine librement → l'IA structure le CRA au format imposé et soumet pour validation.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Automatisation</span><span class="tag">RH</span></div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod ~20k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('nwl')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#880E4F,#E91E63)"></div>
+      <div class="uc-body">
+        <div class="uc-code">NWL</div>
+        <div class="uc-title">Newsletter auto-améliorée par feedback</div>
+        <div class="uc-brief">Génération LLM + collecte feedback en langage naturel + réinjection automatique dans le prompt de la prochaine édition.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Marketing IA</span><span class="tag">Feedback Loop</span></div>
+        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~30k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('ao')">
+      <div class="uc-img" style="background:linear-gradient(135deg,#3E2723,#8D6E63)"></div>
+      <div class="uc-body">
+        <div class="uc-code">AO</div>
+        <div class="uc-title">Facilitation réponse aux appels d'offres</div>
+        <div class="uc-brief">Analyse du CDC, sélection automatique des références cabinets et profils consultants, génération du premier jet.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">Automatisation</span></div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~50k€</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ MACHINES -->
+<section id="machines">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">04</span>
+      <h2>Outils Recruteurs</h2>
+      <span class="s-meta">Deux machines interactives — réservées aux décideurs RH &amp; managers</span>
+    </div>
+  </div>
+  <div class="mach-grid">
+
+    <!-- MACHINE A -->
+    <div class="mach">
+      <div class="mach-n">A</div>
+      <div class="mach-t">Votre poste.<br>Mon CV.</div>
+      <div class="mach-d">Uploadez votre fiche de mission ou offre d'emploi. Le système analyse les compétences requises et génère un CV tailored — les réalisations et références qui correspondent exactement à votre besoin, dans l'ordre de pertinence.</div>
+      <div class="drop" id="dA" ondrop="dA(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
+        <input type="file" id="fA" accept=".pdf,.doc,.docx,.txt" onchange="onFA(this)">
+        <div class="drop-l">↓ Déposer la fiche de poste</div>
+        <div class="drop-s">PDF · DOCX · TXT · ou coller ci-dessous</div>
+      </div>
+      <textarea class="mach-ta" id="tA" placeholder="Ou collez la description de poste ici..."></textarea>
+      <button class="mbtn" id="btnA" onclick="genCV()">Générer le CV adapté →</button>
+      <div class="prog" id="pA"><div class="prog-f" id="pfA"></div></div>
+      <div class="out" id="outA">
+        <div class="out-h">✓ CV généré · Correspondance par compétences</div>
+        <div class="out-b" id="outAb"></div>
+      </div>
+    </div>
+
+    <!-- MACHINE B -->
+    <div class="mach">
+      <div class="mach-n">B</div>
+      <div class="mach-t">Le marché.<br>Ma place.</div>
+      <div class="mach-d">Uploadez les CVs de candidats concurrents. Le système trace un diagramme radar comparatif multi-dimensions : expertise sectorielle, profondeur technique, track record, polyvalence IA, delivery. Analysez l'écart de compétences en un coup d'œil.</div>
+      <div class="drop" id="dB" ondrop="dB(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
+        <input type="file" id="fB" accept=".pdf,.doc,.docx,.txt" multiple onchange="onFB(this)">
+        <div class="drop-l">↓ Déposer les CVs concurrents</div>
+        <div class="drop-s">Plusieurs fichiers · PDF · DOCX · TXT</div>
+      </div>
+      <div class="comp-list" id="clist">Aucun fichier chargé — ou cliquer "Démonstration"</div>
+      <button class="mbtn" id="btnB" onclick="genRadar()">Générer le radar comparatif →</button>
+      <button class="mbtn" style="background:var(--w);color:var(--k);margin-top:-2px;font-size:9px" onmouseover="this.style.background='var(--g)'" onmouseout="this.style.background='var(--w)'" onclick="demoB()">Mode démonstration (sans upload)</button>
+      <div class="prog" id="pB"><div class="prog-f" id="pfB"></div></div>
+      <div class="out" id="outB">
+        <div class="out-h">✓ Analyse comparative · Radar multi-dimensions</div>
+        <div class="out-b" id="outBb"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ CONTACT -->
+<section id="contact">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">05</span>
+      <h2>Une Mission ?</h2>
+    </div>
+  </div>
+  <div class="contact-in">
+    <div class="ct-l">
+      <h2 style="font-size:clamp(26px,4vw,52px)">Direct.<br>Disponible.<br>Opérationnel.</h2>
+      <p style="margin-top:20px">Vous cherchez un expert capable de concevoir, piloter et déployer une solution IA qui fonctionne — pas un framework à vendre, pas d'équipe junior à former sur votre budget.</p>
+      <p>Je travaille en consulting, seul ou en renfort d'équipe, sur des sujets product IA, data strategy ou déploiement de systèmes intelligents.</p>
+      <a href="https://www.linkedin.com/in/paulduchateau/" target="_blank" class="ct-link">LinkedIn →</a>
+    </div>
+    <div class="ct-r">
+      <div class="ct-detail">
+        <div class="dl">Statut</div>
+        <div class="dv">Disponible · <span style="background:var(--g);padding:0 6px">Missions en cours acceptées</span></div>
+      </div>
+      <div class="ct-detail">
+        <div class="dl">Formats</div>
+        <div class="dv">Consulting · Mission longue durée · Prototypage rapide</div>
+      </div>
+      <div class="ct-detail">
+        <div class="dl">Secteurs</div>
+        <div class="dv">Santé · Assurance · Banque · Public · Industrie</div>
+      </div>
+      <div class="ct-detail">
+        <div class="dl">Localisation</div>
+        <div class="dv">France · Remote · Déplacements ponctuels</div>
+      </div>
+      <a href="mailto:paul.duchateau@gmail.com" class="ct-email">paul.duchateau@gmail.com →</a>
+    </div>
+  </div>
+</section>
+
+<div style="border-top:var(--b)">
+  <footer>
+    <div class="ft-logo">ijen</div>
+    <div class="ft-note">© 2026 Paul Duchâteau</div>
+    <div class="ft-note">PSPO1 · PSM1 · ITIL · OCI · HEI Lille</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════ MODAL -->
+<div class="ov" id="ov" onclick="if(event.target===this)cm()">
+  <div class="modal">
+    <div class="m-head">
+      <div>
+        <div id="mc" style="font-size:32px;font-weight:900;color:var(--g2)"></div>
+        <h3 id="mt" style="font-size:18px;font-weight:900"></h3>
+      </div>
+      <button class="m-close" onclick="cm()">✕</button>
+    </div>
+    <div class="m-body">
+      <div class="dg">
+        <div class="dc"><div class="dl">Prototypage</div><div class="dv hi" id="mpr"></div></div>
+        <div class="dc"><div class="dl">Industrialisation</div><div class="dv" id="mpd"></div></div>
+        <div class="dc"><div class="dl">Catégorie</div><div class="dv" style="font-size:13px" id="mca"></div></div>
+      </div>
+      <p class="m-lbl">Problème identifié</p>
+      <p class="m-txt" id="mpb"></p>
+      <p class="m-lbl">Solution déployée</p>
+      <p class="m-txt" id="mso"></p>
+      <p class="m-lbl">Briques techniques</p>
+      <div class="tags" id="mtg"></div>
+      <div class="m-ref">
+        <p>Références sectorielles</p>
+        <p id="mrf"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════ DATA ══════════════════
+const D={
+  rag:{code:'RAG',title:'Chatbot RAG sur-mesure',proto:'7.5k€',prod:'~40k€',cat:"Systèmes d'information",
+    pb:"Les LLM pré-entraînés ne peuvent pas intégrer les données métier ni les mettre à jour.",
+    so:"RAG (Retrieval Augmented Generation) sur-mesure adapté aux données métier. Mise à jour temps-réel, agents pour requêtes complexes, RAGtime pour évaluation et monitoring.",
+    tags:['RAG','LLM','Embedding','Agent IA','Monitoring'],
+    ref:"Caisse d'Épargne (analyse avis clients) · Predict4Health (data médicale) · Acteur assurances NDA"},
+  nlp:{code:'NLP',title:'Analyse retours clients automatisée',proto:'15k€',prod:'~50k€',cat:'Automatisation',
+    pb:"Les retours clients sont dispersés dans des formats longs, identifier les tendances majeures est manuel et lent.",
+    so:"IA qui parcourt et regroupe automatiquement les retours pour identifier sujets récurrents, KPIs, interface chatbot et rapports mensuels automatiques.",
+    tags:['LLM','Data Science','BI','NLP','Clustering'],
+    ref:"Caisse d'Épargne (clustering agences) · Servier (patterns ventes) · AGPM/Klésia"},
+  sql:{code:'SQL',title:'Self-Service BI (NL2SQL)',proto:'5k€',prod:'~25k€',cat:"Systèmes d'information",
+    pb:"L'accès aux données est limité à quelques experts. Une simple requête peut prendre plusieurs jours.",
+    so:"Self-Service BI : tous les utilisateurs effectuent des requêtes en langage naturel. Gouvernance stricte par profil, résultats Excel/CSV/texte.",
+    tags:['LLM','NL2SQL','Data Gov.','BI'],
+    ref:"CHU Bordeaux (Data Lake) · Caisse d'Épargne · Servier"},
+  doc:{code:'DOC',title:'Validation & extraction de dossiers',proto:'10k€',prod:'~95k€',cat:'Automatisation',
+    pb:"La vérification manuelle de pièces jointes est coûteuse et source d'erreurs à volume.",
+    so:"Analyse automatique de pièces jointes (PDF, manuscrits). Validation documents d'identité, alertes dossiers incomplets, API intégrable backoffice.",
+    tags:['Doc Understanding','OCR','LLM','API'],
+    ref:"Acteur assurances NDA (sinistres) · Predict4Health (bilans médicaux) · Collectivités locales"},
+  rpt:{code:'RPT',title:'Aide à la rédaction de rapports',proto:'20k€',prod:'>100k€',cat:'Automatisation',
+    pb:"Rédiger des rapports conformes aux normes demande une expertise métier pointue et beaucoup de temps.",
+    so:"LLM entraîné sur base de connaissances métier. Rapports conformes, extraction multi-documents, GraphRAG pour corpus complexes.",
+    tags:['LLM','GraphRAG','Automatisation','NLP'],
+    ref:"Collectivités locales (PLU) · Secteur public · Ministère de la Santé"},
+  ocr:{code:'OCR',title:'Enrichissement OCR & vision',proto:'5k€',prod:'10–50k€',cat:'Automatisation',
+    pb:"Des informations stratégiques sont piégées dans des supports non-structurés : PDF scannés, manuscrits, photos.",
+    so:"Extraction d'informations depuis tout support. Modèle entraîné sur cas d'usage spécifique pour maximiser précision et réduire coûts (<0,05€ / requête).",
+    tags:['OCR','Computer Vision','LLM'],
+    ref:"Predict4Health (bilans médicaux) · Stanford/CHU (données cliniques) · Acteur assurances NDA"},
+  img:{code:'IMG',title:'Détection fraude sinistres (images)',proto:'7.5k€',prod:'~40k€',cat:'Automatisation',
+    pb:"Les clients uploadent librement des photos lors de déclarations. Vérifier la cohérence avec le sinistre déclaré est impossible manuellement à volume.",
+    so:"Analyse et reconnaissance des éléments photographiques. Évaluation quantitative des dégâts. API intégrable en backoffice. Coûts <0,05€ / requête.",
+    tags:['IA Custom','Multimodal','Computer Vision','API'],
+    ref:"Acteur assurances NDA (dossiers habitation) · AGPM/Klésia"},
+  src:{code:'SRC',title:'Moteur de recherche multimédia',proto:'10k€',prod:'~75k€',cat:"Systèmes d'information",
+    pb:"La recherche dans des bases documentaires multimédia est inefficace avec les outils standard.",
+    so:"Recherche sémantique et recommandation sur textes, images, vidéos et documents. Transcription automatique vidéos, API REST.",
+    tags:['Embedding','Multimodal','Recherche sémantique'],
+    ref:"AXA France (showroom IA) · Plateformes médias · Content management"},
+  bot:{code:'BOT',title:'Chatbot structuré (collecte données)',proto:'20k€',prod:'~40k€',cat:'RH / Automatisation',
+    pb:"Collecter des données structurées via des formulaires crée de la friction et des taux d'abandon élevés.",
+    so:"Chatbot menant une conversation libre tout en collectant silencieusement des données structurées. Parsing CV/contrats intégré.",
+    tags:['LLM','Agent IA','RH','NLP'],
+    ref:"AGPM/Klésia (cycle de vie client) · Cabinets conseil · Secteur RH"},
+  kpi:{code:'KPI',title:'Compréhension utilisateur avancée',proto:'5k€',prod:'~15k€',cat:'Analytics',
+    pb:"Les données comportementales textuelles ne sont pas exploitées pour créer des KPIs actionnables.",
+    so:"Classification supervisée/non-supervisée, KPIs catégoriels/numériques, enrichissement données textuelles pour tableaux de bord opérationnels.",
+    tags:['Data Science','LLM','Clustering','Analytics'],
+    ref:"AGPM/Klésia (Millicare) · Caisse d'Épargne · Servier"},
+  crm:{code:'CRM',title:'CRM sur-mesure pour cabinet conseil',proto:'8k€',prod:'~35k€',cat:"Systèmes d'information",
+    pb:"Un cabinet conseil gère son activité dans des outils dispersés (Excel, emails), sans vue unifiée pipeline, consultants, missions et facturation.",
+    so:"CRM sur-mesure pensé pour les besoins d'Infinitif : gestion des opportunités, fiches consultants enrichies, matching missions/profils par IA, suivi facturation, alertes proactives et tableau de bord commercial.",
+    tags:['CRM','IA Custom','Matching','Pipeline','LLM'],
+    ref:"Infinitif (cabinet conseil)"},
+  ins:{code:'INS',title:'Comparateur de documents d\'assurance',proto:'10k€',prod:'~50k€',cat:'Assurance',
+    pb:"Les tunnels de souscription assurance sont longs : les prospects abandonnent face à des documents épais et incompréhensibles, sans pouvoir comparer simplement avec leurs contrats en cours.",
+    so:"L'utilisateur uploade ses contrats actuels. L'IA extrait les garanties clés, les compare avec le nouveau produit, et génère un résumé décisionnel structuré en moins de 30 secondes. Réduction mesurée du taux d'abandon.",
+    tags:['Doc Understanding','LLM','OCR','Assurance','UX'],
+    ref:"Acteur assurances NDA · Mutuelle santé · Prévoyance"},
+  crd:{code:'CRD',title:'Simulation crédit self-service',proto:'15k€',prod:'~80k€',cat:'Banque',
+    pb:"Les conseillers bancaires gèrent des simulations crédit chronophages. Les outils existants sont rigides et peu personnalisés, générant une forte dépendance au conseiller.",
+    so:"Agent conversationnel de simulation et pré-souscription en self-service. Collecte intelligente des données, scoring préliminaire, génération d'une offre indicative personnalisée, bascule conseiller si besoin.",
+    tags:['Agent IA','LLM','Banque','Self-Service','UX'],
+    ref:"Caisse d'Épargne · Acteur bancaire NDA · Crédit Mutuel"},
+  plg:{code:'PLG',title:'Stratégie Product Led Growth banque marque blanche',proto:'20k€',prod:'~120k€',cat:'Banque / Stratégie',
+    pb:"Les banques en marque blanche peinent à convertir et activer leurs utilisateurs finaux. Les funnels sont pensés pour les partenaires B2B, pas pour les usagers.",
+    so:"Stratégie PLG complète : analyse parcours, identification moments d'activation, instrumentation produit, expérimentations A/B, boucles de rétention IA, scoring comportemental personnalisant l'acquisition et la fidélisation.",
+    tags:['Product Strategy','PLG','Analytics','Growth','UX'],
+    ref:"Acteur bancaire marque blanche NDA · Fintech B2B2C"},
+  gov:{code:'GOV',title:'Gouvernance data & IA pour TPA',proto:'12k€',prod:'~60k€',cat:'Data Strategy',
+    pb:"Un Tiers Payant Administrateur manipule des données de santé sensibles sans cadre data structuré : SI hétérogènes, pas de catalogue de données, risques RGPD non maîtrisés.",
+    so:"Diagnostic data complet, définition de l'architecture cible, politique de gouvernance (référentiels, ownership, qualité), roadmap IA 12–24 mois et implémentation des premières briques fondamentales.",
+    tags:['Data Strategy','Gouvernance','RGPD','IA','Architecture Data'],
+    ref:"TPA Santé NDA · Secteur assurance santé · Mutuelles"},
+  opt:{code:'OPT',title:'Automatisation process équipes gestion',proto:'8k€',prod:'~45k€',cat:'Automatisation',
+    pb:"Les équipes de gestion passent un temps excessif sur des tâches répétitives à faible valeur : saisie, contrôles, relances, reporting — souvent manuels et non tracés.",
+    so:"Cartographie des processus, identification des gains rapides, déploiement de workflows automatisés (RPA + IA), intégration aux outils existants. Gain de productivité documenté et mesuré dès les premières semaines.",
+    tags:['RPA','Automatisation','Workflow','LLM','Process'],
+    ref:"BeTomorrow · Cabinets de gestion NDA · Opérations"},
+  cra:{code:'CRA',title:'Génération de CRA en langage naturel',proto:'5k€',prod:'~20k€',cat:'Automatisation / RH',
+    pb:"Les consultants rédigent leurs comptes-rendus d'activité après coup, souvent avec des oublis et une qualité variable, dans des formats imposés peu intuitifs.",
+    so:"Le consultant décrit librement sa semaine à l'oral ou à l'écrit. L'IA structure automatiquement le CRA selon le format imposé, complète les champs obligatoires, calcule les temps, et soumet pour validation en 1 clic.",
+    tags:['LLM','NLP','Automatisation','RH','Agent IA'],
+    ref:"Infinitif · Cabinet conseil"},
+  nwl:{code:'NWL',title:'Newsletter auto-améliorée par feedback',proto:'7.5k€',prod:'~30k€',cat:'Marketing / IA',
+    pb:"Les newsletters B2B sont difficiles à personnaliser. Le feedback lecteur n'est pas collecté, encore moins utilisé pour améliorer le contenu suivant.",
+    so:"Pipeline complet : génération du contenu par LLM, distribution, collecte de feedback en langage naturel via bot post-envoi, analyse des retours, réinjection automatique dans le prompt de la prochaine édition. La newsletter s'améliore d'elle-même.",
+    tags:['LLM','NLP','Marketing IA','Feedback Loop','Automatisation'],
+    ref:"Infinitif · Cabinet conseil NDA · Secteur services"},
+  ao:{code:'AO',title:"Facilitation réponse aux appels d'offres",proto:'10k€',prod:'~50k€',cat:'Automatisation / Conseil',
+    pb:"Répondre à un AO mobilise des heures : retrouver les bonnes références, constituer les équipes, rédiger les textes. La qualité est inégale selon les personnes disponibles.",
+    so:"Outil de génération assistée : analyse du CDC, sélection automatique des meilleures références cabinets et profils CV consultants par RAG, génération d'un premier jet complet, cycle de révision collaboratif avec historique.",
+    tags:['RAG','LLM','Automatisation','AO','Conseil'],
+    ref:"Infinitif · Cabinets conseil"}
+};
+
+// ══════════════════ MODAL ══════════════════
+function om(id){
+  const d=D[id];if(!d)return;
+  document.getElementById('mc').textContent=d.code;
+  document.getElementById('mt').textContent=d.title;
+  document.getElementById('mpr').textContent=d.proto;
+  document.getElementById('mpd').textContent=d.prod;
+  document.getElementById('mca').textContent=d.cat;
+  document.getElementById('mpb').textContent=d.pb;
+  document.getElementById('mso').textContent=d.so;
+  document.getElementById('mrf').textContent=d.ref;
+  document.getElementById('mtg').innerHTML=d.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+  document.getElementById('ov').classList.add('open');
+}
+function cm(){document.getElementById('ov').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cm()});
+
+// ══════════════════ RADAR (SVG) ══════════════════
+function drawRadar(svgId,axes,colors){
+  const svg=document.getElementById(svgId);
+  const cx=160,cy=160,r=120,n=axes[0].vals.length;
+  const ang=i=>i*(2*Math.PI/n)-Math.PI/2;
+  const pt=(i,v)=>({x:cx+v*r*Math.cos(ang(i)),y:cy+v*r*Math.sin(ang(i))});
+  let h='';
+  // grid
+  [.25,.5,.75,1].forEach(v=>{
+    const pts=axes[0].labels.map((_,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
+    h+=`<polygon points="${pts}" fill="none" stroke="${v===1?'#000':'#E8E8E8'}" stroke-width="${v===1?1.5:1}"/>`;
+  });
+  axes[0].labels.forEach((_,i)=>{const p=pt(i,1);h+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#E8E8E8" stroke-width="1"/>`;});
+  // series
+  axes.forEach(series=>{
+    const pts=series.vals.map((v,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
+    h+=`<polygon points="${pts}" fill="${series.fill}" fill-opacity="${series.fo||.4}" stroke="${series.stroke}" stroke-width="${series.sw||2}" stroke-dasharray="${series.dash||''}"/>`;
+    if(!series.dash)series.vals.forEach((v,i)=>{const p=pt(i,v);h+=`<circle cx="${p.x}" cy="${p.y}" r="4" fill="${series.stroke}"/>`;});
+  });
+  // labels
+  axes[0].labels.forEach((lbl,i)=>{
+    const p=pt(i,1.32);const lines=lbl.split('\n');
+    lines.forEach((l,li)=>h+=`<text x="${p.x}" y="${p.y+(li-(lines.length-1)/2)*14}" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#000">${l}</text>`);
+  });
+  svg.innerHTML=h;
+}
+
+const radarLabels=['Product\nStrategy','IA / LLM','Data\nEng.','UX','Change\nMgmt','Analytics','Architecture','Delivery'];
+const paulVals=[.95,.93,.78,.88,.84,.82,.86,.90];
+
+// ══════════════════ SKILL BARS ══════════════════
+function animBars(){
+  document.querySelectorAll('.sk-fill').forEach(el=>{el.style.width=el.dataset.w+'%'});
+}
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animBars();obs.disconnect()}})},{threshold:.3});
+
+// ══════════════════ SECTEUR ══════════════════
+const SD={
+  all:'Tous secteurs : AXA, AGPM, Klésia · Caisse d\'Épargne · Servier, IPSEN, Sanofi · Stanford, CHU Bordeaux, CHU Poitiers · Ministère de la Santé, Métropoles · Predict4Health, Okeiro · Infinitif, BeTomorrow',
+  sante:'Santé & Pharma : Stanford University · CHU Bordeaux · CHU Poitiers · Sanofi · IPSEN · Servier · Predict4Health (MedTech) · Lucine (DTx)',
+  assu:'Assurance & Mutuelle : AXA France (Stratégie IA) · AGPM · Klésia (Millicare) · Acteur assurances NDA (sinistres, souscription)',
+  banque:'Banque & Finance : Caisse d\'Épargne (NLP, chatbot, analytics) · Acteur bancaire marque blanche (PLG) · Crédit NDA',
+  pub:'Secteur Public : Ministère de la Santé · Collectivités locales · Métropoles · Vinci Energies'
+};
+function sect(el,k){
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('sbox').textContent=SD[k];
+}
+
+// ══════════════════ MACHINE A ══════════════════
+const paul=[
+  {t:'Product Strategy & Roadmap IA/Data',co:'BeTomorrow · AXA France · Caisse d\'Épargne',yr:'2022–2026',d:'~100 références data IA en mission conseil. Stratégie produit IA, roadmap, product ownership, delivery, pilotage équipes.',kw:['product','strategy','stratégie','roadmap','manager','owner','po','pm','produit','pilotage','ux','management','conseil','consulting']},
+  {t:'RAG & Systèmes Conversationnels LLM',co:'BeTomorrow · Predict4Health · NDA',yr:'2022–2026',d:'RAG sur-mesure, chatbots IA sur données métier, NLP avancé, déploiement production. RAGtime pour monitoring LLM.',kw:['rag','llm','chatbot','nlp','gpt','générative','generative','ia conversationnelle','openai','claude','mistral','langage','language model','transformer']},
+  {t:'Data Engineering & Analytics',co:'BeTomorrow · Servier · Vinci Energies · CHU Bordeaux',yr:'2022–2025',d:'Architecture data lakes, pipelines ETL, tableaux de bord BI, prédiction ML, données synthétiques médicales.',kw:['data','etl','pipeline','bi','analytics','tableau','power bi','sql','base de données','engineer','lake','warehouse','dbt','spark']},
+  {t:'Change Management & Déploiement IA',co:'BeTomorrow · AXA France · AGPM/Klésia',yr:'2022–2025',d:'Accompagnement au changement, showroom phygital, formation équipes, adoption IA en entreprise, coordination multi-équipes.',kw:['change','accompagnement','formation','adoption','déploiement','transformation','conduite','change management']},
+  {t:'Digital Health & MedTech — CPO',co:'Lucine · Maincare Solutions',yr:'2016–2021',d:'CPO & Directeur Produit Lucine (levée 5,5 M€, ×4 équipe). Product Owner Maincare (logiciels médicaux, EHPAD, cabinets).',kw:['santé','health','medtech','médical','cpo','directeur produit','product owner','saas','b2b','levée de fonds','startup','scale']}
+];
+
+let fAok=false;
+function onFA(i){if(i.files&&i.files[0]){document.querySelector('#dA .drop-l').textContent='✓ '+i.files[0].name;document.getElementById('dA').style.background='#F0FFD0';fAok=true;}}
+function dA(e){e.preventDefault();document.getElementById('dA').classList.remove('over');const f=e.dataTransfer.files[0];if(f){document.querySelector('#dA .drop-l').textContent='✓ '+f.name;document.getElementById('dA').style.background='#F0FFD0';fAok=true;}}
+
+function genCV(){
+  const txt=document.getElementById('tA').value.toLowerCase();
+  if(!fAok&&txt.trim().length<8){alert('Collez une description de poste ou uploadez un fichier.');return;}
+  const btn=document.getElementById('btnA');
+  btn.disabled=true;btn.innerHTML='<span class="spin"></span>Analyse en cours...';
+  const prog=document.getElementById('pA'),fill=document.getElementById('pfA');
+  prog.style.display='block';let p=0;
+  const iv=setInterval(()=>{p+=Math.random()*12+4;if(p>94)p=94;fill.style.width=p+'%';},200);
+  setTimeout(()=>{
+    clearInterval(iv);fill.style.width='100%';
+    setTimeout(()=>{
+      btn.disabled=false;btn.innerHTML='✓ Généré — Relancer →';prog.style.display='none';fill.style.width='0%';
+      const matched=paul.map(exp=>{
+        const sc=txt.length<10?Math.floor(Math.random()*28)+68:Math.min(98,58+exp.kw.filter(k=>txt.includes(k)).length*9);
+        return{...exp,sc};
+      }).sort((a,b)=>b.sc-a.sc);
+      const ob=document.getElementById('outAb');
+      ob.innerHTML=matched.map((m,i)=>`<div class="cv-item fiu" style="animation-delay:${i*.08}s">
+        <div class="cv-sc ${m.sc>=80?'hi':'md'}">${m.sc}%</div>
+        <div class="cv-info">
+          <h4>${m.t}</h4>
+          <p>${m.co} · ${m.yr}</p>
+          <p style="margin-top:4px">${m.d}</p>
+          <div class="cv-tags">${m.kw.slice(0,4).map(k=>`<span class="cv-tag">${k}</span>`).join('')}</div>
+        </div></div>`).join('');
+      document.getElementById('outA').classList.add('on');
+      document.getElementById('outA').scrollIntoView({behavior:'smooth',block:'nearest'});
+    },280);
+  },2100);
+}
+
+// ══════════════════ MACHINE B ══════════════════
+let comps=[];
+function onFB(inp){
+  if(inp.files)Array.from(inp.files).forEach(f=>{const n=f.name.replace(/\.[^/.]+$/,'');if(!comps.find(c=>c.n===n))comps.push({n});});
+  renderComps();
+}
+function dB(e){e.preventDefault();document.getElementById('dB').classList.remove('over');Array.from(e.dataTransfer.files).forEach(f=>{const n=f.name.replace(/\.[^/.]+$/,'');if(!comps.find(c=>c.n===n))comps.push({n});});renderComps();}
+function renderComps(){
+  const el=document.getElementById('clist');
+  el.style.color='#000';
+  el.innerHTML=comps.length===0?'<span style="color:var(--g4)">Aucun fichier chargé</span>':comps.map((c,i)=>`<span class="comp-pill" onclick="rc(${i})">✕ ${c.n}</span>`).join('');
+}
+function rc(i){comps.splice(i,1);renderComps();}
+function demoB(){comps=[{n:'Candidat A'},{n:'Candidat B'},{n:'Candidat C'}];renderComps();}
+
+function genRadar(){
+  if(comps.length===0){demoB();}
+  const btn=document.getElementById('btnB');
+  btn.disabled=true;btn.innerHTML='<span class="spin"></span>Analyse comparative...';
+  const prog=document.getElementById('pB'),fill=document.getElementById('pfB');
+  prog.style.display='block';let p=0;
+  const iv=setInterval(()=>{p+=Math.random()*14+4;if(p>94)p=94;fill.style.width=p+'%';},180);
+  setTimeout(()=>{
+    clearInterval(iv);fill.style.width='100%';
+    setTimeout(()=>{
+      btn.disabled=false;btn.innerHTML='✓ Généré — Relancer →';prog.style.display='none';fill.style.width='0%';
+      const dims=['Product','IA/LLM','Data Eng.','UX','Sectoriel','Delivery','Change\nMgmt','Analytics'];
+      const pv=paulVals;
+      const cc=['#AAAAAA','#CCCCCC','#888888'];
+      const cdata=comps.slice(0,3).map((c,ci)=>({
+        n:c.n,
+        v:dims.map((_,di)=>Math.max(.3,Math.min(.98,pv[di]*(0.55+Math.random()*.52)))),
+        col:cc[ci%cc.length]
+      }));
+
+      // build SVG inline
+      const W=300,H=300,cx=150,cy=150,R=110,n=dims.length;
+      const ang=i=>i*(2*Math.PI/n)-Math.PI/2;
+      const pt=(i,v)=>({x:cx+v*R*Math.cos(ang(i)),y:cy+v*R*Math.sin(ang(i))});
+      let sv='<svg viewBox="0 0 300 300" width="100%" style="max-width:300px;display:block;margin:0 auto">';
+      [.25,.5,.75,1].forEach(v=>{
+        const ps=dims.map((_,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
+        sv+=`<polygon points="${ps}" fill="none" stroke="#E8E8E8" stroke-width="1"/>`;
+      });
+      dims.forEach((_,i)=>{const p=pt(i,1);sv+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#E8E8E8" stroke-width="1"/>`;});
+      cdata.forEach(d=>{
+        const ps=d.v.map((v,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
+        sv+=`<polygon points="${ps}" fill="${d.col}" fill-opacity=".12" stroke="${d.col}" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+      });
+      const pps=pv.map((v,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
+      sv+=`<polygon points="${pps}" fill="#B4FF00" fill-opacity=".45" stroke="#000" stroke-width="2"/>`;
+      pv.forEach((v,i)=>{const p=pt(i,v);sv+=`<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="#000"/>`;});
+      dims.forEach((d,i)=>{
+        const p=pt(i,1.38);const lines=d.split('\n');
+        lines.forEach((l,li)=>sv+=`<text x="${p.x}" y="${p.y+(li-(lines.length-1)/2)*13}" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" font-weight="700" fill="#000">${l}</text>`);
+      });
+      sv+='</svg>';
+
+      // legend + delta table
+      const leg=`<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;font-size:10px;font-weight:700">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:8px;background:var(--g);border:1px solid #000"></div>Paul Duchâteau</div>
+        ${cdata.map(d=>`<div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:2px;background:${d.col};border-top:2px dashed ${d.col}"></div>${d.n}</div>`).join('')}
+      </div>`;
+      const tbl=`<div style="border:var(--bt)">
+        <div style="background:var(--k);color:var(--w);padding:8px 12px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em">Avantage compétitif Ijen · par dimension</div>
+        ${dims.map((d,i)=>{
+          const mx=Math.max(...cdata.map(c=>c.v[i]));
+          const delta=((pv[i]-mx)*100).toFixed(0);
+          return`<div style="display:flex;justify-content:space-between;padding:6px 12px;border-bottom:1px solid #F5F5F5;font-size:11px">
+            <span style="font-weight:700">${d.replace('\n',' ')}</span>
+            <span style="font-weight:900;color:${delta>=0?'var(--k)':'var(--g4)'}">${delta>=0?'+':''}${delta} pts</span>
+          </div>`;
+        }).join('')}
+      </div>`;
+
+      document.getElementById('outBb').innerHTML=sv+leg+tbl;
+      document.getElementById('outB').classList.add('on');
+      document.getElementById('outB').scrollIntoView({behavior:'smooth',block:'nearest'});
+    },280);
+  },2400);
+}
+
+// ══════════════════ INIT ══════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  drawRadar('rsvg',[{labels:radarLabels,vals:paulVals,fill:'#B4FF00',fo:.4,stroke:'#000',sw:2}]);
+  const sec=document.getElementById('competences');
+  if(sec)obs.observe(sec);
+});
+</script>
+</body>
+</html>
