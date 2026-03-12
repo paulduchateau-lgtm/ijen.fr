@@ -207,7 +207,7 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 
 /* ── VIZ MAP 3D ── */
 .viz-wrap{max-width:1320px;margin:0 auto;padding:32px;position:relative}
-.viz-canvas{width:100%;height:560px;display:block;border:var(--bt);background:#FAFAFA;cursor:grab;touch-action:none}
+.viz-canvas{width:100%;height:max(500px,70vh);display:block;border:var(--bt);background:#FAFAFA;cursor:grab;touch-action:none}
 .viz-canvas.dragging{cursor:grabbing}
 .viz-dim-switcher{display:flex;gap:0;margin-top:16px;border:var(--bt);border-radius:var(--radius);overflow:hidden;width:fit-content}
 .viz-dim-btn{background:var(--w);border:none;padding:8px 20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:all .15s;font-family:inherit;color:var(--g6);border-right:var(--bt)}
@@ -226,7 +226,7 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 .viz-tooltip .vt-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
 .viz-tooltip .vt-tag{border:1px solid rgba(180,255,0,.4);padding:1px 5px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g);border-radius:2px}
 .viz-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--g4);pointer-events:none}
-@media(max-width:900px){.viz-canvas{height:400px}}
+@media(max-width:900px){.viz-canvas{height:max(360px,55vh)}}
 
 /* ── CONTACT ── */
 .contact-in{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr}
@@ -1237,8 +1237,7 @@ function initViz3D(canvas, tooltip, legendEl, data) {
   // ── Camera (orbital) ──
   let theta = 0.4;       // horizontal rotation
   let phi = 0.3;         // vertical rotation
-  let distance = 3.5;    // zoom
-  const fov = 600;
+  let distance = 2.2;    // zoom (closer = bigger)
   let autoRotate = true;
   let animId = null;
 
@@ -1325,9 +1324,11 @@ function initViz3D(canvas, tooltip, legendEl, data) {
   }
 
   function project(x, y, z) {
-    const scale = fov / (distance + z + 1);
     const W = rect.width;
     const H = rect.height;
+    // Scale factor: use min(W,H) so points fill ~80% of the smallest axis
+    const baseFov = Math.min(W, H) * 0.85;
+    const scale = baseFov / (distance + z + 0.5);
     return {
       sx: W / 2 + x * scale,
       sy: H / 2 - y * scale,
@@ -1347,14 +1348,14 @@ function initViz3D(canvas, tooltip, legendEl, data) {
     ctx.fillStyle = '#FAFAFA';
     ctx.fillRect(0, 0, W, H);
 
-    // Draw subtle axes
+    // Draw subtle axes (slightly oversized for framing)
     const axes = [
-      { from: [0,0.5,0.5], to: [1,0.5,0.5], label: '' },
-      { from: [0.5,0,0.5], to: [0.5,1,0.5], label: '' },
-      { from: [0.5,0.5,0], to: [0.5,0.5,1], label: '' },
+      { from: [-0.1,0.5,0.5], to: [1.1,0.5,0.5] },
+      { from: [0.5,-0.1,0.5], to: [0.5,1.1,0.5] },
+      { from: [0.5,0.5,-0.1], to: [0.5,0.5,1.1] },
     ];
-    ctx.strokeStyle = '#E8E8E8';
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = '#E2E2E2';
+    ctx.lineWidth = 0.8;
     axes.forEach(ax => {
       const r0 = rotatePoint(...ax.from);
       const r1 = rotatePoint(...ax.to);
@@ -1379,7 +1380,7 @@ function initViz3D(canvas, tooltip, legendEl, data) {
     // Draw points
     projected.forEach(pt => {
       const color = getPointColor(pt);
-      const size = Math.max(3, Math.min(9, pt.scale * 0.016));
+      const size = Math.max(5, Math.min(14, pt.scale * 0.04));
       const alpha = Math.max(0.3, Math.min(1, 0.5 + pt.depth * 2));
 
       ctx.globalAlpha = alpha;
@@ -1393,11 +1394,11 @@ function initViz3D(canvas, tooltip, legendEl, data) {
         ctx.lineWidth = 1.2;
         ctx.stroke();
         // Code label
-        if (pt.code && size > 4) {
+        if (pt.code && size > 5) {
           ctx.fillStyle = color;
-          ctx.font = `700 ${Math.max(7, size * 0.9)}px Helvetica Neue,Helvetica,Arial,sans-serif`;
+          ctx.font = `700 ${Math.max(9, size * 0.85)}px Helvetica Neue,Helvetica,Arial,sans-serif`;
           ctx.textAlign = 'center';
-          ctx.fillText(pt.code, pt.sx, pt.sy + size + 10);
+          ctx.fillText(pt.code, pt.sx, pt.sy + size + 12);
         }
       } else {
         // Diamond
@@ -1422,9 +1423,9 @@ function initViz3D(canvas, tooltip, legendEl, data) {
         const r = rotatePoint(cl.cx, cl.cy, cl.cz);
         const p = project(r.x, r.y, r.z);
         ctx.fillStyle = CLUSTER_COLORS[ci % CLUSTER_COLORS.length];
-        ctx.font = '900 10px Helvetica Neue,Helvetica,Arial,sans-serif';
+        ctx.font = '900 11px Helvetica Neue,Helvetica,Arial,sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText(cl.label.toUpperCase(), p.sx, p.sy - 18);
+        ctx.fillText(cl.label.toUpperCase(), p.sx, p.sy - 22);
       });
       ctx.globalAlpha = 1;
     }
@@ -1479,7 +1480,7 @@ function initViz3D(canvas, tooltip, legendEl, data) {
     e.preventDefault();
     autoRotate = false;
     distance += e.deltaY * 0.003;
-    distance = Math.max(1.5, Math.min(8, distance));
+    distance = Math.max(1.0, Math.min(6, distance));
   }, { passive: false });
 
   // ── Touch interactions ──
@@ -1512,7 +1513,7 @@ function initViz3D(canvas, tooltip, legendEl, data) {
       const prevDist = Math.hypot(lastTouches[1].x - lastTouches[0].x, lastTouches[1].y - lastTouches[0].y);
       const currDist = Math.hypot(e.touches[1].clientX - e.touches[0].clientX, e.touches[1].clientY - e.touches[0].clientY);
       distance *= prevDist / currDist;
-      distance = Math.max(1.5, Math.min(8, distance));
+      distance = Math.max(1.0, Math.min(6, distance));
       lastTouches = [
         { x: e.touches[0].clientX, y: e.touches[0].clientY },
         { x: e.touches[1].clientX, y: e.touches[1].clientY },
@@ -1544,7 +1545,7 @@ function initViz3D(canvas, tooltip, legendEl, data) {
       const pt = projected[i];
       const dx = mx - pt.sx;
       const dy = my - pt.sy;
-      if (dx * dx + dy * dy < 144) { // ~12px radius
+      if (dx * dx + dy * dy < 256) { // ~16px radius
         hit = pt;
         break;
       }
