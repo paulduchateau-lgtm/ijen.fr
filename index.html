@@ -61,6 +61,7 @@ nav ul li a:hover{background:rgba(180,255,0,.12);color:var(--k)}
 .hero-r .ij-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:18px}
 .hero-r .hero-tagline{font-size:clamp(20px,2.8vw,36px);font-weight:900;line-height:1.05}
 .hero-r .hero-sub{font-size:14px;color:var(--g6);margin-top:18px;line-height:1.7;max-width:400px}
+.hero-cta-sub{color:var(--g)}
 .hero-r .hero-btns{display:flex;gap:0;margin-top:32px}
 .hbtn{display:inline-flex;align-items:center;padding:12px 24px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;cursor:pointer;border:1px solid var(--border);font-family:inherit;transition:all .15s;border-radius:var(--radius)}
 .hbtn-pri{background:var(--g);color:#1C1917;margin-right:8px;border-color:var(--g)}
@@ -251,17 +252,19 @@ footer{border-top:1px solid var(--border);display:flex;align-items:center;justif
 .spin.dark{border-color:rgba(255,255,255,.2);border-top-color:var(--g)}
 
 /* ── LIGHT MODE OVERRIDES ── */
+/* Rule: never neon text on white — use black highlighted in neon */
 html.light .hbtn-pri{background:var(--k);color:var(--w);border-color:var(--k)}
 html.light .hbtn-pri:hover{background:var(--g);color:#1C1917;border-color:var(--g)}
 html.light .hbtn-sec{border-color:var(--k)}
+html.light .hbtn-sec:hover{background:var(--g);color:#1C1917;border-color:var(--g)}
 html.light .nav-cta{background:var(--k);color:var(--w)}
 html.light .nav-cta:hover{background:var(--g);color:#1C1917}
 html.light .mbtn{background:var(--k);color:var(--w);border-color:var(--k)}
 html.light .mbtn:hover{background:var(--g);color:#1C1917;border-color:var(--g)}
 html.light .ct-email{background:var(--k);color:var(--w);border-color:var(--k)}
 html.light .ct-email:hover{background:var(--g);color:#1C1917;border-color:var(--g)}
-html.light .ct-link{color:var(--g);border-color:var(--g)}
-html.light .ct-link:hover{color:var(--k);border-color:var(--k)}
+html.light .ct-link{color:var(--k);background:linear-gradient(to top,var(--g) 35%,transparent 35%);border-bottom:none;padding-bottom:1px}
+html.light .ct-link:hover{color:var(--k);background:var(--g)}
 html.light .out-h{background:var(--k);color:var(--w)}
 html.light .m-close{background:var(--k);color:var(--w)}
 html.light .m-close:hover{background:var(--g);color:#1C1917}
@@ -269,6 +272,15 @@ html.light .chat-msg.user{background:var(--k);color:var(--w)}
 html.light .chip:hover,html.light .chip.on{background:var(--k);color:var(--w)}
 html.light .comp-pill:hover{background:var(--k);color:var(--w)}
 html.light .sk-fill{background:var(--k)}
+html.light .ticker span.dot{color:var(--k)}
+html.light .theme-toggle:hover{border-color:var(--k);color:var(--k)}
+html.light .chat-chip:hover{border-color:var(--k);color:var(--k);background:var(--g)}
+html.light .drop:hover,html.light .drop.over{border-color:var(--k);background:rgba(180,255,0,.12)}
+html.light .tag.hi{background:var(--g);color:#1C1917}
+html.light .uc-price em{background:var(--g);color:#1C1917}
+html.light .dc .dv.hi{background:var(--g);color:#1C1917}
+html.light .cv-tag{background:var(--g);color:#1C1917}
+html.light .hero-cta-sub{color:var(--k);background:linear-gradient(to top,var(--g) 40%,transparent 40%);display:inline;padding:0 2px;line-height:2}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
@@ -333,7 +345,7 @@ html.light .sk-fill{background:var(--k)}
     <div class="hero-r">
       <p class="ij-lbl">ijen · conseil en intelligence artificielle</p>
       <p class="hero-sub">Des systèmes IA qui fonctionnent. Conçus, déployés, utilisés. Sans méthodologie à vendre, sans junior à former sur votre budget.</p>
-      <p class="hero-sub" style="margin-top:14px;font-size:12px;color:var(--g)">Importez une fiche de mission ou des CV de profils concurrents. L'IA analyse et fournit un rapport rationnel.</p>
+      <p class="hero-sub hero-cta-sub" style="margin-top:14px;font-size:12px">Importez une fiche de mission ou des CV de profils concurrents. L'IA analyse et fournit un rapport rationnel.</p>
     </div>
     <div class="gslash"></div>
   </div>
