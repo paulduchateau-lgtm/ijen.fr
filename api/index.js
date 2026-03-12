@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const chatRouter = require('./routes/chat');
 const whatsappRouter = require('./routes/whatsapp');
+const vizRouter = require('./routes/viz');
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/chat', chatLimiter, chatRouter);
 app.use('/api/whatsapp', whatsappRouter);
+app.use('/api/viz', vizRouter);
 
 // ── Error handler ──
 app.use((err, req, res, _next) => {

@@ -176,6 +176,23 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 .comp-pill{display:inline-block;border:var(--bt);padding:2px 10px;margin:3px;font-size:10px;font-weight:700;cursor:pointer}
 .comp-pill:hover{background:var(--k);color:var(--w)}
 
+/* ── VIZ MAP ── */
+.viz-wrap{max-width:1320px;margin:0 auto;padding:32px;position:relative}
+.viz-svg{width:100%;height:560px;display:block;border:var(--bt);background:#FAFAFA}
+.viz-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px}
+.viz-legend-item{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.viz-legend-dot{width:10px;height:10px;border-radius:50%}
+.viz-legend-diamond{width:10px;height:10px;transform:rotate(45deg)}
+.viz-tooltip{position:absolute;background:#000;color:#fff;padding:10px 14px;border-radius:8px;font-size:12px;line-height:1.5;pointer-events:none;opacity:0;transition:opacity .15s;z-index:10;max-width:280px;white-space:normal}
+.viz-tooltip.show{opacity:1}
+.viz-tooltip .vt-code{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--g);margin-bottom:3px}
+.viz-tooltip .vt-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.viz-tooltip .vt-cat{font-size:10px;color:#ccc;margin-bottom:4px}
+.viz-tooltip .vt-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
+.viz-tooltip .vt-tag{border:1px solid rgba(180,255,0,.4);padding:1px 5px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g);border-radius:2px}
+.viz-loading{display:flex;align-items:center;justify-content:center;height:100%;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--g4)}
+@media(max-width:900px){.viz-svg{height:400px}}
+
 /* ── CONTACT ── */
 .contact-in{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr}
 .ct-l{padding:64px 48px 64px 0;border-right:var(--bt)}
@@ -231,6 +248,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
       <li><a href="#competences">Compétences</a></li>
       <li><a href="#catalogue">Catalogue</a></li>
       <li><a href="#machines">Outils RH</a></li>
+      <li><a href="#vizmap">Cartographie IA</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#machines" class="nav-cta">Uploader ma fiche de poste →</a>
@@ -725,11 +743,29 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════ VIZ MAP -->
+<section id="vizmap">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">05</span>
+      <h2>Cartographie Sémantique</h2>
+      <span class="s-meta">Proximité thématique des réalisations — projection UMAP des embeddings</span>
+    </div>
+  </div>
+  <div class="viz-wrap">
+    <svg id="viz-svg" class="viz-svg" preserveAspectRatio="xMidYMid meet">
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#999" letter-spacing=".12em" class="viz-loading-text">CHARGEMENT DE LA CARTOGRAPHIE…</text>
+    </svg>
+    <div class="viz-legend" id="viz-legend"></div>
+    <div class="viz-tooltip" id="viz-tooltip"></div>
+  </div>
+</section>
+
 <!-- ═══════════════════════════════════════════ CONTACT -->
 <section id="contact">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">05</span>
+      <span class="s-num">06</span>
       <h2>Une Mission ?</h2>
     </div>
   </div>
@@ -1093,11 +1129,178 @@ function genRadar(){
   },2400);
 }
 
+// ══════════════════ VIZ MAP ══════════════════
+const VIZ_COLORS = ['#B4FF00','#000000','#666666','#999999','#CCCCCC'];
+const VIZ_COLORS_FILL = ['rgba(180,255,0,.18)','rgba(0,0,0,.10)','rgba(102,102,102,.10)','rgba(153,153,153,.10)','rgba(204,204,204,.10)'];
+
+function initVizMap() {
+  const VIZ_API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'http://localhost:3001/api/viz'
+    : 'https://api-ashy-five-66.vercel.app/api/viz';
+
+  const svg = document.getElementById('viz-svg');
+  const tooltip = document.getElementById('viz-tooltip');
+  const legendEl = document.getElementById('viz-legend');
+  if (!svg) return;
+
+  fetch(VIZ_API)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => renderViz(svg, tooltip, legendEl, data))
+    .catch(err => {
+      console.error('[Viz] Load error:', err);
+      svg.innerHTML = '<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#999">Cartographie indisponible</text>';
+    });
+}
+
+function renderViz(svg, tooltip, legendEl, data) {
+  const { points, clusters } = data;
+  if (!points || points.length === 0) {
+    svg.innerHTML = '<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="12" fill="#999">Aucune donnée</text>';
+    return;
+  }
+
+  const rect = svg.getBoundingClientRect();
+  const W = rect.width || 900;
+  const H = rect.height || 560;
+  const pad = 60;
+
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let html = '';
+
+  // Cluster zones (soft ellipses behind points)
+  clusters.forEach((cl, ci) => {
+    const members = points.filter(p => p.cluster === cl.id);
+    if (members.length < 2) return;
+    const cx = pad + cl.cx * (W - 2 * pad);
+    const cy = pad + (1 - cl.cy) * (H - 2 * pad);
+    // compute radius from max distance to centroid
+    let maxDist = 0;
+    members.forEach(m => {
+      const mx = pad + m.x * (W - 2 * pad);
+      const my = pad + (1 - m.y) * (H - 2 * pad);
+      const d = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
+      if (d > maxDist) maxDist = d;
+    });
+    const r = Math.max(maxDist + 30, 50);
+    const color = VIZ_COLORS_FILL[ci % VIZ_COLORS_FILL.length];
+    html += `<ellipse cx="${cx}" cy="${cy}" rx="${r * 1.1}" ry="${r * 0.9}" fill="${color}" stroke="${VIZ_COLORS[ci % VIZ_COLORS.length]}" stroke-width="1" stroke-dasharray="4 3" opacity=".7"/>`;
+  });
+
+  // Cluster labels
+  clusters.forEach((cl, ci) => {
+    const cx = pad + cl.cx * (W - 2 * pad);
+    const cy = pad + (1 - cl.cy) * (H - 2 * pad);
+    const color = VIZ_COLORS[ci % VIZ_COLORS.length];
+    html += `<text x="${cx}" y="${cy - 30}" text-anchor="middle" dominant-baseline="auto" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="11" font-weight="900" fill="${color}" text-transform="uppercase" letter-spacing=".08em" opacity=".8">${escViz(cl.label)}</text>`;
+  });
+
+  // Points
+  points.forEach((pt, i) => {
+    const px = pad + pt.x * (W - 2 * pad);
+    const py = pad + (1 - pt.y) * (H - 2 * pad);
+    const color = VIZ_COLORS[pt.cluster % VIZ_COLORS.length];
+    const isProject = pt.type === 'project';
+
+    if (isProject) {
+      // Circle for projects
+      html += `<circle cx="${px}" cy="${py}" r="7" fill="${color}" stroke="#fff" stroke-width="1.5" style="cursor:pointer" data-idx="${i}" class="viz-pt"/>`;
+      // Small code label
+      html += `<text x="${px}" y="${py + 18}" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="8" font-weight="700" fill="${color}" opacity=".7">${escViz(pt.code || '')}</text>`;
+    } else {
+      // Diamond for experience
+      html += `<rect x="${px - 5}" y="${py - 5}" width="10" height="10" fill="${color}" stroke="#fff" stroke-width="1.5" transform="rotate(45 ${px} ${py})" style="cursor:pointer" data-idx="${i}" class="viz-pt"/>`;
+    }
+  });
+
+  svg.innerHTML = html;
+
+  // Legend
+  let legHtml = '';
+  clusters.forEach((cl, ci) => {
+    const color = VIZ_COLORS[ci % VIZ_COLORS.length];
+    legHtml += `<div class="viz-legend-item"><div class="viz-legend-dot" style="background:${color}"></div>${escViz(cl.label)} (${cl.count})</div>`;
+  });
+  legHtml += `<div class="viz-legend-item"><div class="viz-legend-dot" style="background:#666;width:10px;height:10px;border-radius:50%"></div>Projet</div>`;
+  legHtml += `<div class="viz-legend-item"><div class="viz-legend-diamond" style="background:#666;width:8px;height:8px"></div>Expérience</div>`;
+  legendEl.innerHTML = legHtml;
+
+  // Interactions
+  const vizPts = svg.querySelectorAll('.viz-pt');
+  vizPts.forEach(el => {
+    el.addEventListener('mouseenter', e => {
+      const idx = parseInt(el.dataset.idx);
+      const pt = points[idx];
+      if (!pt) return;
+      let tipHtml = '';
+      if (pt.type === 'project') {
+        tipHtml = `<div class="vt-code">${escViz(pt.code || '')}</div>`;
+        tipHtml += `<div class="vt-title">${escViz(pt.title || '')}</div>`;
+        tipHtml += `<div class="vt-cat">${escViz(pt.category || '')}</div>`;
+        if (pt.refs) tipHtml += `<div style="font-size:10px;color:#aaa;margin-top:2px">${escViz(pt.refs)}</div>`;
+        if (pt.tags && pt.tags.length) {
+          tipHtml += '<div class="vt-tags">' + pt.tags.map(t => `<span class="vt-tag">${escViz(t)}</span>`).join('') + '</div>';
+        }
+      } else {
+        tipHtml = `<div class="vt-title">${escViz(pt.company || '')} — ${escViz(pt.role || '')}</div>`;
+        tipHtml += `<div class="vt-cat">${escViz(pt.period || '')}</div>`;
+        if (pt.tags && pt.tags.length) {
+          tipHtml += '<div class="vt-tags">' + pt.tags.map(t => `<span class="vt-tag">${escViz(t)}</span>`).join('') + '</div>';
+        }
+      }
+      tooltip.innerHTML = tipHtml;
+      tooltip.classList.add('show');
+      positionTooltip(e, tooltip);
+    });
+    el.addEventListener('mousemove', e => positionTooltip(e, tooltip));
+    el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+    el.addEventListener('click', () => {
+      const idx = parseInt(el.dataset.idx);
+      const pt = points[idx];
+      if (pt && pt.type === 'project' && pt.code) {
+        const code = pt.code.toLowerCase();
+        if (typeof om === 'function' && D[code]) om(code);
+      }
+    });
+  });
+}
+
+function positionTooltip(e, tooltip) {
+  const wrap = tooltip.parentElement;
+  const wr = wrap.getBoundingClientRect();
+  let x = e.clientX - wr.left + 14;
+  let y = e.clientY - wr.top - 10;
+  // Keep tooltip within wrap bounds
+  const tw = tooltip.offsetWidth;
+  const th = tooltip.offsetHeight;
+  if (x + tw > wr.width - 10) x = e.clientX - wr.left - tw - 14;
+  if (y + th > wr.height - 10) y = y - th;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+}
+
+function escViz(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 // ══════════════════ INIT ══════════════════
 window.addEventListener('DOMContentLoaded',()=>{
   drawRadar('rsvg',[{labels:radarLabels,vals:paulVals,fill:'#B4FF00',fo:.4,stroke:'#000',sw:2}]);
   const sec=document.getElementById('competences');
   if(sec)obs.observe(sec);
+  // Lazy-load viz when section scrolls into view
+  const vizSection = document.getElementById('vizmap');
+  if (vizSection) {
+    const vizObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          initVizMap();
+          vizObs.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    vizObs.observe(vizSection);
+  }
 });
 </script>
 
