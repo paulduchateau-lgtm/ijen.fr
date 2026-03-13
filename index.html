@@ -4,71 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ijen — Paul Duchâteau · Digital Product Strategy & IA Appliquée</title>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --k:#000000;--w:#FFFFFF;--g:#B4FF00;
-  --g1:#F5F5F5;--g2:#E8E8E8;--g4:#999999;--g6:#555555;
-  --b:2px solid #000;--bt:1px solid #000;
+  --k:#FAFAF9;--w:#1C1917;--g:#B4FF00;
+  --g1:#292524;--g2:#44403C;--g3:#57534E;--g4:#78716C;--g6:#A8A29E;
+  --border:#292524;
+  --b:1px solid var(--border);--bt:1px solid var(--border);
+  --shadow-sm:0 1px 4px rgba(0,0,0,.3);--shadow-md:0 4px 16px rgba(0,0,0,.4);
+  --radius:7px;
+  --nav-bg:rgba(28,25,23,.92);--overlay-bg:rgba(0,0,0,.75);
+  --card-bg:#292524;--input-bg:#44403C;
+  --radar-grid:#292524;--radar-ring:#57534E;--radar-label:#A8A29E;
+  --ask-bar-bg:#292524;--ask-voice-bg:#44403C;
+}
+html.light{
+  --k:#1C1917;--w:#FAFAF9;--g:#B4FF00;
+  --g1:#F5F5F4;--g2:#E7E5E4;--g3:#D6D3D1;--g4:#78716C;--g6:#57534E;
+  --border:#E7E5E4;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow-md:0 4px 12px rgba(0,0,0,.08);
+  --nav-bg:rgba(250,250,249,.92);--overlay-bg:rgba(0,0,0,.6);
+  --card-bg:#FFFFFF;--input-bg:#F5F5F4;
+  --radar-grid:#E7E5E4;--radar-ring:#1C1917;--radar-label:#1C1917;
+  --ask-bar-bg:#292524;--ask-voice-bg:#44403C;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--w);color:var(--k);font-size:14px;line-height:1.4;overflow-x:hidden}
 
 /* ── TYPE ── */
+
 h1{font-size:clamp(52px,9vw,128px);font-weight:900;line-height:.88;letter-spacing:-.03em}
 h2{font-size:clamp(30px,5vw,72px);font-weight:900;line-height:1}
 h3{font-size:18px;font-weight:900}
 .cap{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--g4)}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--w);border-bottom:var(--b);height:48px;display:flex;align-items:center}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:52px;display:flex;align-items:center}
 .nav-in{display:flex;align-items:center;width:100%;max-width:1320px;margin:0 auto;padding:0 32px}
 .nav-logo{font-size:22px;font-weight:900;font-style:italic;text-decoration:none;color:var(--k);margin-right:48px;flex-shrink:0}
-nav ul{list-style:none;display:flex;flex:1}
-nav ul li a{display:block;padding:0 18px;height:48px;line-height:48px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;color:var(--k);border-right:var(--bt)}
-nav ul li:first-child a{border-left:var(--bt)}
-nav ul li a:hover{background:var(--g)}
-.nav-cta{margin-left:auto;height:48px;padding:0 24px;background:var(--k);color:var(--w);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;border:none;cursor:pointer;text-decoration:none;display:flex;align-items:center;white-space:nowrap}
-.nav-cta:hover{background:var(--g);color:var(--k)}
+nav ul{list-style:none;display:flex;flex:1;gap:2px}
+nav ul li a{display:block;padding:0 16px;height:36px;line-height:36px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;color:var(--g6);border-radius:6px;transition:all .15s}
+nav ul li a:hover{background:rgba(180,255,0,.12);color:var(--k)}
+.nav-cta{margin-left:auto;height:36px;padding:0 20px;background:var(--g);color:#1C1917;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;border:none;cursor:pointer;text-decoration:none;display:flex;align-items:center;white-space:nowrap;border-radius:6px;transition:all .15s}
+.nav-cta:hover{background:#d4ff4d;color:#1C1917}
+.theme-toggle{width:36px;height:36px;border:1px solid var(--border);background:transparent;color:var(--g4);border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:12px;flex-shrink:0;transition:all .15s;font-size:16px;line-height:1}
+.theme-toggle:hover{border-color:var(--g);color:var(--g)}
 
 /* ── HERO ── */
-#hero{margin-top:48px;border-bottom:var(--b);position:relative;overflow:hidden}
-.hero-main{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--b)}
-.hero-l{padding:56px 48px 48px 0}
-.hero-r{padding:56px 0 48px 48px;display:flex;flex-direction:column;justify-content:flex-end}
+#hero{margin-top:52px;position:relative;overflow:hidden}
+.hero-main{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr}
+.hero-l{padding:80px 48px 80px 0}
+.hero-r{padding:80px 0 80px 48px;border-left:1px solid var(--border);display:flex;flex-direction:column;justify-content:flex-end}
 .hero-r .ij-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:18px}
 .hero-r .hero-tagline{font-size:clamp(20px,2.8vw,36px);font-weight:900;line-height:1.05}
-.hero-r .hero-sub{font-size:13px;color:var(--g6);margin-top:18px;line-height:1.7;max-width:380px}
+.hero-r .hero-sub{font-size:14px;color:var(--g6);margin-top:18px;line-height:1.7;max-width:400px}
+.hero-cta-sub{color:var(--g)}
 .hero-r .hero-btns{display:flex;gap:0;margin-top:32px}
-.hbtn{display:inline-flex;align-items:center;padding:12px 22px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;cursor:pointer;border:var(--b);font-family:inherit;transition:background .12s,color .12s}
-.hbtn-pri{background:var(--k);color:var(--w);margin-right:-2px}
-.hbtn-pri:hover{background:var(--g);color:var(--k)}
-.hbtn-sec{background:var(--w);color:var(--k)}
-.hbtn-sec:hover{background:var(--g)}
+.hbtn{display:inline-flex;align-items:center;padding:12px 24px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;cursor:pointer;border:1px solid var(--border);font-family:inherit;transition:all .15s;border-radius:var(--radius)}
+.hbtn-pri{background:var(--g);color:#1C1917;margin-right:8px;border-color:var(--g)}
+.hbtn-pri:hover{background:#d4ff4d;color:#1C1917;border-color:#d4ff4d}
+.hbtn-sec{background:transparent;color:var(--k);border-color:var(--g3)}
+.hbtn-sec:hover{background:rgba(180,255,0,.12);border-color:var(--g)}
 
 /* Hero ijen brand */
 .hero-ijen{font-size:clamp(72px,11vw,130px);font-weight:900;font-style:italic;line-height:.82;letter-spacing:-.04em;margin-bottom:20px}
 
-/* Green slash */
-.gslash{position:absolute;width:36px;background:var(--g);top:0;bottom:0;right:260px;transform:skewX(-7deg);pointer-events:none;z-index:1}
+/* Green slash — hidden in modern design */
+.gslash{display:none}
 
 /* Stats bar */
-.stats-bar{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);border-bottom:var(--b)}
-.stat{padding:28px 24px 28px 0}
+.stats-bar{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stat{padding:32px 24px 32px 0}
 .stat:last-child{padding-right:0}
 .stat-n{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1}
 .stat-l{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--g6);margin-top:6px}
 
 /* Ticker */
-.ticker-wrap{background:var(--k);overflow:hidden;white-space:nowrap;border-top:0}
-.ticker{display:inline-block;animation:tick 24s linear infinite;padding:10px 0}
-.ticker span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--w);margin:0 32px}
+.ticker-wrap{background:var(--g1);overflow:hidden;white-space:nowrap}
+.ticker{display:inline-block;animation:tick 48s linear infinite;padding:12px 0}
+.ticker span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g6);margin:0 32px}
 .ticker span.dot{color:var(--g);margin:0 4px}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ── SECTION HEADER ── */
-.s-head{border-bottom:var(--b)}
-.s-head-in{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;align-items:flex-end;gap:20px;padding-top:28px;padding-bottom:28px}
+.s-head{border-bottom:1px solid var(--border)}
+.s-head-in{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;align-items:flex-end;gap:20px;padding-top:36px;padding-bottom:36px}
 .s-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:6px}
 .s-meta{font-size:12px;color:var(--g4);margin-left:auto;margin-bottom:8px}
 
@@ -83,8 +104,8 @@ nav ul li a:hover{background:var(--g)}
 .tl-body h3{margin-bottom:10px}
 .tl-body p{font-size:12px;color:var(--g6);line-height:1.65;max-width:680px}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
-.tag{border:var(--bt);padding:3px 9px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
-.tag.hi{background:var(--g);border-color:var(--k)}
+.tag{border:var(--bt);padding:3px 9px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;border-radius:4px}
+.tag.hi{background:var(--g);border-color:var(--g);color:#1C1917;border-radius:4px}
 .tl-row.alt{background:transparent}
 
 /* ── COMPÉTENCES ── */
@@ -96,41 +117,41 @@ nav ul li a:hover{background:var(--g)}
 .sk-row{display:flex;align-items:center;gap:14px;margin-bottom:7px}
 .sk-name{font-size:12px;font-weight:700;width:200px;flex-shrink:0}
 .sk-track{flex:1;height:6px;background:var(--g2);position:relative}
-.sk-fill{position:absolute;top:0;left:0;height:100%;background:var(--k);width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.sk-fill{position:absolute;top:0;left:0;height:100%;background:var(--g);width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
 .sect-chips{display:flex;flex-wrap:wrap;gap:0;margin-top:20px;border-top:var(--bt)}
 .chip{border:var(--bt);border-top:0;border-left:0;padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:background .1s}
-.chip:hover,.chip.on{background:var(--k);color:var(--w)}
+.chip:hover,.chip.on{background:var(--g);color:#1C1917}
 .sect-box{margin-top:12px;border:var(--bt);padding:14px;font-size:12px;color:var(--g6);line-height:1.8;min-height:72px}
 
 /* ── CATALOGUE ── */
 .cat-grid{max-width:1320px;margin:0 auto;padding:24px 32px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.uc{border:var(--bt);cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.uc:hover{transform:translateY(-3px);box-shadow:0 5px 0 #000;border-color:var(--k)}
+.uc{border:1px solid var(--border);background:var(--card-bg);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.uc:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--g3)}
 .uc-bar{display:none}
 /* Grain image */
-.uc-img{height:108px;position:relative;overflow:hidden;flex-shrink:0}
-.uc-img::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:multiply;opacity:0.28}
+.uc-img{height:128px;position:relative;overflow:hidden;flex-shrink:0;background-size:cover;background-position:center}
+.uc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--card-bg) 100%);opacity:.6}
 .uc-body{padding:16px 16px 14px;flex:1;display:flex;flex-direction:column}
 .uc-code{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--g4);margin-bottom:7px}
 .uc-title{font-size:12px;font-weight:700;line-height:1.35;margin-bottom:8px}
 .uc-brief{font-size:11px;color:var(--g6);line-height:1.55;margin-bottom:12px;flex:1}
 .uc-price{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-.uc-price em{font-style:normal;background:var(--g);padding:0 4px}
+.uc-price em{font-style:normal;background:var(--g);color:#1C1917;padding:0 4px}
 
 /* MODAL */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;display:none;align-items:center;justify-content:center;padding:24px}
+.ov{position:fixed;inset:0;background:var(--overlay-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:500;display:none;align-items:center;justify-content:center;padding:24px}
 .ov.open{display:flex}
-.modal{background:var(--w);border:var(--b);width:100%;max-width:700px;max-height:88vh;overflow-y:auto}
-.m-head{border-bottom:var(--b);padding:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
-.m-close{background:var(--k);color:var(--w);border:none;width:36px;height:36px;font-size:20px;cursor:pointer;font-family:inherit;flex-shrink:0}
-.m-close:hover{background:var(--g);color:var(--k)}
+.modal{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);width:100%;max-width:700px;max-height:88vh;overflow-y:auto}
+.m-head{border-bottom:1px solid var(--border);padding:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.m-close{background:var(--g3);color:var(--k);border:none;width:36px;height:36px;font-size:20px;cursor:pointer;font-family:inherit;flex-shrink:0;border-radius:8px;transition:all .15s}
+.m-close:hover{background:var(--g);color:#1C1917}
 .m-body{padding:28px 24px}
 .dg{display:grid;grid-template-columns:repeat(3,1fr);border:var(--bt);margin-bottom:22px}
 .dc{padding:14px;border-right:var(--bt)}
 .dc:last-child{border-right:0}
 .dc .dl{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--g4);margin-bottom:4px}
 .dc .dv{font-size:16px;font-weight:900}
-.dc .dv.hi{background:var(--g);padding:0 6px;display:inline-block}
+.dc .dv.hi{background:var(--g);color:#1C1917;padding:0 6px;display:inline-block}
 .m-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--g4);margin:0 0 7px}
 .m-txt{font-size:13px;color:var(--g6);line-height:1.65;margin-bottom:20px}
 .m-ref{margin-top:20px;padding:14px;background:var(--g1);border:var(--bt)}
@@ -145,21 +166,21 @@ nav ul li a:hover{background:var(--g)}
 .mach-n{font-size:96px;font-weight:900;color:var(--g2);line-height:1;margin-bottom:4px}
 .mach-t{font-size:clamp(20px,2.5vw,28px);font-weight:900;line-height:1.1;margin-bottom:12px}
 .mach-d{font-size:12px;color:var(--g6);line-height:1.7;margin-bottom:28px;max-width:400px}
-.drop{border:2px dashed var(--k);padding:36px 20px;text-align:center;cursor:pointer;background:var(--g1);position:relative;transition:background .1s,border-style .1s}
-.drop:hover,.drop.over{background:var(--g);border-style:solid}
+.drop{border:2px dashed var(--g3);padding:36px 20px;text-align:center;cursor:pointer;background:var(--input-bg);position:relative;transition:all .15s;border-radius:var(--radius)}
+.drop:hover,.drop.over{background:rgba(180,255,0,.08);border-color:var(--g);border-style:solid}
 .drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
 .drop-l{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
 .drop-s{font-size:10px;color:var(--g4);margin-top:6px}
-textarea.mach-ta{width:100%;margin-top:10px;padding:14px;border:var(--bt);font-family:inherit;font-size:12px;height:90px;resize:vertical;background:var(--g1);outline:none;color:var(--k)}
-textarea.mach-ta:focus{border-color:var(--k);outline:none}
-.mbtn{display:block;width:100%;margin-top:12px;padding:15px;background:var(--k);color:var(--w);border:var(--b);font-family:inherit;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;transition:background .1s,color .1s}
-.mbtn:hover{background:var(--g);color:var(--k)}
-.mbtn:disabled{background:var(--g2);color:var(--g4);cursor:not-allowed}
+textarea.mach-ta{width:100%;margin-top:10px;padding:14px;border:var(--bt);font-family:inherit;font-size:12px;height:90px;resize:vertical;background:var(--input-bg);outline:none;color:var(--k)}
+textarea.mach-ta:focus{border-color:var(--g4);outline:none}
+.mbtn{display:block;width:100%;margin-top:12px;padding:15px;background:var(--g);color:#1C1917;border:1px solid var(--g);border-radius:var(--radius);font-family:inherit;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;transition:all .15s}
+.mbtn:hover{background:#d4ff4d;color:#1C1917;border-color:#d4ff4d}
+.mbtn:disabled{background:var(--g2);color:var(--g4);cursor:not-allowed;border-color:var(--g2)}
 .prog{height:3px;background:var(--g2);margin:12px 0;display:none;position:relative;overflow:hidden}
 .prog-f{position:absolute;top:0;left:0;height:100%;background:var(--k);width:0;transition:width .25s ease}
 .out{border:var(--bt);display:none;margin-top:18px}
 .out.on{display:block}
-.out-h{background:var(--k);color:var(--w);padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+.out-h{background:var(--g);color:#1C1917;padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
 .out-b{padding:14px}
 .cv-item{padding:12px 0;border-bottom:var(--bt);display:flex;align-items:flex-start;gap:14px}
 .cv-item:last-child{border-bottom:0}
@@ -169,12 +190,41 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 .cv-info h4{font-size:12px;font-weight:700;margin-bottom:3px}
 .cv-info p{font-size:11px;color:var(--g6);line-height:1.5}
 .cv-tags{margin-top:5px}
-.cv-tag{display:inline-block;background:var(--g);border:var(--bt);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 6px;margin:2px 2px 0 0}
+.cv-tag{display:inline-block;background:var(--g);color:#1C1917;border:var(--bt);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 6px;margin:2px 2px 0 0}
 @keyframes fiu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .fiu{animation:fiu .35s ease forwards}
 .comp-list{margin-top:10px;border:var(--bt);padding:8px;font-size:11px;min-height:36px;color:var(--g4)}
 .comp-pill{display:inline-block;border:var(--bt);padding:2px 10px;margin:3px;font-size:10px;font-weight:700;cursor:pointer}
-.comp-pill:hover{background:var(--k);color:var(--w)}
+.comp-pill:hover{background:var(--g);color:#1C1917}
+
+/* ── ASSISTANT — minimal dark bar ── */
+#assistant{background:var(--g1);padding:40px 0 48px;border-bottom:1px solid var(--border)}
+.ask-container{max-width:640px;margin:0 auto;padding:0 32px}
+.ask-title{text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--g4);margin-bottom:18px}
+.ask-bar{display:flex;align-items:center;background:var(--ask-bar-bg);border-radius:28px;padding:5px 5px 5px 8px;gap:6px}
+.ask-toggle{width:36px;height:36px;border-radius:50%;background:transparent;border:none;color:#888;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:color .15s}
+.ask-toggle:hover{color:#fff}
+.ask-bar input{flex:1;border:none;padding:10px 4px;font-size:14px;font-family:inherit;outline:none;background:transparent;color:#fff}
+.ask-bar input::placeholder{color:#666}
+.ask-voice{background:var(--ask-voice-bg);border:none;color:#ccc;padding:8px 18px;border-radius:22px;font-size:12px;font-weight:600;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:6px;transition:background .15s;font-family:inherit}
+.ask-voice:hover{background:#444;color:#fff}
+.chat-suggestions{display:none;flex-wrap:wrap;gap:6px;margin-top:14px;justify-content:center}
+.chat-suggestions.show{display:flex}
+.chat-chip{border:1px solid var(--g3);background:transparent;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--g4)}
+.chat-chip:hover{border-color:var(--g);color:var(--g);background:rgba(180,255,0,.08)}
+.chat-messages-area{display:none;flex-direction:column;gap:10px;margin-top:20px;background:var(--g2);border:1px solid var(--border);border-radius:var(--radius);max-height:320px;overflow-y:auto;padding:16px}
+.chat-messages-area.active{display:flex}
+.chat-msg{max-width:80%;padding:10px 14px;font-size:13px;line-height:1.5;word-break:break-word}
+.chat-msg.user{align-self:flex-end;background:var(--g);color:#1C1917;border-radius:10px 10px 4px 10px}
+.chat-msg.assistant{align-self:flex-start;background:var(--g3);color:var(--k);border:1px solid var(--border);border-radius:10px 10px 10px 4px}
+.chat-msg.assistant .chat-sources{margin-top:8px;padding-top:6px;border-top:1px solid var(--border);font-size:11px;color:var(--g4)}
+.chat-msg.assistant .chat-sources span{display:inline-block;background:var(--g2);padding:2px 6px;border-radius:4px;margin:2px 3px 0 0;font-weight:600;color:var(--g6);font-size:10px}
+.chat-typing{display:flex;gap:4px;padding:10px 14px;align-self:flex-start}
+.chat-typing span{width:6px;height:6px;background:var(--g4);border-radius:50%;animation:chat-bounce .6s infinite alternate}
+.chat-typing span:nth-child(2){animation-delay:.2s}
+.chat-typing span:nth-child(3){animation-delay:.4s}
+@keyframes chat-bounce{to{opacity:.3;transform:translateY(-4px)}}
+
 
 /* ── CONTACT ── */
 .contact-in{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr}
@@ -182,58 +232,99 @@ textarea.mach-ta:focus{border-color:var(--k);outline:none}
 .ct-r{padding:64px 0 64px 48px}
 .ct-l h2{margin-bottom:20px}
 .ct-l p{font-size:13px;color:var(--g6);line-height:1.7;max-width:380px;margin-bottom:12px}
-.ct-link{display:inline-flex;align-items:center;font-size:12px;font-weight:700;text-decoration:none;color:var(--k);border-bottom:2px solid var(--k);padding-bottom:3px;margin-top:16px}
-.ct-link:hover{color:var(--g6);border-color:var(--g6)}
+.ct-link{display:inline-flex;align-items:center;font-size:12px;font-weight:700;text-decoration:none;color:var(--g);border-bottom:2px solid var(--g);padding-bottom:3px;margin-top:16px}
+.ct-link:hover{color:var(--k);border-color:var(--k)}
 .ct-detail{padding:14px 0;border-top:var(--bt)}
 .ct-detail:last-of-type{border-bottom:var(--bt)}
 .ct-detail .dl{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:3px}
 .ct-detail .dv{font-size:14px;font-weight:700}
-.ct-email{display:block;margin-top:28px;border:var(--b);padding:18px 24px;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;background:var(--k);color:var(--w);transition:background .1s,color .1s}
-.ct-email:hover{background:var(--g);color:var(--k)}
-footer{border-top:var(--b);display:flex;align-items:center;justify-content:space-between;max-width:1320px;margin:0 auto;padding:18px 32px}
+.ct-email{display:block;margin-top:28px;border:1px solid var(--g);border-radius:var(--radius);padding:18px 24px;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;background:var(--g);color:#1C1917;transition:all .15s}
+.ct-email:hover{background:#d4ff4d;color:#1C1917;border-color:#d4ff4d}
+footer{border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;max-width:1320px;margin:0 auto;padding:18px 32px}
 .ft-logo{font-size:18px;font-weight:900;font-style:italic}
 .ft-note{font-size:10px;color:var(--g4)}
 
 /* ── SPINNER ── */
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--g);border-radius:50%;animation:spin .5s linear infinite;margin-right:8px;vertical-align:middle}
-.spin.dark{border-color:rgba(0,0,0,.2);border-top-color:var(--k)}
+.spin.dark{border-color:rgba(255,255,255,.2);border-top-color:var(--g)}
+
+/* ── LIGHT MODE OVERRIDES ── */
+/* Rule: never neon text on white — use black highlighted in neon */
+html.light .hbtn-pri{background:var(--k);color:var(--w);border-color:var(--k)}
+html.light .hbtn-pri:hover{background:var(--g);color:#1C1917;border-color:var(--g)}
+html.light .hbtn-sec{border-color:var(--k)}
+html.light .hbtn-sec:hover{background:var(--g);color:#1C1917;border-color:var(--g)}
+html.light .nav-cta{background:var(--k);color:var(--w)}
+html.light .nav-cta:hover{background:var(--g);color:#1C1917}
+html.light .mbtn{background:var(--k);color:var(--w);border-color:var(--k)}
+html.light .mbtn:hover{background:var(--g);color:#1C1917;border-color:var(--g)}
+html.light .ct-email{background:var(--k);color:var(--w);border-color:var(--k)}
+html.light .ct-email:hover{background:var(--g);color:#1C1917;border-color:var(--g)}
+html.light .ct-link{color:var(--k);background:linear-gradient(to top,var(--g) 35%,transparent 35%);border-bottom:none;padding-bottom:1px}
+html.light .ct-link:hover{color:var(--k);background:var(--g)}
+html.light .out-h{background:var(--k);color:var(--w)}
+html.light .m-close{background:var(--k);color:var(--w)}
+html.light .m-close:hover{background:var(--g);color:#1C1917}
+html.light .chat-msg.user{background:var(--k);color:var(--w)}
+html.light .chip:hover,html.light .chip.on{background:var(--k);color:var(--w)}
+html.light .comp-pill:hover{background:var(--k);color:var(--w)}
+html.light .sk-fill{background:var(--k)}
+html.light .ticker span.dot{color:var(--k)}
+html.light .theme-toggle:hover{border-color:var(--k);color:var(--k)}
+html.light .chat-chip:hover{border-color:var(--k);color:var(--k);background:var(--g)}
+html.light .drop:hover,html.light .drop.over{border-color:var(--k);background:rgba(180,255,0,.12)}
+html.light .tag.hi{background:var(--g);color:#1C1917}
+html.light .uc-price em{background:var(--g);color:#1C1917}
+html.light .dc .dv.hi{background:var(--g);color:#1C1917}
+html.light .cv-tag{background:var(--g);color:#1C1917}
+html.light .hero-cta-sub{color:var(--k);background:linear-gradient(to top,var(--g) 40%,transparent 40%);display:inline;padding:0 2px;line-height:2}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .hero-main{grid-template-columns:1fr}
-  .hero-r{border-left:0;border-top:var(--b);padding-left:0}
+  .hero-l{padding:48px 0}
+  .hero-r{border-left:0;border-top:1px solid var(--border);padding:32px 0 48px 0}
   .stats-bar{grid-template-columns:1fr 1fr}
   .comp-grid{grid-template-columns:1fr}
   .radar-col{border-right:0;padding-right:0;border-bottom:var(--bt)}
   .skills-col{padding-left:0}
   .cat-grid{grid-template-columns:1fr 1fr;padding:16px;gap:12px}
   .mach-grid{grid-template-columns:1fr}
-  .mach:first-child{border-right:0;border-bottom:var(--b);padding-right:0}
+  .mach:first-child{border-right:0;border-bottom:1px solid var(--border);padding-right:0}
   .mach:last-child{padding-left:0}
   .contact-in{grid-template-columns:1fr}
   .ct-l{border-right:0;border-bottom:var(--bt);padding-right:0}
   .ct-r{padding-left:0}
   nav ul{display:none}
-  .gslash{display:none}
+  .ask-container{padding:0 16px}
+  .chat-chip{font-size:10px;padding:5px 10px}
   footer{flex-direction:column;gap:8px;text-align:center}
 }
 </style>
 </head>
 <body>
+<script>
+// Restore theme before paint
+(function(){
+  var t = localStorage.getItem('ij-theme');
+  if (t === 'light') document.documentElement.classList.add('light');
+})();
+</script>
 
 <!-- ═══════════════════════════════════════════ NAV -->
 <nav>
   <div class="nav-in">
     <a href="#" class="nav-logo">ijen</a>
     <ul>
+      <li><a href="#catalogue">Réalisations</a></li>
       <li><a href="#parcours">Parcours</a></li>
       <li><a href="#competences">Compétences</a></li>
-      <li><a href="#catalogue">Catalogue</a></li>
-      <li><a href="#machines">Outils RH</a></li>
+      <li><a href="#upload">Tester</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#machines" class="nav-cta">Uploader ma fiche de poste →</a>
+    <a href="#upload" class="nav-cta">Tester mon profil →</a>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Changer de thème">☀</button>
   </div>
 </nav>
 
@@ -246,12 +337,13 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
       <p class="cap" style="margin-bottom:32px">Digital Product Strategy · IA Appliquée · Bordeaux</p>
       <div class="hero-btns">
         <a href="#catalogue" class="hbtn hbtn-pri">Réalisations →</a>
-        <a href="#machines" class="hbtn hbtn-sec">Uploader une offre</a>
+        <a href="#upload" class="hbtn hbtn-sec">Tester mon profil sur votre mission</a>
       </div>
     </div>
     <div class="hero-r">
       <p class="ij-lbl">ijen · conseil en intelligence artificielle</p>
       <p class="hero-sub">Des systèmes IA qui fonctionnent. Conçus, déployés, utilisés. Sans méthodologie à vendre, sans junior à former sur votre budget.</p>
+      <p class="hero-sub hero-cta-sub" style="margin-top:14px;font-size:12px">Importez une fiche de mission ou des CV de profils concurrents. L'IA analyse et fournit un rapport rationnel.</p>
     </div>
     <div class="gslash"></div>
   </div>
@@ -259,7 +351,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
     <div class="stat"><div class="stat-n">14</div><div class="stat-l">Ans d'expérience</div></div>
     <div class="stat"><div class="stat-n">~100</div><div class="stat-l">Références data IA</div></div>
     <div class="stat"><div class="stat-n">19</div><div class="stat-l">Réalisations cataloguées</div></div>
-    <div class="stat" style="border-right:var(--bt)"><div class="stat-n">6+</div><div class="stat-l">Secteurs d'expertise</div></div>
+    <div class="stat"><div class="stat-n">6+</div><div class="stat-l">Secteurs d'expertise</div></div>
   </div>
   <div class="ticker-wrap">
     <div class="ticker" id="tick">
@@ -289,11 +381,254 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════ ASSISTANT IA -->
+<section id="assistant">
+  <div class="ask-container">
+    <h3 class="ask-title">Poser une question</h3>
+    <div class="ask-bar">
+      <button class="ask-toggle" id="ask-toggle" aria-label="Suggestions">+</button>
+      <input id="chat-input" type="text" placeholder="Poser une question" maxlength="2000" autocomplete="off">
+      <button class="ask-voice" id="ask-voice">&#x1F399; Voix</button>
+    </div>
+    <div class="chat-suggestions" id="chat-suggestions">
+      <div class="chat-chip" onclick="askChat('Quelles sont les compétences clés de Paul ?')">Compétences</div>
+      <div class="chat-chip" onclick="askChat('Quels projets RAG a-t-il réalisés ?')">Projets RAG</div>
+      <div class="chat-chip" onclick="askChat('Dans quels secteurs Paul a-t-il travaillé ?')">Secteurs</div>
+      <div class="chat-chip" onclick="askChat('Quel est le tarif de prototypage ?')">Tarifs</div>
+    </div>
+    <div class="chat-messages-area" id="chat-messages"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ CATALOGUE -->
+<section id="catalogue">
+  <div class="s-head">
+    <div class="s-head-in">
+      <span class="s-num">01</span>
+      <h2>Catalogue de Réalisations</h2>
+      <span class="s-meta">19 réalisations · Cliquer pour détail &amp; pricing</span>
+    </div>
+  </div>
+  <div class="cat-grid">
+
+    <div class="uc" onclick="om('rag')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">RAG</div>
+        <div class="uc-title">Chatbot RAG sur-mesure</div>
+        <div class="uc-brief">LLM entraîné sur données métier avec mise à jour temps-réel. Agents pour requêtes complexes.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">Embedding</span></div>
+        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~40k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('nlp')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1634017839464-5c339eba3df4?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">NLP</div>
+        <div class="uc-title">Analyse retours clients automatisée</div>
+        <div class="uc-brief">Sujets récurrents, KPIs, chatbot sur base, rapports mensuels automatiques.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Data Science</span><span class="tag">BI</span></div>
+        <div class="uc-price">Proto <em>15k€</em> · Prod ~50k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('sql')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">SQL</div>
+        <div class="uc-title">Self-Service BI (NL2SQL)</div>
+        <div class="uc-brief">Requêtage BDD en langage naturel. Gouvernance stricte par profil.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">NL2SQL</span><span class="tag">Data Gov.</span></div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod ~25k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('doc')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">DOC</div>
+        <div class="uc-title">Validation &amp; extraction de dossiers</div>
+        <div class="uc-brief">Analyse pièces jointes (PDF, manuscrits). Validation identité, alertes dossiers incomplets.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Doc Understanding</span><span class="tag">OCR</span></div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~95k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('rpt')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">RPT</div>
+        <div class="uc-title">Aide à la rédaction de rapports</div>
+        <div class="uc-brief">LLM sur base de connaissances métier. Rapports conformes aux normes, extraction multi-docs.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">GraphRAG</span><span class="tag">Automatisation</span></div>
+        <div class="uc-price">Proto <em>20k€</em> · Prod &gt;100k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('ocr')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">OCR</div>
+        <div class="uc-title">Enrichissement OCR &amp; vision</div>
+        <div class="uc-brief">Extraction depuis tout support (PDF, scan, manuscrit). Modèle entraîné sur cas spécifique.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">OCR</span><span class="tag">Computer Vision</span><span class="tag">LLM</span></div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod 10–50k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('img')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">IMG</div>
+        <div class="uc-title">Détection fraude sinistres (images)</div>
+        <div class="uc-brief">Reconnaissance photos sinistres. Évaluation quantitative des dégâts. API backoffice.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">IA Custom</span><span class="tag">Multimodal</span><span class="tag">API</span></div>
+        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~40k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('src')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">SRC</div>
+        <div class="uc-title">Moteur de recherche multimédia</div>
+        <div class="uc-brief">Recherche sémantique sur textes, images, vidéos. Transcription automatique.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Embedding</span><span class="tag">Multimodal</span><span class="tag">Recherche</span></div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~75k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('bot')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">BOT</div>
+        <div class="uc-title">Chatbot structuré (collecte données)</div>
+        <div class="uc-brief">Conversation libre + collecte silencieuse de données structurées. Parsing CV/contrats.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Agent IA</span><span class="tag">RH</span></div>
+        <div class="uc-price">Proto <em>20k€</em> · Prod ~40k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('kpi')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">KPI</div>
+        <div class="uc-title">Compréhension utilisateur avancée</div>
+        <div class="uc-brief">Classification supervisée/non-supervisée, KPIs catégoriels, enrichissement texte.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Data Science</span><span class="tag">LLM</span><span class="tag">Clustering</span></div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod ~15k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('crm')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1614851099175-e5b30eb6f696?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">CRM</div>
+        <div class="uc-title">CRM sur-mesure pour cabinet conseil</div>
+        <div class="uc-brief">Gestion unifiée pipeline, consultants et missions. Matching profils/opportunités, alertes proactives.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">CRM</span><span class="tag">IA Custom</span><span class="tag">Matching</span></div>
+        <div class="uc-price">Proto <em>8k€</em> · Prod ~35k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('ins')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">INS</div>
+        <div class="uc-title">Comparateur de documents d'assurance</div>
+        <div class="uc-brief">Upload des contrats en cours → extraction des garanties clés, comparaison avec le nouveau produit, résumé décisionnel.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Doc Understanding</span><span class="tag">LLM</span><span class="tag">OCR</span></div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~50k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('crd')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">CRD</div>
+        <div class="uc-title">Simulation crédit self-service</div>
+        <div class="uc-brief">Agent conversationnel de pré-souscription. Collecte intelligente, scoring préliminaire, offre indicative personnalisée.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Agent IA</span><span class="tag">Banque</span><span class="tag">Self-Service</span></div>
+        <div class="uc-price">Proto <em>15k€</em> · Prod ~80k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('plg')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1604076913837-52ab5f7c1ac2?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">PLG</div>
+        <div class="uc-title">Stratégie Product Led Growth — banque marque blanche</div>
+        <div class="uc-brief">Instrumentation produit, activation, scoring comportemental IA, boucles de rétention et A/B testing.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Product Strategy</span><span class="tag">Growth</span><span class="tag">Analytics</span></div>
+        <div class="uc-price">Proto <em>20k€</em> · Prod ~120k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('gov')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">GOV</div>
+        <div class="uc-title">Gouvernance data &amp; IA pour TPA</div>
+        <div class="uc-brief">Diagnostic data, architecture cible, politique de gouvernance RGPD, catalogue de données, roadmap IA 12–24 mois.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">Data Strategy</span><span class="tag">RGPD</span><span class="tag">Architecture</span></div>
+        <div class="uc-price">Proto <em>12k€</em> · Prod ~60k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('opt')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1614852206732-6728f93cd0d0?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">OPT</div>
+        <div class="uc-title">Automatisation process équipes gestion</div>
+        <div class="uc-brief">Cartographie des process, gains rapides RPA + IA, déploiement workflows automatisés. Gain de productivité mesuré.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">RPA</span><span class="tag">Automatisation</span><span class="tag">Workflow</span></div>
+        <div class="uc-price">Proto <em>8k€</em> · Prod ~45k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('cra')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1614854262340-ab1ca7d079c7?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">CRA</div>
+        <div class="uc-title">Génération de CRA en langage naturel</div>
+        <div class="uc-brief">Le consultant décrit sa semaine librement → l'IA structure le CRA au format imposé et soumet pour validation.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Automatisation</span><span class="tag">RH</span></div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod ~20k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('nwl')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">NWL</div>
+        <div class="uc-title">Newsletter auto-améliorée par feedback</div>
+        <div class="uc-brief">Génération LLM + collecte feedback en langage naturel + réinjection automatique dans le prompt de la prochaine édition.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Marketing IA</span><span class="tag">Feedback Loop</span></div>
+        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~30k€</div>
+      </div>
+    </div>
+
+    <div class="uc" onclick="om('ao')">
+      <div class="uc-img" style="background-image:url('https://images.unsplash.com/photo-1614850715649-1d0106568571?w=400&h=250&fit=crop&auto=format')"></div>
+      <div class="uc-body">
+        <div class="uc-code">AO</div>
+        <div class="uc-title">Facilitation réponse aux appels d'offres</div>
+        <div class="uc-brief">Analyse du CDC, sélection automatique des références cabinets et profils consultants, génération du premier jet.</div>
+        <div class="tags" style="margin-bottom:10px"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">Automatisation</span></div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~50k€</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
 <!-- ═══════════════════════════════════════════ PARCOURS -->
 <section id="parcours">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">01</span>
+      <span class="s-num">02</span>
       <h2>Parcours</h2>
       <span class="s-meta">HEI · M2 Medical Engineering · 2006–2011 · Léognan, France</span>
     </div>
@@ -405,7 +740,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <section id="competences">
   <div class="s-head">
     <div class="s-head-in">
-      <span class="s-num">02</span>
+      <span class="s-num">03</span>
       <h2>Compétences</h2>
     </div>
   </div>
@@ -449,236 +784,13 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════ CATALOGUE -->
-<section id="catalogue">
-  <div class="s-head">
-    <div class="s-head-in">
-      <span class="s-num">03</span>
-      <h2>Catalogue de Réalisations</h2>
-      <span class="s-meta">19 réalisations · Cliquer pour détail &amp; pricing</span>
-    </div>
-  </div>
-  <div class="cat-grid">
-
-    <div class="uc" onclick="om('rag')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#FF6B35,#FF9A3C)"></div>
-      <div class="uc-body">
-        <div class="uc-code">RAG</div>
-        <div class="uc-title">Chatbot RAG sur-mesure</div>
-        <div class="uc-brief">LLM entraîné sur données métier avec mise à jour temps-réel. Agents pour requêtes complexes.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">Embedding</span></div>
-        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~40k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('nlp')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#0F4C75,#1B6CA8)"></div>
-      <div class="uc-body">
-        <div class="uc-code">NLP</div>
-        <div class="uc-title">Analyse retours clients automatisée</div>
-        <div class="uc-brief">Sujets récurrents, KPIs, chatbot sur base, rapports mensuels automatiques.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Data Science</span><span class="tag">BI</span></div>
-        <div class="uc-price">Proto <em>15k€</em> · Prod ~50k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('sql')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#2C3E50,#3498DB)"></div>
-      <div class="uc-body">
-        <div class="uc-code">SQL</div>
-        <div class="uc-title">Self-Service BI (NL2SQL)</div>
-        <div class="uc-brief">Requêtage BDD en langage naturel. Gouvernance stricte par profil.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">NL2SQL</span><span class="tag">Data Gov.</span></div>
-        <div class="uc-price">Proto <em>5k€</em> · Prod ~25k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('doc')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#6C3483,#A569BD)"></div>
-      <div class="uc-body">
-        <div class="uc-code">DOC</div>
-        <div class="uc-title">Validation &amp; extraction de dossiers</div>
-        <div class="uc-brief">Analyse pièces jointes (PDF, manuscrits). Validation identité, alertes dossiers incomplets.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">Doc Understanding</span><span class="tag">OCR</span></div>
-        <div class="uc-price">Proto <em>10k€</em> · Prod ~95k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('rpt')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#1A3A3A,#2ECC71)"></div>
-      <div class="uc-body">
-        <div class="uc-code">RPT</div>
-        <div class="uc-title">Aide à la rédaction de rapports</div>
-        <div class="uc-brief">LLM sur base de connaissances métier. Rapports conformes aux normes, extraction multi-docs.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">GraphRAG</span><span class="tag">Automatisation</span></div>
-        <div class="uc-price">Proto <em>20k€</em> · Prod &gt;100k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('ocr')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#D35400,#F39C12)"></div>
-      <div class="uc-body">
-        <div class="uc-code">OCR</div>
-        <div class="uc-title">Enrichissement OCR &amp; vision</div>
-        <div class="uc-brief">Extraction depuis tout support (PDF, scan, manuscrit). Modèle entraîné sur cas spécifique.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">OCR</span><span class="tag">Computer Vision</span><span class="tag">LLM</span></div>
-        <div class="uc-price">Proto <em>5k€</em> · Prod 10–50k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('img')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#922B21,#C0392B)"></div>
-      <div class="uc-body">
-        <div class="uc-code">IMG</div>
-        <div class="uc-title">Détection fraude sinistres (images)</div>
-        <div class="uc-brief">Reconnaissance photos sinistres. Évaluation quantitative des dégâts. API backoffice.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">IA Custom</span><span class="tag">Multimodal</span><span class="tag">API</span></div>
-        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~40k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('src')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#154360,#1A5276)"></div>
-      <div class="uc-body">
-        <div class="uc-code">SRC</div>
-        <div class="uc-title">Moteur de recherche multimédia</div>
-        <div class="uc-brief">Recherche sémantique sur textes, images, vidéos. Transcription automatique.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">Embedding</span><span class="tag">Multimodal</span><span class="tag">Recherche</span></div>
-        <div class="uc-price">Proto <em>10k€</em> · Prod ~75k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('bot')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#1D4350,#A43931)"></div>
-      <div class="uc-body">
-        <div class="uc-code">BOT</div>
-        <div class="uc-title">Chatbot structuré (collecte données)</div>
-        <div class="uc-brief">Conversation libre + collecte silencieuse de données structurées. Parsing CV/contrats.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Agent IA</span><span class="tag">RH</span></div>
-        <div class="uc-price">Proto <em>20k€</em> · Prod ~40k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('kpi')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#5D4037,#8D6E63)"></div>
-      <div class="uc-body">
-        <div class="uc-code">KPI</div>
-        <div class="uc-title">Compréhension utilisateur avancée</div>
-        <div class="uc-brief">Classification supervisée/non-supervisée, KPIs catégoriels, enrichissement texte.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">Data Science</span><span class="tag">LLM</span><span class="tag">Clustering</span></div>
-        <div class="uc-price">Proto <em>5k€</em> · Prod ~15k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('crm')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#1565C0,#42A5F5)"></div>
-      <div class="uc-body">
-        <div class="uc-code">CRM</div>
-        <div class="uc-title">CRM sur-mesure pour cabinet conseil</div>
-        <div class="uc-brief">Gestion unifiée pipeline, consultants et missions. Matching profils/opportunités, alertes proactives.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">CRM</span><span class="tag">IA Custom</span><span class="tag">Matching</span></div>
-        <div class="uc-price">Proto <em>8k€</em> · Prod ~35k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('ins')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#004D40,#26A69A)"></div>
-      <div class="uc-body">
-        <div class="uc-code">INS</div>
-        <div class="uc-title">Comparateur de documents d'assurance</div>
-        <div class="uc-brief">Upload des contrats en cours → extraction des garanties clés, comparaison avec le nouveau produit, résumé décisionnel.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">Doc Understanding</span><span class="tag">LLM</span><span class="tag">OCR</span></div>
-        <div class="uc-price">Proto <em>10k€</em> · Prod ~50k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('crd')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#BF360C,#FF7043)"></div>
-      <div class="uc-body">
-        <div class="uc-code">CRD</div>
-        <div class="uc-title">Simulation crédit self-service</div>
-        <div class="uc-brief">Agent conversationnel de pré-souscription. Collecte intelligente, scoring préliminaire, offre indicative personnalisée.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">Agent IA</span><span class="tag">Banque</span><span class="tag">Self-Service</span></div>
-        <div class="uc-price">Proto <em>15k€</em> · Prod ~80k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('plg')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#1B5E20,#66BB6A)"></div>
-      <div class="uc-body">
-        <div class="uc-code">PLG</div>
-        <div class="uc-title">Stratégie Product Led Growth — banque marque blanche</div>
-        <div class="uc-brief">Instrumentation produit, activation, scoring comportemental IA, boucles de rétention et A/B testing.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">Product Strategy</span><span class="tag">Growth</span><span class="tag">Analytics</span></div>
-        <div class="uc-price">Proto <em>20k€</em> · Prod ~120k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('gov')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#1A237E,#3949AB)"></div>
-      <div class="uc-body">
-        <div class="uc-code">GOV</div>
-        <div class="uc-title">Gouvernance data &amp; IA pour TPA</div>
-        <div class="uc-brief">Diagnostic data, architecture cible, politique de gouvernance RGPD, catalogue de données, roadmap IA 12–24 mois.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">Data Strategy</span><span class="tag">RGPD</span><span class="tag">Architecture</span></div>
-        <div class="uc-price">Proto <em>12k€</em> · Prod ~60k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('opt')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#263238,#546E7A)"></div>
-      <div class="uc-body">
-        <div class="uc-code">OPT</div>
-        <div class="uc-title">Automatisation process équipes gestion</div>
-        <div class="uc-brief">Cartographie des process, gains rapides RPA + IA, déploiement workflows automatisés. Gain de productivité mesuré.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">RPA</span><span class="tag">Automatisation</span><span class="tag">Workflow</span></div>
-        <div class="uc-price">Proto <em>8k€</em> · Prod ~45k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('cra')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#4A148C,#7B1FA2)"></div>
-      <div class="uc-body">
-        <div class="uc-code">CRA</div>
-        <div class="uc-title">Génération de CRA en langage naturel</div>
-        <div class="uc-brief">Le consultant décrit sa semaine librement → l'IA structure le CRA au format imposé et soumet pour validation.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Automatisation</span><span class="tag">RH</span></div>
-        <div class="uc-price">Proto <em>5k€</em> · Prod ~20k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('nwl')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#880E4F,#E91E63)"></div>
-      <div class="uc-body">
-        <div class="uc-code">NWL</div>
-        <div class="uc-title">Newsletter auto-améliorée par feedback</div>
-        <div class="uc-brief">Génération LLM + collecte feedback en langage naturel + réinjection automatique dans le prompt de la prochaine édition.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Marketing IA</span><span class="tag">Feedback Loop</span></div>
-        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~30k€</div>
-      </div>
-    </div>
-
-    <div class="uc" onclick="om('ao')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#3E2723,#8D6E63)"></div>
-      <div class="uc-body">
-        <div class="uc-code">AO</div>
-        <div class="uc-title">Facilitation réponse aux appels d'offres</div>
-        <div class="uc-brief">Analyse du CDC, sélection automatique des références cabinets et profils consultants, génération du premier jet.</div>
-        <div class="tags" style="margin-bottom:10px"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">Automatisation</span></div>
-        <div class="uc-price">Proto <em>10k€</em> · Prod ~50k€</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════ MACHINES -->
-<section id="machines">
+<!-- ═══════════════════════════════════════════ UPLOAD / OUTILS RH -->
+<section id="upload">
   <div class="s-head">
     <div class="s-head-in">
       <span class="s-num">04</span>
-      <h2>Outils Recruteurs</h2>
-      <span class="s-meta">Deux machines interactives — réservées aux décideurs RH &amp; managers</span>
+      <h2>Tester mon profil sur votre mission</h2>
+      <span class="s-meta">Importez une fiche de mission ou des CV de profils concurrents. L'IA analyse et fournit un rapport rationnel.</span>
     </div>
   </div>
   <div class="mach-grid">
@@ -918,28 +1030,33 @@ function cm(){document.getElementById('ov').classList.remove('open')}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')cm()});
 
 // ══════════════════ RADAR (SVG) ══════════════════
+function radarColors(){
+  var isLight=document.documentElement.classList.contains('light');
+  return{grid:isLight?'#E7E5E4':'#292524',ring:isLight?'#1C1917':'#57534E',label:isLight?'#1C1917':'#A8A29E',stroke:isLight?'#1C1917':'#B4FF00'};
+}
 function drawRadar(svgId,axes,colors){
   const svg=document.getElementById(svgId);
   const cx=160,cy=160,r=120,n=axes[0].vals.length;
   const ang=i=>i*(2*Math.PI/n)-Math.PI/2;
   const pt=(i,v)=>({x:cx+v*r*Math.cos(ang(i)),y:cy+v*r*Math.sin(ang(i))});
+  const rc=radarColors();
   let h='';
   // grid
   [.25,.5,.75,1].forEach(v=>{
     const pts=axes[0].labels.map((_,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
-    h+=`<polygon points="${pts}" fill="none" stroke="${v===1?'#000':'#E8E8E8'}" stroke-width="${v===1?1.5:1}"/>`;
+    h+=`<polygon points="${pts}" fill="none" stroke="${v===1?rc.ring:rc.grid}" stroke-width="${v===1?1.5:1}"/>`;
   });
-  axes[0].labels.forEach((_,i)=>{const p=pt(i,1);h+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#E8E8E8" stroke-width="1"/>`;});
+  axes[0].labels.forEach((_,i)=>{const p=pt(i,1);h+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="${rc.grid}" stroke-width="1"/>`;});
   // series
   axes.forEach(series=>{
     const pts=series.vals.map((v,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
-    h+=`<polygon points="${pts}" fill="${series.fill}" fill-opacity="${series.fo||.4}" stroke="${series.stroke}" stroke-width="${series.sw||2}" stroke-dasharray="${series.dash||''}"/>`;
-    if(!series.dash)series.vals.forEach((v,i)=>{const p=pt(i,v);h+=`<circle cx="${p.x}" cy="${p.y}" r="4" fill="${series.stroke}"/>`;});
+    h+=`<polygon points="${pts}" fill="${series.fill}" fill-opacity="${series.fo||.4}" stroke="${rc.stroke}" stroke-width="${series.sw||2}" stroke-dasharray="${series.dash||''}"/>`;
+    if(!series.dash)series.vals.forEach((v,i)=>{const p=pt(i,v);h+=`<circle cx="${p.x}" cy="${p.y}" r="4" fill="${rc.stroke}"/>`;});
   });
   // labels
   axes[0].labels.forEach((lbl,i)=>{
     const p=pt(i,1.32);const lines=lbl.split('\n');
-    lines.forEach((l,li)=>h+=`<text x="${p.x}" y="${p.y+(li-(lines.length-1)/2)*14}" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#000">${l}</text>`);
+    lines.forEach((l,li)=>h+=`<text x="${p.x}" y="${p.y+(li-(lines.length-1)/2)*14}" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="${rc.label}">${l}</text>`);
   });
   svg.innerHTML=h;
 }
@@ -977,8 +1094,8 @@ const paul=[
 ];
 
 let fAok=false;
-function onFA(i){if(i.files&&i.files[0]){document.querySelector('#dA .drop-l').textContent='✓ '+i.files[0].name;document.getElementById('dA').style.background='#F0FFD0';fAok=true;}}
-function dA(e){e.preventDefault();document.getElementById('dA').classList.remove('over');const f=e.dataTransfer.files[0];if(f){document.querySelector('#dA .drop-l').textContent='✓ '+f.name;document.getElementById('dA').style.background='#F0FFD0';fAok=true;}}
+function onFA(i){if(i.files&&i.files[0]){document.querySelector('#dA .drop-l').textContent='✓ '+i.files[0].name;document.getElementById('dA').style.background='#E8F5D0';fAok=true;}}
+function dA(e){e.preventDefault();document.getElementById('dA').classList.remove('over');const f=e.dataTransfer.files[0];if(f){document.querySelector('#dA .drop-l').textContent='✓ '+f.name;document.getElementById('dA').style.background='#E8F5D0';fAok=true;}}
 
 function genCV(){
   const txt=document.getElementById('tA').value.toLowerCase();
@@ -1020,7 +1137,7 @@ function onFB(inp){
 function dB(e){e.preventDefault();document.getElementById('dB').classList.remove('over');Array.from(e.dataTransfer.files).forEach(f=>{const n=f.name.replace(/\.[^/.]+$/,'');if(!comps.find(c=>c.n===n))comps.push({n});});renderComps();}
 function renderComps(){
   const el=document.getElementById('clist');
-  el.style.color='#000';
+  el.style.color='var(--k)';
   el.innerHTML=comps.length===0?'<span style="color:var(--g4)">Aucun fichier chargé</span>':comps.map((c,i)=>`<span class="comp-pill" onclick="rc(${i})">✕ ${c.n}</span>`).join('');
 }
 function rc(i){comps.splice(i,1);renderComps();}
@@ -1047,31 +1164,32 @@ function genRadar(){
       }));
 
       // build SVG inline
+      const rc2=radarColors();
       const W=300,H=300,cx=150,cy=150,R=110,n=dims.length;
       const ang=i=>i*(2*Math.PI/n)-Math.PI/2;
       const pt=(i,v)=>({x:cx+v*R*Math.cos(ang(i)),y:cy+v*R*Math.sin(ang(i))});
       let sv='<svg viewBox="0 0 300 300" width="100%" style="max-width:300px;display:block;margin:0 auto">';
       [.25,.5,.75,1].forEach(v=>{
         const ps=dims.map((_,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
-        sv+=`<polygon points="${ps}" fill="none" stroke="#E8E8E8" stroke-width="1"/>`;
+        sv+=`<polygon points="${ps}" fill="none" stroke="${rc2.grid}" stroke-width="1"/>`;
       });
-      dims.forEach((_,i)=>{const p=pt(i,1);sv+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#E8E8E8" stroke-width="1"/>`;});
+      dims.forEach((_,i)=>{const p=pt(i,1);sv+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="${rc2.grid}" stroke-width="1"/>`;});
       cdata.forEach(d=>{
         const ps=d.v.map((v,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
         sv+=`<polygon points="${ps}" fill="${d.col}" fill-opacity=".12" stroke="${d.col}" stroke-width="1.5" stroke-dasharray="4,3"/>`;
       });
       const pps=pv.map((v,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
-      sv+=`<polygon points="${pps}" fill="#B4FF00" fill-opacity=".45" stroke="#000" stroke-width="2"/>`;
-      pv.forEach((v,i)=>{const p=pt(i,v);sv+=`<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="#000"/>`;});
+      sv+=`<polygon points="${pps}" fill="${rc2.stroke}" fill-opacity=".45" stroke="${rc2.stroke}" stroke-width="2"/>`;
+      pv.forEach((v,i)=>{const p=pt(i,v);sv+=`<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="${rc2.stroke}"/>`;});
       dims.forEach((d,i)=>{
         const p=pt(i,1.38);const lines=d.split('\n');
-        lines.forEach((l,li)=>sv+=`<text x="${p.x}" y="${p.y+(li-(lines.length-1)/2)*13}" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" font-weight="700" fill="#000">${l}</text>`);
+        lines.forEach((l,li)=>sv+=`<text x="${p.x}" y="${p.y+(li-(lines.length-1)/2)*13}" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" font-weight="700" fill="${rc2.label}">${l}</text>`);
       });
       sv+='</svg>';
 
       // legend + delta table
       const leg=`<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;font-size:10px;font-weight:700">
-        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:8px;background:var(--g);border:1px solid #000"></div>Paul Duchâteau</div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:8px;background:var(--g);border:1px solid var(--g4)"></div>Paul Duchâteau</div>
         ${cdata.map(d=>`<div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:2px;background:${d.col};border-top:2px dashed ${d.col}"></div>${d.n}</div>`).join('')}
       </div>`;
       const tbl=`<div style="border:var(--bt)">
@@ -1079,7 +1197,7 @@ function genRadar(){
         ${dims.map((d,i)=>{
           const mx=Math.max(...cdata.map(c=>c.v[i]));
           const delta=((pv[i]-mx)*100).toFixed(0);
-          return`<div style="display:flex;justify-content:space-between;padding:6px 12px;border-bottom:1px solid #F5F5F5;font-size:11px">
+          return`<div style="display:flex;justify-content:space-between;padding:6px 12px;border-bottom:1px solid var(--border);font-size:11px">
             <span style="font-weight:700">${d.replace('\n',' ')}</span>
             <span style="font-weight:900;color:${delta>=0?'var(--k)':'var(--g4)'}">${delta>=0?'+':''}${delta} pts</span>
           </div>`;
@@ -1093,12 +1211,198 @@ function genRadar(){
   },2400);
 }
 
+
 // ══════════════════ INIT ══════════════════
 window.addEventListener('DOMContentLoaded',()=>{
-  drawRadar('rsvg',[{labels:radarLabels,vals:paulVals,fill:'#B4FF00',fo:.4,stroke:'#000',sw:2}]);
+  drawRadar('rsvg',[{labels:radarLabels,vals:paulVals,fill:'#B4FF00',fo:.4,sw:2}]);
   const sec=document.getElementById('competences');
   if(sec)obs.observe(sec);
 });
+</script>
+
+<!-- ══════════════════ INLINE CHAT JS ══════════════════ -->
+<script>
+(function(){
+  const CHAT_API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'http://localhost:3001/api/chat'
+    : 'https://api-ashy-five-66.vercel.app/api/chat';
+
+  const messagesEl = document.getElementById('chat-messages');
+  const inputEl = document.getElementById('chat-input');
+  const suggestionsEl = document.getElementById('chat-suggestions');
+  const toggleBtn = document.getElementById('ask-toggle');
+
+  let conversationId = null;
+  let sending = false;
+  let chatStarted = false;
+
+  // Toggle suggestions
+  toggleBtn.addEventListener('click', () => {
+    suggestionsEl.classList.toggle('show');
+    toggleBtn.textContent = suggestionsEl.classList.contains('show') ? '×' : '+';
+  });
+
+  // Enter to send
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
+  });
+
+  // Voice button placeholder
+  document.getElementById('ask-voice').addEventListener('click', () => {
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SR();
+      recognition.lang = 'fr-FR';
+      recognition.interimResults = false;
+      recognition.onresult = e => {
+        inputEl.value = e.results[0][0].transcript;
+        sendChat();
+      };
+      recognition.start();
+    } else {
+      inputEl.placeholder = 'Reconnaissance vocale non supportée';
+    }
+  });
+
+  // Expose askChat globally for suggestion chips
+  window.askChat = function(text) {
+    inputEl.value = text;
+    sendChat();
+  };
+
+  function startChat() {
+    if (!chatStarted) {
+      chatStarted = true;
+      messagesEl.classList.add('active');
+      suggestionsEl.classList.remove('show');
+      toggleBtn.textContent = '+';
+    }
+  }
+
+  function addChatMsg(role, html) {
+    startChat();
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + role;
+    div.innerHTML = html;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return div;
+  }
+
+  function showTyping() {
+    const div = document.createElement('div');
+    div.className = 'chat-typing';
+    div.id = 'chat-typing-ind';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function hideTyping() {
+    const el = document.getElementById('chat-typing-ind');
+    if (el) el.remove();
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  async function sendChat() {
+    const msg = inputEl.value.trim();
+    if (!msg || sending) return;
+    sending = true;
+    inputEl.value = '';
+
+    addChatMsg('user', escHtml(msg));
+    showTyping();
+
+    try {
+      const res = await fetch(CHAT_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg, conversationId }),
+      });
+
+      if (!res.ok) {
+        hideTyping();
+        addChatMsg('assistant', 'Erreur — réessayez dans un instant.');
+        sending = false;
+        return;
+      }
+
+      hideTyping();
+      const assistantDiv = addChatMsg('assistant', '');
+      let fullText = '';
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          try {
+            const data = JSON.parse(line.slice(6));
+            if (data.text) {
+              fullText += data.text;
+              assistantDiv.innerHTML = escHtml(fullText);
+              messagesEl.scrollTop = messagesEl.scrollHeight;
+            }
+            if (data.done) {
+              conversationId = data.conversationId || conversationId;
+              if (data.sources && data.sources.length > 0) {
+                const srcHtml = '<div class="chat-sources">' +
+                  data.sources.map(s => '<span>' + escHtml(s.code) + '</span>').join('') +
+                  '</div>';
+                assistantDiv.innerHTML = escHtml(fullText) + srcHtml;
+              }
+            }
+            if (data.error) {
+              assistantDiv.innerHTML = escHtml(fullText) || 'Erreur de génération.';
+            }
+          } catch (_) {}
+        }
+      }
+    } catch (err) {
+      hideTyping();
+      addChatMsg('assistant', 'Connexion impossible. Vérifiez votre réseau.');
+    }
+
+    sending = false;
+    inputEl.focus();
+  }
+})();
+</script>
+
+<!-- ══════════════════ THEME TOGGLE ══════════════════ -->
+<script>
+(function(){
+  var btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  function updateIcon() {
+    var isLight = document.documentElement.classList.contains('light');
+    btn.textContent = isLight ? '☾' : '☀';
+    btn.setAttribute('aria-label', isLight ? 'Passer en mode sombre' : 'Passer en mode clair');
+  }
+  updateIcon();
+  btn.addEventListener('click', function() {
+    document.documentElement.classList.toggle('light');
+    var isLight = document.documentElement.classList.contains('light');
+    localStorage.setItem('ij-theme', isLight ? 'light' : 'dark');
+    updateIcon();
+    // Re-render radar with theme-aware colors
+    if (typeof drawRadar === 'function') {
+      drawRadar('rsvg',[{labels:radarLabels,vals:paulVals,fill:'#B4FF00',fo:.4,sw:2}]);
+    }
+  });
+})();
 </script>
 </body>
 </html>
