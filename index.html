@@ -218,6 +218,12 @@ textarea.mach-ta:focus{border-color:var(--g4);outline:none}
 .chat-msg{max-width:80%;padding:10px 14px;font-size:13px;line-height:1.5;word-break:break-word}
 .chat-msg.user{align-self:flex-end;background:var(--g);color:#1C1917;border-radius:10px 10px 4px 10px}
 .chat-msg.assistant{align-self:flex-start;background:var(--g3);color:var(--k);border:1px solid var(--border);border-radius:10px 10px 10px 4px}
+.chat-msg.assistant h4{margin:0 0 6px;font-size:13px;font-weight:700;color:var(--g)}
+.chat-msg.assistant strong{color:var(--g);font-weight:700}
+.chat-msg.assistant ul,.chat-msg.assistant ol{margin:6px 0;padding-left:18px}
+.chat-msg.assistant li{margin:3px 0}
+.chat-msg.assistant code{background:rgba(180,255,0,.1);padding:1px 5px;border-radius:3px;font-size:12px}
+.chat-msg.assistant p{margin:4px 0}
 .chat-msg.assistant .chat-sources{margin-top:8px;padding-top:6px;border-top:1px solid var(--border);font-size:11px;color:var(--g4)}
 .chat-msg.assistant .chat-sources span{display:inline-block;background:var(--g2);padding:2px 6px;border-radius:4px;margin:2px 3px 0 0;font-weight:600;color:var(--g6);font-size:10px}
 .chat-typing{display:flex;gap:4px;padding:10px 14px;align-self:flex-start}
@@ -1329,6 +1335,23 @@ window.addEventListener('DOMContentLoaded',()=>{
     return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
+  function md(raw) {
+    const s = escHtml(raw);
+    return s
+      .replace(/^#{1,3}\s+(.+)$/gm, '<h4>$1</h4>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>')
+      .replace(/^[-•]\s+(.+)$/gm, '<li>$1</li>')
+      .replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>')
+      .replace(/\n{2,}/g, '</p><p>')
+      .replace(/\n/g, '<br>')
+      .replace(/^/, '<p>').replace(/$/, '</p>')
+      .replace(/<p><h4>/g, '<h4>').replace(/<\/h4><\/p>/g, '</h4>')
+      .replace(/<p><ul>/g, '<ul>').replace(/<\/ul><\/p>/g, '</ul>')
+      .replace(/<p><\/p>/g, '');
+  }
+
   async function sendChat() {
     const msg = inputEl.value.trim();
     if (!msg || sending) return;
@@ -1374,20 +1397,21 @@ window.addEventListener('DOMContentLoaded',()=>{
             const data = JSON.parse(line.slice(6));
             if (data.text) {
               fullText += data.text;
-              assistantDiv.innerHTML = escHtml(fullText);
+              assistantDiv.innerHTML = md(fullText);
               messagesEl.scrollTop = messagesEl.scrollHeight;
             }
             if (data.done) {
               conversationId = data.conversationId || conversationId;
+              assistantDiv.innerHTML = md(fullText);
               if (data.sources && data.sources.length > 0) {
                 const srcHtml = '<div class="chat-sources">' +
                   data.sources.map(s => '<span>' + escHtml(s.code) + '</span>').join('') +
                   '</div>';
-                assistantDiv.innerHTML = escHtml(fullText) + srcHtml;
+                assistantDiv.innerHTML += srcHtml;
               }
             }
             if (data.error) {
-              assistantDiv.innerHTML = escHtml(fullText) || 'Erreur de génération.';
+              assistantDiv.innerHTML = md(fullText) || 'Erreur de génération.';
             }
           } catch (_) {}
         }
