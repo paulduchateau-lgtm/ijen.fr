@@ -213,7 +213,7 @@ textarea.mach-ta:focus{border-color:var(--g4);outline:none}
 .chat-suggestions.show{display:flex}
 .chat-chip{border:1px solid var(--g3);background:transparent;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--g4)}
 .chat-chip:hover{border-color:var(--g);color:var(--g);background:rgba(180,255,0,.08)}
-.chat-messages-area{display:none;flex-direction:column;gap:10px;margin-top:20px;background:var(--g2);border:1px solid var(--border);border-radius:var(--radius);max-height:320px;overflow-y:auto;padding:16px}
+.chat-messages-area{display:none;flex-direction:column;gap:10px;margin-bottom:16px;background:var(--g2);border:1px solid var(--border);border-radius:var(--radius);max-height:320px;overflow-y:auto;padding:16px}
 .chat-messages-area.active{display:flex}
 .chat-msg{max-width:80%;padding:10px 14px;font-size:13px;line-height:1.5;word-break:break-word}
 .chat-msg.user{align-self:flex-end;background:var(--g);color:#1C1917;border-radius:10px 10px 4px 10px}
@@ -395,6 +395,7 @@ html.light .hero-cta-sub{color:var(--k);background:linear-gradient(to top,var(--
 <section id="assistant">
   <div class="ask-container">
     <h3 class="ask-title">Poser une question</h3>
+    <div class="chat-messages-area" id="chat-messages"></div>
     <div class="ask-bar">
       <button class="ask-toggle" id="ask-toggle" aria-label="Suggestions">+</button>
       <input id="chat-input" type="text" placeholder="Poser une question" maxlength="2000" autocomplete="off">
@@ -406,7 +407,6 @@ html.light .hero-cta-sub{color:var(--k);background:linear-gradient(to top,var(--
       <div class="chat-chip" onclick="askChat('Dans quels secteurs Paul a-t-il travaillé ?')">Secteurs</div>
       <div class="chat-chip" onclick="askChat('Quel est le tarif de prototypage ?')">Tarifs</div>
     </div>
-    <div class="chat-messages-area" id="chat-messages"></div>
   </div>
 </section>
 
