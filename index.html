@@ -61,7 +61,7 @@ nav ul li a:hover{background:var(--g)}
 
 /* Ticker */
 .ticker-wrap{background:var(--k);overflow:hidden;white-space:nowrap;border-top:0}
-.ticker{display:inline-block;animation:tick 80s linear infinite;padding:10px 0}
+.ticker{display:inline-block;animation:tick 24s linear infinite;padding:10px 0}
 .ticker span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--w);margin:0 32px}
 .ticker span.dot{color:var(--g);margin:0 4px}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -194,33 +194,6 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 .ft-logo{font-size:18px;font-weight:900;font-style:italic}
 .ft-note{font-size:10px;color:var(--g4)}
 
-/* ── OFFRE PANEL ── */
-.offre-modal{background:var(--w);border:var(--b);width:100%;max-width:860px;max-height:88vh;overflow-y:auto}
-.offre-head{border-bottom:var(--b);padding:28px 28px 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-.offre-head-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4);margin-bottom:10px}
-.offre-head h3{font-size:clamp(20px,3vw,28px);font-weight:900;line-height:1.05;margin-bottom:10px}
-.offre-head p{font-size:13px;color:var(--g6);line-height:1.65;max-width:540px}
-.offre-body{padding:28px}
-.offre-split{display:grid;grid-template-columns:1fr 18px 1fr;gap:0}
-.offre-col{padding:0 20px 0 0}
-.offre-col:last-child{padding:0 0 0 20px}
-.offre-sep{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--g4)}
-.offre-col-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:var(--g4);margin-bottom:10px;padding-bottom:8px;border-bottom:var(--bt)}
-.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
-.ref-card{border:var(--bt);padding:16px;cursor:pointer;transition:all .12s;overflow:hidden}
-.ref-card:hover{background:var(--g);border-color:var(--k);transform:translateY(-2px);box-shadow:0 4px 0 #000}
-.ref-card-score{font-size:26px;font-weight:900;line-height:1;float:right;margin-left:10px}
-.ref-card-code{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--g4);margin-bottom:5px}
-.ref-card-title{font-size:12px;font-weight:700;line-height:1.35;margin-bottom:6px}
-.ref-card-ref{font-size:11px;color:var(--g6);line-height:1.5;clear:both}
-.ref-card-cta{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g4);margin-top:10px}
-.offre-summary{border:var(--b);margin-bottom:24px}
-.offre-summary-head{background:var(--k);color:var(--w);padding:10px 16px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.15em}
-.offre-summary-body{padding:20px}
-.offre-summary-body p{font-size:13px;line-height:1.75;color:var(--k)}
-.offre-summary-body p+p{margin-top:14px;padding-top:14px;border-top:1px solid var(--g2)}
-@media(max-width:780px){.offre-split{grid-template-columns:1fr}.offre-sep{padding:16px 0;border-top:var(--bt);border-bottom:var(--bt);margin:16px 0}.offre-col,.offre-col:last-child{padding:0}.ref-grid{grid-template-columns:1fr}}
-
 /* ── SPINNER ── */
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--g);border-radius:50%;animation:spin .5s linear infinite;margin-right:8px;vertical-align:middle}
@@ -260,7 +233,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
       <li><a href="#machines">Outils RH</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button onclick="openOffre()" class="nav-cta">Vous recrutez ? →</button>
+    <a href="#machines" class="nav-cta">Uploader ma fiche de poste →</a>
   </div>
 </nav>
 
@@ -273,7 +246,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
       <p class="cap" style="margin-bottom:32px">Digital Product Strategy · IA Appliquée · Bordeaux</p>
       <div class="hero-btns">
         <a href="#catalogue" class="hbtn hbtn-pri">Réalisations →</a>
-        <button onclick="openOffre()" class="hbtn hbtn-sec" style="border:var(--b)">Vous recrutez ? →</button>
+        <a href="#machines" class="hbtn hbtn-sec">Uploader une offre</a>
       </div>
     </div>
     <div class="hero-r">
@@ -439,7 +412,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   <div class="comp-grid">
     <div class="radar-col">
       <p class="cap" style="margin-bottom:20px">Cartographie fonctionnelle</p>
-      <svg id="rsvg" viewBox="0 0 380 380" width="100%" style="max-width:380px;display:block"></svg>
+      <svg id="rsvg" viewBox="0 0 320 320" width="100%" style="max-width:320px;display:block"></svg>
     </div>
     <div class="skills-col">
       <div class="sk-cat">
@@ -482,11 +455,8 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
     <div class="s-head-in">
       <span class="s-num">03</span>
       <h2>Catalogue de Réalisations</h2>
-      <span class="s-meta">19 réalisations · Cliquer pour détail</span>
+      <span class="s-meta">19 réalisations · Cliquer pour détail &amp; pricing</span>
     </div>
-  </div>
-  <div style="max-width:1320px;margin:0 auto;padding:20px 32px 0;font-size:12px;color:var(--g4);font-style:italic">
-    Ces réalisations correspondent à des projets auxquels j'ai participé dans le cadre de mon travail chez BeTomorrow (2022–2026).
   </div>
   <div class="cat-grid">
 
@@ -497,7 +467,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Chatbot RAG sur-mesure</div>
         <div class="uc-brief">LLM entraîné sur données métier avec mise à jour temps-réel. Agents pour requêtes complexes.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">Embedding</span></div>
-        <div class="uc-price">Effort indicatif : <em>~10 j/h</em> · Prod ~50 j/h</div>
+        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~40k€</div>
       </div>
     </div>
 
@@ -508,7 +478,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Analyse retours clients automatisée</div>
         <div class="uc-brief">Sujets récurrents, KPIs, chatbot sur base, rapports mensuels automatiques.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Data Science</span><span class="tag">BI</span></div>
-        <div class="uc-price">Effort indicatif : <em>~20 j/h</em> · Prod ~65 j/h</div>
+        <div class="uc-price">Proto <em>15k€</em> · Prod ~50k€</div>
       </div>
     </div>
 
@@ -519,7 +489,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Self-Service BI (NL2SQL)</div>
         <div class="uc-brief">Requêtage BDD en langage naturel. Gouvernance stricte par profil.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">NL2SQL</span><span class="tag">Data Gov.</span></div>
-        <div class="uc-price">Effort indicatif : <em>~5 j/h</em> · Prod ~30 j/h</div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod ~25k€</div>
       </div>
     </div>
 
@@ -530,7 +500,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Validation &amp; extraction de dossiers</div>
         <div class="uc-brief">Analyse pièces jointes (PDF, manuscrits). Validation identité, alertes dossiers incomplets.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">Doc Understanding</span><span class="tag">OCR</span></div>
-        <div class="uc-price">Effort indicatif : <em>~15 j/h</em> · Prod ~120 j/h</div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~95k€</div>
       </div>
     </div>
 
@@ -541,7 +511,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Aide à la rédaction de rapports</div>
         <div class="uc-brief">LLM sur base de connaissances métier. Rapports conformes aux normes, extraction multi-docs.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">GraphRAG</span><span class="tag">Automatisation</span></div>
-        <div class="uc-price">Effort indicatif : <em>~25 j/h</em> · Prod &gt;125 j/h</div>
+        <div class="uc-price">Proto <em>20k€</em> · Prod &gt;100k€</div>
       </div>
     </div>
 
@@ -552,7 +522,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Enrichissement OCR &amp; vision</div>
         <div class="uc-brief">Extraction depuis tout support (PDF, scan, manuscrit). Modèle entraîné sur cas spécifique.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">OCR</span><span class="tag">Computer Vision</span><span class="tag">LLM</span></div>
-        <div class="uc-price">Effort indicatif : <em>~5 j/h</em> · Prod 15–65 j/h</div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod 10–50k€</div>
       </div>
     </div>
 
@@ -563,18 +533,18 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Détection fraude sinistres (images)</div>
         <div class="uc-brief">Reconnaissance photos sinistres. Évaluation quantitative des dégâts. API backoffice.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">IA Custom</span><span class="tag">Multimodal</span><span class="tag">API</span></div>
-        <div class="uc-price">Effort indicatif : <em>~10 j/h</em> · Prod ~50 j/h</div>
+        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~40k€</div>
       </div>
     </div>
 
     <div class="uc" onclick="om('src')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#1565C0,#5C9CE6)"></div>
+      <div class="uc-img" style="background:linear-gradient(135deg,#154360,#1A5276)"></div>
       <div class="uc-body">
         <div class="uc-code">SRC</div>
         <div class="uc-title">Moteur de recherche multimédia</div>
         <div class="uc-brief">Recherche sémantique sur textes, images, vidéos. Transcription automatique.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">Embedding</span><span class="tag">Multimodal</span><span class="tag">Recherche</span></div>
-        <div class="uc-price">Effort indicatif : <em>~15 j/h</em> · Prod ~95 j/h</div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~75k€</div>
       </div>
     </div>
 
@@ -585,18 +555,18 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Chatbot structuré (collecte données)</div>
         <div class="uc-brief">Conversation libre + collecte silencieuse de données structurées. Parsing CV/contrats.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Agent IA</span><span class="tag">RH</span></div>
-        <div class="uc-price">Effort indicatif : <em>~25 j/h</em> · Prod ~50 j/h</div>
+        <div class="uc-price">Proto <em>20k€</em> · Prod ~40k€</div>
       </div>
     </div>
 
     <div class="uc" onclick="om('kpi')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#7B6B43,#C9A84C)"></div>
+      <div class="uc-img" style="background:linear-gradient(135deg,#5D4037,#8D6E63)"></div>
       <div class="uc-body">
         <div class="uc-code">KPI</div>
         <div class="uc-title">Compréhension utilisateur avancée</div>
         <div class="uc-brief">Classification supervisée/non-supervisée, KPIs catégoriels, enrichissement texte.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">Data Science</span><span class="tag">LLM</span><span class="tag">Clustering</span></div>
-        <div class="uc-price">Effort indicatif : <em>~5 j/h</em> · Prod ~20 j/h</div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod ~15k€</div>
       </div>
     </div>
 
@@ -607,7 +577,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">CRM sur-mesure pour cabinet conseil</div>
         <div class="uc-brief">Gestion unifiée pipeline, consultants et missions. Matching profils/opportunités, alertes proactives.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">CRM</span><span class="tag">IA Custom</span><span class="tag">Matching</span></div>
-        <div class="uc-price">Effort indicatif : <em>~10 j/h</em> · Prod ~45 j/h</div>
+        <div class="uc-price">Proto <em>8k€</em> · Prod ~35k€</div>
       </div>
     </div>
 
@@ -618,7 +588,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Comparateur de documents d'assurance</div>
         <div class="uc-brief">Upload des contrats en cours → extraction des garanties clés, comparaison avec le nouveau produit, résumé décisionnel.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">Doc Understanding</span><span class="tag">LLM</span><span class="tag">OCR</span></div>
-        <div class="uc-price">Effort indicatif : <em>~15 j/h</em> · Prod ~65 j/h</div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~50k€</div>
       </div>
     </div>
 
@@ -629,7 +599,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Simulation crédit self-service</div>
         <div class="uc-brief">Agent conversationnel de pré-souscription. Collecte intelligente, scoring préliminaire, offre indicative personnalisée.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">Agent IA</span><span class="tag">Banque</span><span class="tag">Self-Service</span></div>
-        <div class="uc-price">Effort indicatif : <em>~20 j/h</em> · Prod ~100 j/h</div>
+        <div class="uc-price">Proto <em>15k€</em> · Prod ~80k€</div>
       </div>
     </div>
 
@@ -640,7 +610,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Stratégie Product Led Growth — banque marque blanche</div>
         <div class="uc-brief">Instrumentation produit, activation, scoring comportemental IA, boucles de rétention et A/B testing.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">Product Strategy</span><span class="tag">Growth</span><span class="tag">Analytics</span></div>
-        <div class="uc-price">Effort indicatif : <em>~25 j/h</em> · Prod ~150 j/h</div>
+        <div class="uc-price">Proto <em>20k€</em> · Prod ~120k€</div>
       </div>
     </div>
 
@@ -651,18 +621,18 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Gouvernance data &amp; IA pour TPA</div>
         <div class="uc-brief">Diagnostic data, architecture cible, politique de gouvernance RGPD, catalogue de données, roadmap IA 12–24 mois.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">Data Strategy</span><span class="tag">RGPD</span><span class="tag">Architecture</span></div>
-        <div class="uc-price">Effort indicatif : <em>~15 j/h</em> · Prod ~75 j/h</div>
+        <div class="uc-price">Proto <em>12k€</em> · Prod ~60k€</div>
       </div>
     </div>
 
     <div class="uc" onclick="om('opt')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#37474F,#78909C)"></div>
+      <div class="uc-img" style="background:linear-gradient(135deg,#263238,#546E7A)"></div>
       <div class="uc-body">
         <div class="uc-code">OPT</div>
         <div class="uc-title">Automatisation process équipes gestion</div>
         <div class="uc-brief">Cartographie des process, gains rapides RPA + IA, déploiement workflows automatisés. Gain de productivité mesuré.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">RPA</span><span class="tag">Automatisation</span><span class="tag">Workflow</span></div>
-        <div class="uc-price">Effort indicatif : <em>~10 j/h</em> · Prod ~55 j/h</div>
+        <div class="uc-price">Proto <em>8k€</em> · Prod ~45k€</div>
       </div>
     </div>
 
@@ -673,7 +643,7 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Génération de CRA en langage naturel</div>
         <div class="uc-brief">Le consultant décrit sa semaine librement → l'IA structure le CRA au format imposé et soumet pour validation.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Automatisation</span><span class="tag">RH</span></div>
-        <div class="uc-price">Effort indicatif : <em>~5 j/h</em> · Prod ~25 j/h</div>
+        <div class="uc-price">Proto <em>5k€</em> · Prod ~20k€</div>
       </div>
     </div>
 
@@ -684,18 +654,18 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
         <div class="uc-title">Newsletter auto-améliorée par feedback</div>
         <div class="uc-brief">Génération LLM + collecte feedback en langage naturel + réinjection automatique dans le prompt de la prochaine édition.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">LLM</span><span class="tag">Marketing IA</span><span class="tag">Feedback Loop</span></div>
-        <div class="uc-price">Effort indicatif : <em>~10 j/h</em> · Prod ~40 j/h</div>
+        <div class="uc-price">Proto <em>7.5k€</em> · Prod ~30k€</div>
       </div>
     </div>
 
     <div class="uc" onclick="om('ao')">
-      <div class="uc-img" style="background:linear-gradient(135deg,#5D4037,#A1887F)"></div>
+      <div class="uc-img" style="background:linear-gradient(135deg,#3E2723,#8D6E63)"></div>
       <div class="uc-body">
         <div class="uc-code">AO</div>
         <div class="uc-title">Facilitation réponse aux appels d'offres</div>
         <div class="uc-brief">Analyse du CDC, sélection automatique des références cabinets et profils consultants, génération du premier jet.</div>
         <div class="tags" style="margin-bottom:10px"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">Automatisation</span></div>
-        <div class="uc-price">Effort indicatif : <em>~15 j/h</em> · Prod ~65 j/h</div>
+        <div class="uc-price">Proto <em>10k€</em> · Prod ~50k€</div>
       </div>
     </div>
 
@@ -800,55 +770,6 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
   </footer>
 </div>
 
-<!-- ═══════════════════════════════════════════ OFFRE MODAL -->
-<div class="ov" id="ov-offre" onclick="if(event.target===this)closeOffre()">
-  <div class="offre-modal">
-    <div class="offre-head">
-      <div>
-        <div class="offre-head-lbl">ijen · matching de compétences</div>
-        <h3>Vous vous demandez si je peux<br>répondre à vos besoins ?</h3>
-        <p>Uploadez votre offre ou décrivez votre besoin — le système analyse et sélectionne les réalisations et compétences les plus pertinentes.</p>
-      </div>
-      <button class="m-close" onclick="closeOffre()">✕</button>
-    </div>
-    <div class="offre-body">
-
-      <!-- FORM -->
-      <div id="offre-form">
-        <div class="offre-split">
-          <div class="offre-col">
-            <div class="offre-col-lbl">↑ Uploadez votre fiche de poste</div>
-            <div class="drop" id="dOffre" ondrop="dOffreDrop(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
-              <input type="file" id="fOffre" accept=".pdf,.doc,.docx,.txt" onchange="onOffreFile(this)">
-              <div class="drop-l">Déposer ici</div>
-              <div class="drop-s">PDF · DOCX · TXT</div>
-            </div>
-          </div>
-          <div class="offre-sep">ou</div>
-          <div class="offre-col" style="padding:0 0 0 20px">
-            <div class="offre-col-lbl">✎ Décrivez votre besoin</div>
-            <textarea class="mach-ta" id="tOffre" style="height:130px;width:100%" placeholder="Type de profil, compétences clés, contexte de la mission, secteur..."></textarea>
-          </div>
-        </div>
-        <button class="mbtn" id="btnOffre" onclick="analyseOffre()" style="margin-top:20px">Analyser mon besoin →</button>
-        <div class="prog" id="pOffre"><div class="prog-f" id="pfOffre"></div></div>
-      </div>
-
-      <!-- RESULTS -->
-      <div id="offre-results" style="display:none">
-        <div class="offre-summary">
-          <div class="offre-summary-head">✓ Analyse de votre besoin</div>
-          <div class="offre-summary-body" id="offre-summary-body"></div>
-        </div>
-        <p class="m-lbl" style="margin-bottom:12px">Réalisations les plus pertinentes — cliquer pour le détail</p>
-        <div class="ref-grid" id="offre-refs"></div>
-        <button onclick="resetOffre()" style="margin-top:22px;background:none;border:none;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;color:var(--g4);text-decoration:underline">← Modifier mon besoin</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 <!-- ═══════════════════════════════════════════ MODAL -->
 <div class="ov" id="ov" onclick="if(event.target===this)cm()">
   <div class="modal">
@@ -861,8 +782,8 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
     </div>
     <div class="m-body">
       <div class="dg">
-        <div class="dc"><div class="dl">Effort proto</div><div class="dv hi" id="mpr"></div></div>
-        <div class="dc"><div class="dl">Effort prod</div><div class="dv" id="mpd"></div></div>
+        <div class="dc"><div class="dl">Prototypage</div><div class="dv hi" id="mpr"></div></div>
+        <div class="dc"><div class="dl">Industrialisation</div><div class="dv" id="mpd"></div></div>
         <div class="dc"><div class="dl">Catégorie</div><div class="dv" style="font-size:13px" id="mca"></div></div>
       </div>
       <p class="m-lbl">Problème identifié</p>
@@ -882,97 +803,97 @@ footer{border-top:var(--b);display:flex;align-items:center;justify-content:space
 <script>
 // ══════════════════ DATA ══════════════════
 const D={
-  rag:{code:'RAG',title:'Chatbot RAG sur-mesure',proto:'~10 j/h',prod:'~50 j/h',cat:"Systèmes d'information",
+  rag:{code:'RAG',title:'Chatbot RAG sur-mesure',proto:'7.5k€',prod:'~40k€',cat:"Systèmes d'information",
     pb:"Les LLM pré-entraînés ne peuvent pas intégrer les données métier ni les mettre à jour.",
     so:"RAG (Retrieval Augmented Generation) sur-mesure adapté aux données métier. Mise à jour temps-réel, agents pour requêtes complexes, RAGtime pour évaluation et monitoring.",
     tags:['RAG','LLM','Embedding','Agent IA','Monitoring'],
     ref:"Caisse d'Épargne (analyse avis clients) · Predict4Health (data médicale) · Acteur assurances NDA"},
-  nlp:{code:'NLP',title:'Analyse retours clients automatisée',proto:'~20 j/h',prod:'~65 j/h',cat:'Automatisation',
+  nlp:{code:'NLP',title:'Analyse retours clients automatisée',proto:'15k€',prod:'~50k€',cat:'Automatisation',
     pb:"Les retours clients sont dispersés dans des formats longs, identifier les tendances majeures est manuel et lent.",
     so:"IA qui parcourt et regroupe automatiquement les retours pour identifier sujets récurrents, KPIs, interface chatbot et rapports mensuels automatiques.",
     tags:['LLM','Data Science','BI','NLP','Clustering'],
     ref:"Caisse d'Épargne (clustering agences) · Servier (patterns ventes) · AGPM/Klésia"},
-  sql:{code:'SQL',title:'Self-Service BI (NL2SQL)',proto:'~5 j/h',prod:'~30 j/h',cat:"Systèmes d'information",
+  sql:{code:'SQL',title:'Self-Service BI (NL2SQL)',proto:'5k€',prod:'~25k€',cat:"Systèmes d'information",
     pb:"L'accès aux données est limité à quelques experts. Une simple requête peut prendre plusieurs jours.",
     so:"Self-Service BI : tous les utilisateurs effectuent des requêtes en langage naturel. Gouvernance stricte par profil, résultats Excel/CSV/texte.",
     tags:['LLM','NL2SQL','Data Gov.','BI'],
     ref:"CHU Bordeaux (Data Lake) · Caisse d'Épargne · Servier"},
-  doc:{code:'DOC',title:'Validation & extraction de dossiers',proto:'~15 j/h',prod:'~120 j/h',cat:'Automatisation',
+  doc:{code:'DOC',title:'Validation & extraction de dossiers',proto:'10k€',prod:'~95k€',cat:'Automatisation',
     pb:"La vérification manuelle de pièces jointes est coûteuse et source d'erreurs à volume.",
     so:"Analyse automatique de pièces jointes (PDF, manuscrits). Validation documents d'identité, alertes dossiers incomplets, API intégrable backoffice.",
     tags:['Doc Understanding','OCR','LLM','API'],
     ref:"Acteur assurances NDA (sinistres) · Predict4Health (bilans médicaux) · Collectivités locales"},
-  rpt:{code:'RPT',title:'Aide à la rédaction de rapports',proto:'~25 j/h',prod:'>125 j/h',cat:'Automatisation',
+  rpt:{code:'RPT',title:'Aide à la rédaction de rapports',proto:'20k€',prod:'>100k€',cat:'Automatisation',
     pb:"Rédiger des rapports conformes aux normes demande une expertise métier pointue et beaucoup de temps.",
     so:"LLM entraîné sur base de connaissances métier. Rapports conformes, extraction multi-documents, GraphRAG pour corpus complexes.",
     tags:['LLM','GraphRAG','Automatisation','NLP'],
     ref:"Collectivités locales (PLU) · Secteur public · Ministère de la Santé"},
-  ocr:{code:'OCR',title:'Enrichissement OCR & vision',proto:'~5 j/h',prod:'15–65 j/h',cat:'Automatisation',
+  ocr:{code:'OCR',title:'Enrichissement OCR & vision',proto:'5k€',prod:'10–50k€',cat:'Automatisation',
     pb:"Des informations stratégiques sont piégées dans des supports non-structurés : PDF scannés, manuscrits, photos.",
     so:"Extraction d'informations depuis tout support. Modèle entraîné sur cas d'usage spécifique pour maximiser précision et réduire coûts (<0,05€ / requête).",
     tags:['OCR','Computer Vision','LLM'],
     ref:"Predict4Health (bilans médicaux) · Stanford/CHU (données cliniques) · Acteur assurances NDA"},
-  img:{code:'IMG',title:'Détection fraude sinistres (images)',proto:'~10 j/h',prod:'~50 j/h',cat:'Automatisation',
+  img:{code:'IMG',title:'Détection fraude sinistres (images)',proto:'7.5k€',prod:'~40k€',cat:'Automatisation',
     pb:"Les clients uploadent librement des photos lors de déclarations. Vérifier la cohérence avec le sinistre déclaré est impossible manuellement à volume.",
     so:"Analyse et reconnaissance des éléments photographiques. Évaluation quantitative des dégâts. API intégrable en backoffice. Coûts <0,05€ / requête.",
     tags:['IA Custom','Multimodal','Computer Vision','API'],
     ref:"Acteur assurances NDA (dossiers habitation) · AGPM/Klésia"},
-  src:{code:'SRC',title:'Moteur de recherche multimédia',proto:'~15 j/h',prod:'~95 j/h',cat:"Systèmes d'information",
+  src:{code:'SRC',title:'Moteur de recherche multimédia',proto:'10k€',prod:'~75k€',cat:"Systèmes d'information",
     pb:"La recherche dans des bases documentaires multimédia est inefficace avec les outils standard.",
     so:"Recherche sémantique et recommandation sur textes, images, vidéos et documents. Transcription automatique vidéos, API REST.",
     tags:['Embedding','Multimodal','Recherche sémantique'],
     ref:"AXA France (showroom IA) · Plateformes médias · Content management"},
-  bot:{code:'BOT',title:'Chatbot structuré (collecte données)',proto:'~25 j/h',prod:'~50 j/h',cat:'RH / Automatisation',
+  bot:{code:'BOT',title:'Chatbot structuré (collecte données)',proto:'20k€',prod:'~40k€',cat:'RH / Automatisation',
     pb:"Collecter des données structurées via des formulaires crée de la friction et des taux d'abandon élevés.",
     so:"Chatbot menant une conversation libre tout en collectant silencieusement des données structurées. Parsing CV/contrats intégré.",
     tags:['LLM','Agent IA','RH','NLP'],
     ref:"AGPM/Klésia (cycle de vie client) · Cabinets conseil · Secteur RH"},
-  kpi:{code:'KPI',title:'Compréhension utilisateur avancée',proto:'~5 j/h',prod:'~20 j/h',cat:'Analytics',
+  kpi:{code:'KPI',title:'Compréhension utilisateur avancée',proto:'5k€',prod:'~15k€',cat:'Analytics',
     pb:"Les données comportementales textuelles ne sont pas exploitées pour créer des KPIs actionnables.",
     so:"Classification supervisée/non-supervisée, KPIs catégoriels/numériques, enrichissement données textuelles pour tableaux de bord opérationnels.",
     tags:['Data Science','LLM','Clustering','Analytics'],
     ref:"AGPM/Klésia (Millicare) · Caisse d'Épargne · Servier"},
-  crm:{code:'CRM',title:'CRM sur-mesure pour cabinet conseil',proto:'~10 j/h',prod:'~45 j/h',cat:"Systèmes d'information",
+  crm:{code:'CRM',title:'CRM sur-mesure pour cabinet conseil',proto:'8k€',prod:'~35k€',cat:"Systèmes d'information",
     pb:"Un cabinet conseil gère son activité dans des outils dispersés (Excel, emails), sans vue unifiée pipeline, consultants, missions et facturation.",
     so:"CRM sur-mesure pensé pour les besoins d'Infinitif : gestion des opportunités, fiches consultants enrichies, matching missions/profils par IA, suivi facturation, alertes proactives et tableau de bord commercial.",
     tags:['CRM','IA Custom','Matching','Pipeline','LLM'],
     ref:"Infinitif (cabinet conseil)"},
-  ins:{code:'INS',title:'Comparateur de documents d\'assurance',proto:'~15 j/h',prod:'~65 j/h',cat:'Assurance',
+  ins:{code:'INS',title:'Comparateur de documents d\'assurance',proto:'10k€',prod:'~50k€',cat:'Assurance',
     pb:"Les tunnels de souscription assurance sont longs : les prospects abandonnent face à des documents épais et incompréhensibles, sans pouvoir comparer simplement avec leurs contrats en cours.",
     so:"L'utilisateur uploade ses contrats actuels. L'IA extrait les garanties clés, les compare avec le nouveau produit, et génère un résumé décisionnel structuré en moins de 30 secondes. Réduction mesurée du taux d'abandon.",
     tags:['Doc Understanding','LLM','OCR','Assurance','UX'],
     ref:"Acteur assurances NDA · Mutuelle santé · Prévoyance"},
-  crd:{code:'CRD',title:'Simulation crédit self-service',proto:'~20 j/h',prod:'~100 j/h',cat:'Banque',
+  crd:{code:'CRD',title:'Simulation crédit self-service',proto:'15k€',prod:'~80k€',cat:'Banque',
     pb:"Les conseillers bancaires gèrent des simulations crédit chronophages. Les outils existants sont rigides et peu personnalisés, générant une forte dépendance au conseiller.",
     so:"Agent conversationnel de simulation et pré-souscription en self-service. Collecte intelligente des données, scoring préliminaire, génération d'une offre indicative personnalisée, bascule conseiller si besoin.",
     tags:['Agent IA','LLM','Banque','Self-Service','UX'],
     ref:"Caisse d'Épargne · Acteur bancaire NDA · Crédit Mutuel"},
-  plg:{code:'PLG',title:'Stratégie Product Led Growth banque marque blanche',proto:'~25 j/h',prod:'~150 j/h',cat:'Banque / Stratégie',
+  plg:{code:'PLG',title:'Stratégie Product Led Growth banque marque blanche',proto:'20k€',prod:'~120k€',cat:'Banque / Stratégie',
     pb:"Les banques en marque blanche peinent à convertir et activer leurs utilisateurs finaux. Les funnels sont pensés pour les partenaires B2B, pas pour les usagers.",
     so:"Stratégie PLG complète : analyse parcours, identification moments d'activation, instrumentation produit, expérimentations A/B, boucles de rétention IA, scoring comportemental personnalisant l'acquisition et la fidélisation.",
     tags:['Product Strategy','PLG','Analytics','Growth','UX'],
     ref:"Acteur bancaire marque blanche NDA · Fintech B2B2C"},
-  gov:{code:'GOV',title:'Gouvernance data & IA pour TPA',proto:'~15 j/h',prod:'~75 j/h',cat:'Data Strategy',
+  gov:{code:'GOV',title:'Gouvernance data & IA pour TPA',proto:'12k€',prod:'~60k€',cat:'Data Strategy',
     pb:"Un Tiers Payant Administrateur manipule des données de santé sensibles sans cadre data structuré : SI hétérogènes, pas de catalogue de données, risques RGPD non maîtrisés.",
     so:"Diagnostic data complet, définition de l'architecture cible, politique de gouvernance (référentiels, ownership, qualité), roadmap IA 12–24 mois et implémentation des premières briques fondamentales.",
     tags:['Data Strategy','Gouvernance','RGPD','IA','Architecture Data'],
     ref:"TPA Santé NDA · Secteur assurance santé · Mutuelles"},
-  opt:{code:'OPT',title:'Automatisation process équipes gestion',proto:'~10 j/h',prod:'~55 j/h',cat:'Automatisation',
+  opt:{code:'OPT',title:'Automatisation process équipes gestion',proto:'8k€',prod:'~45k€',cat:'Automatisation',
     pb:"Les équipes de gestion passent un temps excessif sur des tâches répétitives à faible valeur : saisie, contrôles, relances, reporting — souvent manuels et non tracés.",
     so:"Cartographie des processus, identification des gains rapides, déploiement de workflows automatisés (RPA + IA), intégration aux outils existants. Gain de productivité documenté et mesuré dès les premières semaines.",
     tags:['RPA','Automatisation','Workflow','LLM','Process'],
     ref:"BeTomorrow · Cabinets de gestion NDA · Opérations"},
-  cra:{code:'CRA',title:'Génération de CRA en langage naturel',proto:'~5 j/h',prod:'~25 j/h',cat:'Automatisation / RH',
+  cra:{code:'CRA',title:'Génération de CRA en langage naturel',proto:'5k€',prod:'~20k€',cat:'Automatisation / RH',
     pb:"Les consultants rédigent leurs comptes-rendus d'activité après coup, souvent avec des oublis et une qualité variable, dans des formats imposés peu intuitifs.",
     so:"Le consultant décrit librement sa semaine à l'oral ou à l'écrit. L'IA structure automatiquement le CRA selon le format imposé, complète les champs obligatoires, calcule les temps, et soumet pour validation en 1 clic.",
     tags:['LLM','NLP','Automatisation','RH','Agent IA'],
     ref:"Infinitif · Cabinet conseil"},
-  nwl:{code:'NWL',title:'Newsletter auto-améliorée par feedback',proto:'~10 j/h',prod:'~40 j/h',cat:'Marketing / IA',
+  nwl:{code:'NWL',title:'Newsletter auto-améliorée par feedback',proto:'7.5k€',prod:'~30k€',cat:'Marketing / IA',
     pb:"Les newsletters B2B sont difficiles à personnaliser. Le feedback lecteur n'est pas collecté, encore moins utilisé pour améliorer le contenu suivant.",
     so:"Pipeline complet : génération du contenu par LLM, distribution, collecte de feedback en langage naturel via bot post-envoi, analyse des retours, réinjection automatique dans le prompt de la prochaine édition. La newsletter s'améliore d'elle-même.",
     tags:['LLM','NLP','Marketing IA','Feedback Loop','Automatisation'],
     ref:"Infinitif · Cabinet conseil NDA · Secteur services"},
-  ao:{code:'AO',title:"Facilitation réponse aux appels d'offres",proto:'~15 j/h',prod:'~65 j/h',cat:'Automatisation / Conseil',
+  ao:{code:'AO',title:"Facilitation réponse aux appels d'offres",proto:'10k€',prod:'~50k€',cat:'Automatisation / Conseil',
     pb:"Répondre à un AO mobilise des heures : retrouver les bonnes références, constituer les équipes, rédiger les textes. La qualité est inégale selon les personnes disponibles.",
     so:"Outil de génération assistée : analyse du CDC, sélection automatique des meilleures références cabinets et profils CV consultants par RAG, génération d'un premier jet complet, cycle de révision collaboratif avec historique.",
     tags:['RAG','LLM','Automatisation','AO','Conseil'],
@@ -999,7 +920,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')cm()});
 // ══════════════════ RADAR (SVG) ══════════════════
 function drawRadar(svgId,axes,colors){
   const svg=document.getElementById(svgId);
-  const cx=190,cy=190,r=120,n=axes[0].vals.length;
+  const cx=160,cy=160,r=120,n=axes[0].vals.length;
   const ang=i=>i*(2*Math.PI/n)-Math.PI/2;
   const pt=(i,v)=>({x:cx+v*r*Math.cos(ang(i)),y:cy+v*r*Math.sin(ang(i))});
   let h='';
@@ -1024,7 +945,7 @@ function drawRadar(svgId,axes,colors){
 }
 
 const radarLabels=['Product\nStrategy','IA / LLM','Data\nEng.','UX','Change\nMgmt','Analytics','Architecture','Delivery'];
-const paulVals=[.92,.88,.65,.72,.80,.68,.60,.85];
+const paulVals=[.95,.93,.78,.88,.84,.82,.86,.90];
 
 // ══════════════════ SKILL BARS ══════════════════
 function animBars(){
@@ -1118,7 +1039,7 @@ function genRadar(){
       btn.disabled=false;btn.innerHTML='✓ Généré — Relancer →';prog.style.display='none';fill.style.width='0%';
       const dims=['Product','IA/LLM','Data Eng.','UX','Sectoriel','Delivery','Change\nMgmt','Analytics'];
       const pv=paulVals;
-      const cc=['#7B2D8E','#E8590C','#9B59B6'];
+      const cc=['#AAAAAA','#CCCCCC','#888888'];
       const cdata=comps.slice(0,3).map((c,ci)=>({
         n:c.n,
         v:dims.map((_,di)=>Math.max(.3,Math.min(.98,pv[di]*(0.55+Math.random()*.52)))),
@@ -1137,10 +1058,10 @@ function genRadar(){
       dims.forEach((_,i)=>{const p=pt(i,1);sv+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#E8E8E8" stroke-width="1"/>`;});
       cdata.forEach(d=>{
         const ps=d.v.map((v,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
-        sv+=`<polygon points="${ps}" fill="${d.col}" fill-opacity=".15" stroke="${d.col}" stroke-width="2" stroke-dasharray="6,3"/>`;
+        sv+=`<polygon points="${ps}" fill="${d.col}" fill-opacity=".12" stroke="${d.col}" stroke-width="1.5" stroke-dasharray="4,3"/>`;
       });
       const pps=pv.map((v,i)=>{const p=pt(i,v);return`${p.x},${p.y}`}).join(' ');
-      sv+=`<polygon points="${pps}" fill="none" stroke="#000" stroke-width="2.5"/>`;
+      sv+=`<polygon points="${pps}" fill="#B4FF00" fill-opacity=".45" stroke="#000" stroke-width="2"/>`;
       pv.forEach((v,i)=>{const p=pt(i,v);sv+=`<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="#000"/>`;});
       dims.forEach((d,i)=>{
         const p=pt(i,1.38);const lines=d.split('\n');
@@ -1150,7 +1071,7 @@ function genRadar(){
 
       // legend + delta table
       const leg=`<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;font-size:10px;font-weight:700">
-        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:3px;background:#000"></div>Paul Duchâteau</div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:8px;background:var(--g);border:1px solid #000"></div>Paul Duchâteau</div>
         ${cdata.map(d=>`<div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:2px;background:${d.col};border-top:2px dashed ${d.col}"></div>${d.n}</div>`).join('')}
       </div>`;
       const tbl=`<div style="border:var(--bt)">
@@ -1178,218 +1099,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   const sec=document.getElementById('competences');
   if(sec)obs.observe(sec);
 });
-
-// ══════════════════ OFFRE PANEL ══════════════════
-let offreFok=false;
-
-function openOffre(){document.getElementById('ov-offre').classList.add('open')}
-function closeOffre(){document.getElementById('ov-offre').classList.remove('open')}
-function resetOffre(){
-  document.getElementById('offre-results').style.display='none';
-  document.getElementById('offre-form').style.display='block';
-}
-function onOffreFile(i){
-  if(i.files&&i.files[0]){
-    document.querySelector('#dOffre .drop-l').textContent='✓ '+i.files[0].name;
-    document.getElementById('dOffre').style.background='#F0FFD0';
-    offreFok=true;
-  }
-}
-function dOffreDrop(e){
-  e.preventDefault();
-  document.getElementById('dOffre').classList.remove('over');
-  const f=e.dataTransfer.files[0];
-  if(f){document.querySelector('#dOffre .drop-l').textContent='✓ '+f.name;document.getElementById('dOffre').style.background='#F0FFD0';offreFok=true;}
-}
-
-// Intent map: regex pattern → {besoin label, compétences label}
-const intentMap=[
-  [/rag|llm|chatbot|ia.g[eé]n[eé]rativ|openai|mistral|claude|gpt/,'un système conversationnel ou génératif IA','IA Générative, RAG et architecture LLM'],
-  [/data|analytics|bi|tableau de bord|pipeline|etl|datalake|data lake/,'un expert en architecture data et analytics','Data Engineering, Analytics et gouvernance data'],
-  [/produit|product|roadmap|stratégi|pm\b|po\b|product manager|product owner/,'un expert product strategy orienté IA','Product Management, roadmap IA et delivery'],
-  [/assurance|sinistre|souscription|mutuelle|prévoyance/,'un expert IA pour le secteur assurance','Computer Vision, Doc Understanding et automatisation assurantielle'],
-  [/banque|crédit|bancaire|fintech|paiement|finance/,'un expert produit bancaire avec IA','Product Led Growth, expérience client et IA bancaire'],
-  [/sant[eé]|médical|pharma|health|médicament|clinique|hopital/,'un expert Digital Health et IA médicale','MedTech, données cliniques et stratégie produit DTx'],
-  [/change|accompagnement|formation|transformation|adoption/,'un expert en transformation et conduite du changement IA','Change Management, formation et adoption IA en entreprise'],
-  [/crm|commercial|cabinet|conseil|consulting|ao\b|appel d.offre/,'un expert conseil avec outils IA internes','CRM IA, automatisation métier et réponse aux AO'],
-  [/automatisation|process|rpa|workflow|gestion|productivit/,'un expert en automatisation de processus métier','RPA, LLM appliqués et optimisation workflow'],
-  [/newsletter|marketing|contenu|content|communication/,'un expert en IA pour le marketing et la communication','LLM, personnalisation contenu et feedback loop'],
-];
-
-function detectIntent(txt){
-  for(const [re,besoin,comp] of intentMap){
-    if(re.test(txt)) return {besoin,comp};
-  }
-  return {besoin:'un expert polyvalent en IA appliquée',comp:'Product Strategy, IA Générative et Data Engineering'};
-}
-
-function scoreEntries(txt){
-  return Object.entries(D).map(([key,d])=>{
-    const haystack=(d.title+' '+d.pb+' '+d.so+' '+d.tags.join(' ')+' '+d.cat+' '+d.ref).toLowerCase();
-    let score=0;
-    if(txt.trim().length>8){
-      txt.toLowerCase().split(/[\s,;.]+/).filter(w=>w.length>3).forEach(w=>{if(haystack.includes(w))score++;});
-      // Bonus: tag exact match
-      d.tags.forEach(t=>{if(txt.toLowerCase().includes(t.toLowerCase()))score+=2;});
-    } else {
-      score=Math.floor(Math.random()*4)+1;
-    }
-    return{key,d,score};
-  }).sort((a,b)=>b.score-a.score);
-}
-
-function analyseOffre(){
-  const rawTxt=document.getElementById('tOffre').value;
-  const txt=rawTxt.toLowerCase();
-  if(!offreFok&&txt.trim().length<8){alert('Décrivez votre besoin ou uploadez une fiche de poste.');return;}
-  const btn=document.getElementById('btnOffre');
-  btn.disabled=true;btn.innerHTML='<span class="spin"></span>Analyse en cours...';
-  const prog=document.getElementById('pOffre'),fill=document.getElementById('pfOffre');
-  prog.style.display='block';let p=0;
-  const iv=setInterval(()=>{p+=Math.random()*14+4;if(p>94)p=94;fill.style.width=p+'%';},160);
-  setTimeout(()=>{
-    clearInterval(iv);fill.style.width='100%';
-    setTimeout(()=>{
-      btn.disabled=false;btn.innerHTML='Analyser mon besoin →';prog.style.display='none';fill.style.width='0%';
-
-      // Score & pick top 4
-      const scored=scoreEntries(rawTxt).slice(0,4);
-
-      // Build summary
-      const {besoin,comp}=detectIntent(txt);
-      const shortDesc=rawTxt.trim().length>30?'"'+rawTxt.trim().substring(0,90)+(rawTxt.trim().length>90?'…':'')+'"':'votre mission';
-      document.getElementById('offre-summary-body').innerHTML=`
-        <p><strong>J'ai compris que vous cherchiez</strong> ${besoin}. Votre besoin porte sur ${shortDesc}.</p>
-        <p><strong>Paul saura répondre à vos besoins</strong> en mettant en avant ses compétences en <span style="background:var(--g);padding:1px 6px;font-weight:700">${comp}</span> — avec ~100 références data IA accumulées et 14 ans d'expérience en transformation produit et IA.</p>`;
-
-      // Build ref cards
-      document.getElementById('offre-refs').innerHTML=scored.map(({key,d,score})=>{
-        const pct=Math.min(97,52+score*9+(txt.trim().length<8?Math.floor(Math.random()*20):0));
-        return`<div class="ref-card fiu" onclick="closeOffre();setTimeout(()=>om('${key}'),220)">
-          <div class="ref-card-score">${pct}%</div>
-          <div class="ref-card-code">${d.code}</div>
-          <div class="ref-card-title">${d.title}</div>
-          <div class="ref-card-ref">${d.ref}</div>
-          <div class="ref-card-cta">Voir le détail →</div>
-        </div>`;
-      }).join('');
-
-      document.getElementById('offre-form').style.display='none';
-      document.getElementById('offre-results').style.display='block';
-    },300);
-  },1900);
-}
-
-// ══════════════════ CHAT WIDGET ══════════════════
-const CHAT_API=window.location.hostname==='localhost'?'http://localhost:3001':'https://api.ijen.fr';
-let chatConvId=null;
-let chatOpen=false;
-
-function toggleChat(){
-  chatOpen=!chatOpen;
-  document.getElementById('chatW').classList.toggle('chat-open',chatOpen);
-  if(chatOpen&&!document.getElementById('chatMsgs').children.length){
-    addChatMsg('assistant','Bonjour ! Je suis l\'assistant IA d\'Ijen. Posez-moi une question sur le profil, les compétences ou les réalisations de Paul.');
-  }
-}
-
-function addChatMsg(role,text){
-  const msgs=document.getElementById('chatMsgs');
-  const d=document.createElement('div');
-  d.className='chat-msg chat-'+role;
-  d.textContent=text;
-  msgs.appendChild(d);
-  msgs.scrollTop=msgs.scrollHeight;
-  return d;
-}
-
-async function sendChat(){
-  const input=document.getElementById('chatInput');
-  const msg=input.value.trim();
-  if(!msg)return;
-  input.value='';
-  addChatMsg('user',msg);
-  const aDiv=addChatMsg('assistant','...');
-
-  try{
-    const res=await fetch(CHAT_API+'/api/chat',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({message:msg,conversationId:chatConvId})
-    });
-
-    if(!res.ok){aDiv.textContent='Erreur — réessayez.';return;}
-
-    const reader=res.body.getReader();
-    const dec=new TextDecoder();
-    let buf='';
-    aDiv.textContent='';
-
-    while(true){
-      const{done,value}=await reader.read();
-      if(done)break;
-      buf+=dec.decode(value,{stream:true});
-      const lines=buf.split('\n\n');
-      buf=lines.pop()||'';
-      for(const line of lines){
-        if(!line.startsWith('data: '))continue;
-        try{
-          const data=JSON.parse(line.slice(6));
-          if(data.text)aDiv.textContent+=data.text;
-          if(data.conversationId)chatConvId=data.conversationId;
-          if(data.done&&data.sources&&data.sources.length){
-            const srcSpan=document.createElement('div');
-            srcSpan.className='chat-sources';
-            srcSpan.innerHTML='<span class="cap" style="margin-top:8px;display:block">Références : '+data.sources.map(s=>s.code).join(', ')+'</span>';
-            aDiv.appendChild(srcSpan);
-          }
-        }catch(e){}
-      }
-    }
-    const msgs=document.getElementById('chatMsgs');
-    msgs.scrollTop=msgs.scrollHeight;
-  }catch(e){
-    aDiv.textContent='Connexion impossible. Réessayez plus tard.';
-  }
-}
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='Enter'&&document.activeElement===document.getElementById('chatInput'))sendChat();
-});
 </script>
-
-<!-- CHAT WIDGET -->
-<style>
-#chatW{position:fixed;bottom:24px;right:24px;z-index:300;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
-.chat-fab{width:56px;height:56px;border-radius:50%;background:var(--g);color:var(--k);border:3px solid var(--k);cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25),0 0 0 4px rgba(180,255,0,.3);transition:all .2s;animation:fab-pulse 3s ease-in-out infinite}
-.chat-fab:hover{background:var(--w);box-shadow:0 6px 20px rgba(0,0,0,.3),0 0 0 6px rgba(180,255,0,.4)}
-@keyframes fab-pulse{0%,100%{box-shadow:0 4px 16px rgba(0,0,0,.25),0 0 0 4px rgba(180,255,0,.3)}50%{box-shadow:0 4px 16px rgba(0,0,0,.25),0 0 0 8px rgba(180,255,0,.15)}}
-.chat-panel{display:none;position:absolute;bottom:64px;right:0;width:360px;max-height:520px;background:var(--w);border:var(--b);box-shadow:0 8px 32px rgba(0,0,0,.15);flex-direction:column}
-.chat-open .chat-panel{display:flex}
-.chat-header{padding:12px 16px;border-bottom:var(--bt);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;justify-content:space-between}
-.chat-header span{font-style:italic;font-size:16px;font-weight:900}
-.chat-close{background:none;border:none;cursor:pointer;font-size:18px;color:var(--k)}
-#chatMsgs{flex:1;overflow-y:auto;padding:16px;min-height:240px;max-height:360px}
-.chat-msg{padding:8px 12px;margin-bottom:8px;font-size:13px;line-height:1.5;border-radius:2px;max-width:88%;word-wrap:break-word}
-.chat-user{background:var(--g1);margin-left:auto;text-align:right}
-.chat-assistant{background:var(--k);color:var(--w)}
-.chat-sources .cap{font-size:9px;color:var(--g4)}
-.chat-bar{display:flex;border-top:var(--bt);padding:0}
-#chatInput{flex:1;border:none;padding:12px 14px;font-size:13px;font-family:inherit;outline:none;background:transparent}
-.chat-send{background:var(--k);color:var(--w);border:none;padding:0 16px;cursor:pointer;font-size:14px;font-weight:700;transition:background .15s}
-.chat-send:hover{background:var(--g);color:var(--k)}
-@media(max-width:600px){.chat-panel{width:calc(100vw - 32px);right:-8px;bottom:60px}}
-</style>
-<div id="chatW">
-  <div class="chat-panel">
-    <div class="chat-header"><span>ijen</span> assistant IA <button class="chat-close" onclick="toggleChat()">&#10005;</button></div>
-    <div id="chatMsgs"></div>
-    <div class="chat-bar">
-      <input id="chatInput" type="text" placeholder="Posez votre question..." autocomplete="off">
-      <button class="chat-send" onclick="sendChat()">&rarr;</button>
-    </div>
-  </div>
-  <button class="chat-fab" onclick="toggleChat()" title="Chat IA">&#128172;</button>
-</div>
 </body>
 </html>
